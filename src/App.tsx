@@ -20,7 +20,6 @@ function App() {
   return (
     <div className={`theme-${theme}`}>
       {validationError && (
-
         <ErrorModal button='Dismiss' heading='Env Validation Error' message={validationError.join(',')} />
       )}
       <Toaster />
