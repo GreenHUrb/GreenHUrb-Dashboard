@@ -1,6 +1,4 @@
-@import '../../../styles/_color-palette.scss';
 
-$color: map-get($color-palette-1, primary);
 
 .loader_container {
   width: 100%;
@@ -39,7 +37,7 @@ $color: map-get($color-palette-1, primary);
   left: 17px;
   border-radius: 50%;
   border: 6px solid #000;
-  border-color: $color transparent $color transparent;
+  // border-color: $color transparent $color transparent;
   animation: ldio-89lkaiw9jyt 0.7633587786259541s linear infinite;
 }
 
@@ -76,15 +74,15 @@ $color: map-get($color-palette-1, primary);
   height: 6px;
   top: -6px;
   left: 74px;
-  background: $color;
+  // background: $color;
   border-radius: 50%;
-  box-shadow: 0 160px 0 0 $color;
+  // box-shadow: 0 160px 0 0 $color;
 }
 
 .ldio-89lkaiw9jyt>div:nth-child(3) div:after {
   left: -6px;
   top: 74px;
-  box-shadow: 160px 0 0 0 $color;
+  // box-shadow: 160px 0 0 0 $color;
 }
 
 .ldio-89lkaiw9jyt>div:nth-child(4) {

@@ -1,7 +1,6 @@
 import { Link, } from "react-router-dom";
 import visible from "../../../assets/icons/visible.svg";
 import notvisible from "../../../assets/icons/not-visible.svg";
-import { ILoginInput } from "../interfaces/ILoginInput";
 import "../styles/LoginStyles.scss";
 import FormError from "../../../components/form/formError/FormError";
 import useLogin from "../hooks/useLogin";
@@ -9,12 +8,13 @@ import Button from "../../../components/Button/Button";
 import Input from "../../../components/form/Input/Input";
 import { AllRouteConstants } from "../../../router/RouteConstants";
 import usePasswordType from "../hooks/usePasswordType";
+import { ILogin } from "../../../interfaces/IApiRequests";
 
 export const Login = () => {
   const { handleSubmit, loginForm, loading, error } = useLogin()
   const { passwordType, togglePassword } = usePasswordType()
 
-  const formChange = (key: keyof ILoginInput, value: any) => {
+  const formChange = (key: keyof ILogin, value: any) => {
     loginForm.onChange(key, value);
     return;
   };
@@ -32,7 +32,7 @@ export const Login = () => {
         </p>
 
         <form className="auth-form" onSubmit={handleSubmit}>
-          
+
           <div className="auth-field">
             <Input
               id="email"
@@ -85,23 +85,6 @@ export const Login = () => {
 
           <FormError error={error?.message} />
         </form>
-        {/* 
-        <div className="auth-or_container">
-          <div className="auth-or_line"></div>
-          <span className="auth-or_text">OR</span>
-          <div className="auth-or_line" />
-        </div>
-
-        <Button
-          label={
-            <div className="auth-google">
-              <img src={Google} className="auth-google_icon" />
-              <span>Sign In With Google</span>
-            </div>
-          }
-          variant="outlined"
-          type="submit"
-        /> */}
 
         <div className="auth-footer">
           <p className="auth-signup">

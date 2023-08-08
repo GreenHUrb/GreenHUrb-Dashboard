@@ -1,7 +1,6 @@
 import { expect, it } from 'vitest'
 import { Login } from '../pages'
-import { fireEvent, render, screen, waitFor, } from '@testing-library/react'
-import { MemoryRouter } from 'react-router-dom';
+import { fireEvent, render, screen, } from '@testing-library/react'
 
 describe('Login Tests', () => {
   // Tests that the login form can be submitted with valid email and password

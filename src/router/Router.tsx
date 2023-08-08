@@ -4,6 +4,8 @@ import ScrollToTop from "../components/ScrollToTop";
 import { AllRouteConstants } from "./RouteConstants";
 import AuthLayout from "../layouts/authLayout/AuthLayout";
 import AuthRoutes from "../features/Auth/routes/Routes";
+import DashboardLayout from "../layouts/dashboardLayout/DashboardLayout";
+import HomeRoutes from "../features/Home/routes/Routes";
 
 
 /**
@@ -20,16 +22,25 @@ function Router() {
         {/* The element prop specifies the component that should be rendered when the route is matched. 
         In this case, the <LandingPageLayout /> component will be displayed when the URL matches the specified path. 
         It represents the layout or structure of the landing page. */}
-       
 
-        {/* Routes for the Authentication (The Same concept for the Landing Page) */}
+
+        {/* Routes for the Authentication */}
         <Route
           path={AllRouteConstants.auth.index}
           element={<AuthLayout />}
         >
           {AuthRoutes()}
         </Route>
-  
+
+
+        {/* Routes for the Main Page */}
+        <Route
+          path={AllRouteConstants.main.index}
+          element={<DashboardLayout />}
+        >
+          {HomeRoutes()}
+
+        </Route>
 
 
         <Route path="*" element={<NotFound />} />
