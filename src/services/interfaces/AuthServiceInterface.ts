@@ -1,5 +1,5 @@
-import { ILogin } from "./IApiRequests";
-import { IAuthResponse } from "./IApiResponses";
+import { ILogin } from "../../interfaces/IApiRequests";
+import { IAuthResponse } from "../../interfaces/IApiResponses";
 
 // Define interfaces for API services
 export interface AuthApiService {

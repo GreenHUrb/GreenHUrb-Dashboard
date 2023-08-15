@@ -20,11 +20,13 @@ import ErrorModal from './components/Modals/ErrorModal';
 
 // Global SCSS styles for consistent styling throughout the app.
 import './styles/global.scss';
+import { useLocation } from 'react-router-dom';
+import { usePageInfoActions } from './hooks/useReduxActions';
 
 // Define the main App component.
 function App() {
   // Use the theme from the app state using the custom hook.
-  const { theme } = useAppSelector(state => state.theme);
+  const { theme } = useAppSelector(state => state.pageInfo);
 
   // State to hold validation errors from environment configuration.
   const [validationError, setValidationError] = useState<string[] | null>(null);
@@ -39,6 +41,7 @@ function App() {
       setValidationError(errors);
     }
   }, []);
+
 
   return (
     // Apply the theme-specific class to the app container.

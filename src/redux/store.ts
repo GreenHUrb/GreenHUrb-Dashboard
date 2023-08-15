@@ -2,7 +2,7 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import thunk from "redux-thunk";
 import storage from "redux-persist/lib/storage";
 import { persistReducer, persistStore } from "redux-persist";
-import themeSlice from "./themeSlice";
+import pageInfoSlice from "./pageInfoSlice";
 
 const persistConfig = {
   key: "root",
@@ -12,7 +12,7 @@ const persistConfig = {
 };
 
 const rootReducer = combineReducers({
-  theme: themeSlice
+  pageInfo: pageInfoSlice
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

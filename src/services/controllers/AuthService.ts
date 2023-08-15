@@ -1,4 +1,4 @@
-import { AuthApiService } from "../../interfaces/AuthServiceInterface";
+import { AuthApiService } from "../interfaces/AuthServiceInterface";
 import { ILogin } from "../../interfaces/IApiRequests";
 import { IAuthResponse } from "../../interfaces/IApiResponses";
 

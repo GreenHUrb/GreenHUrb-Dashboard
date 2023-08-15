@@ -6,6 +6,8 @@ const HomeRoutes = () => {
   return (
     <>
       <Route path={AllRouteConstants.main.index} index element={<Analytics />} />
+      <Route path={AllRouteConstants.products.index} index element={<Analytics />} />
+
     </>
   );
 };

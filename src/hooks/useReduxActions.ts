@@ -1,15 +1,15 @@
-import { useDispatch } from 'react-redux'
-import { ActionCreatorsMapObject, bindActionCreators } from 'redux'
-import { themeSlice } from '../redux/themeSlice'
+import { useDispatch } from "react-redux";
+import { ActionCreatorsMapObject, bindActionCreators } from "redux";
+import { pageInfoSlice } from "../redux/pageInfoSlice";
 
 export const useReduxActions = (action: ActionCreatorsMapObject<any>) => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-  return bindActionCreators(Object.assign({}, action), dispatch)
-}
+  return bindActionCreators(Object.assign({}, action), dispatch);
+};
 
-export const useThemeActions = () => {
-  const dispatch = useDispatch()
+export const usePageInfoActions = () => {
+  const dispatch = useDispatch();
 
-  return bindActionCreators(Object.assign({}, themeSlice.actions), dispatch)
-}
+  return bindActionCreators(Object.assign({}, pageInfoSlice.actions), dispatch);
+};

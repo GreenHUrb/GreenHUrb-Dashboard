@@ -7,7 +7,7 @@ import { AllRouteConstants } from "../../../router/RouteConstants";
 import AuthService from "../../../services/controllers/AuthService";
 import { ILogin } from "../../../interfaces/IApiRequests";
 import { IAuthResponse } from "../../../interfaces/IApiResponses";
-import authRestApiService from "../../../services/rest_api_services/AuthRestService";
+import authRestApiService from "../../../services/api_services/AuthRestService";
 
 const useLogin = () => {
     const navigate = useNavigate();

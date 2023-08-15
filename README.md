@@ -11,6 +11,9 @@ Welcome to **GreenHUrb**! This README will guide you through the setup process a
 - [Development](#development)
 - [Build](#build)
 - [Contributing](#contributing)
+- [Project Structure](#project-structure)
+  - [Application Directory Structure](#application-directory-structure)
+  - [Sub Directory README's](#sub-directory-readmes)
 - [License](#license)
 
 ## Getting Started
@@ -85,6 +88,58 @@ Contributions are welcome! If you find a bug or want to add a new feature, pleas
 3. Commit your changes.
 4. Push to the branch: `git push origin feature/your-feature-name`.
 5. Submit a pull request.
+
+## Project Structure
+
+### Application Directory Structure
+
+In Each directory there is a readme Specifying Guidelines for creating files and Directories and how the directory works
+
+<pre>
+├── public.json
+├── index.html
+├── .env.example
+├── package.json
+├── package-lock.json
+├── README.md
+└── src
+    └── assets          # Static assets  (e.g. logos, images)
+        ├── icons
+        ├── images
+    ├── components      # Reusable React components (e.g., buttons, cards, forms)
+    ├── config          # Configuration files and settings (e.g., environment variables)
+    ├── data            # Data files or mocks (e.g., JSON data for testing)
+    ├── features        # Modular feature components (e.g., Auth, etc)
+    ├── HOC             # Higher Order Components (HOCs) (e.g., withAuth, withTheme)
+    ├── hooks           # Custom React hooks (e.g., useLocalStorage, useWindowSize)
+    ├── interfaces      # TypeScript interfaces and types (e.g., API response types)
+    ├── layouts         # Layout components for structuring pages (e.g., header, footer)
+    ├── pages
+    ├── redux           # Redux-related (State Management) files () (e.g., slices, store)
+    ├── router          # React Router configuration (e.g., route definitions)
+    ├── services        # API services and utilities (e.g., API communication)
+    ├── styles          # Global styles and CSS modules (e.g., common styles)
+    ├── utils           # Utility functions (e.g., date formatting, string manipulation)
+    ├── App.tsx         # Application Entry Point
+    └── main.tsx
+</pre>
+
+### Sub-directory Readme's
+
+For detailed explanations of each directory and how the system works within each, refer to the respective sub-directory READMEs:
+
+- [components/README.md](./components/README.md)
+- [config/README.md](./config/README.md)
+- [features/README.md](./features/README.md)
+- [hooks/README.md](./hooks/README.md)
+- [interfaces/README.md](./interfaces/README.md)
+- [layouts/README.md](./layouts/README.md)
+- [pages/README.md](./pages/README.md)
+- [redux/README.md](./redux/README.md)
+- [router/README.md](./router/README.md)
+- [services/README.md](./services/README.md)
+- [styles/README.md](./styles/README.md)
+- [utils/README.md](./utils/README.md)
 
 ## License
 

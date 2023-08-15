@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Poppins:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic);
+@import url(https://fonts.googleapis.com/css?family=Nunito:200,300,regular,500,600,700,800,900,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic);
 
 :root {
     // Heading Fonts
@@ -22,16 +22,25 @@
     --medium-screen: 768px;
     --large-screen: 992px;
     --extra-large-screen: 1200px;
+
+    // Font Weights
+    --very-light-font: 300;
+    --light-font: 400;
+    --medium-font: 500;
+    --thick-font: 600;
+    --very-thick-font: 700;
 }
 
 // Color Palette
 $themes: (
-    light: (primary: #0E870E,
+    light: (primary: #59981A,
         dark-primary: #0b6a0b,
+        light-primary:rgb(#0E870E, 10%),
         secondary: #62cf3a,
-        text-color: #000000,
-        light-text: #959595,
-    ),
+        text-color: #232D23,
+        light-text: #ffffff,
+        sidebar-text:rgb(#232D23, 70%),
+        danger:#870E14),
     dark: (),
 );
 
@@ -42,7 +51,7 @@ html {
 
 body {
     margin: 0;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Nunito', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -91,4 +100,3 @@ body {
 @function themed($key) {
     @return map-get($theme-map, $key);
 }
-
