@@ -1,0 +1,47 @@
+@import '../../styles/global.scss';
+
+.search_input_box {
+    @include themify($themes) {
+        position: relative;
+        width: 100%;
+        // max-width: 60px;
+        border-radius: 6px;
+        transition: all 0.5s ease-in-out;
+        display: flex;
+        align-items: center;
+        gap: .5em;
+
+        @media screen and (min-width:768px) {
+            background: themed('icons-bg');
+            padding: .8rem 1rem;
+        }
+
+        &.open {
+            width: 350px;
+
+            input {
+                width: 100%;
+                padding: 0 15px;
+            }
+        }
+
+        input {
+            position: relative;
+            font-size: var(--normal-paragraph);
+            color: themed('text-color');
+            border: none;
+            outline: none;
+            transition: all 0.5s ease-in-out;
+            width: 0px;
+            background: transparent;
+            font-weight: var(--very-light-font);
+
+            &::placeholder {
+                font-weight: var(--very-light-font);
+                color: rgb(#232D23, 60%);
+                line-height: 27.36px;
+                letter-spacing: .5px;
+            }
+        }
+    }
+}

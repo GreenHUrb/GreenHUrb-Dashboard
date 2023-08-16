@@ -1,0 +1,46 @@
+@import '../../../styles/global.scss';
+
+.navbar-flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5em
+}
+
+
+.navbar {
+    @include themify($themes) {
+        margin-block: 1.5em;
+
+        &_heading {
+            text-transform: capitalize;
+            font-weight: var(--medium-font);
+        }
+
+
+        &_icon {
+            outline: none;
+            border: none;
+            cursor: pointer;
+            position: relative;
+
+            .notification_count {
+                position: absolute;
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                background: #CD272F;
+                top: 10px;
+                right: 15px;
+            }
+
+            @media screen and (min-width:768px) {
+                background: themed('icons-bg');
+                padding: .8rem 1rem;
+                border-radius: 10%;
+            }
+        }
+
+
+    }
+}

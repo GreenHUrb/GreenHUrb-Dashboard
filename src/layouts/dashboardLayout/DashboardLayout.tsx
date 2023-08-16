@@ -7,7 +7,7 @@ import { useLocation } from 'react-router-dom'
 import { Outlet } from "react-router";
 
 // import custom components
-import { RequireAuth } from '../../HoC/RequireAuth';
+// import { RequireAuth } from '../../HoC/RequireAuth';
 import Sidebar from './Sidebar/Sidebar';
 import Navbar from './Navbar/Navbar';
 import { IPage } from '../../redux/pageInfoSlice';

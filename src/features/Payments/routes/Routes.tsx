@@ -7,12 +7,12 @@ import { Home, } from "../pages";
 // Import Constants
 import { AllRouteConstants } from "../../../router/RouteConstants";
 
-const HomeRoutes = () => {
+const PaymentRoutes = () => {
   return (
     <>
-      <Route path={AllRouteConstants.main.index} index element={<Home />} />
+      <Route path={AllRouteConstants.payments.index} index element={<Home />} />
     </>
   );
 };
 
-export default HomeRoutes;
+export default PaymentRoutes;

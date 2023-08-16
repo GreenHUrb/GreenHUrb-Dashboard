@@ -12,11 +12,11 @@
 
         width: 100%;
         background: #f3f3f3;
-        // padding-left: 2em;
 
         &_inner_container {
             width: 90%;
-            margin: 0 auto;
+            margin: 1em auto;
+            max-width: 1500px;
         }
     }
 }

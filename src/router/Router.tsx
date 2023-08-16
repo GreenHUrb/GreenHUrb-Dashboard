@@ -6,6 +6,10 @@ import AuthLayout from "../layouts/authLayout/AuthLayout";
 import AuthRoutes from "../features/Auth/routes/Routes";
 import DashboardLayout from "../layouts/dashboardLayout/DashboardLayout";
 import HomeRoutes from "../features/Home/routes/Routes";
+import ProductsRoutes from "../features/Products/routes/Routes";
+import PaymentRoutes from "../features/Payments/routes/Routes";
+import TransactionRoutes from "../features/Transactions/routes/Routes";
+import SettingsRoutes from "../features/Settings/routes/Routes";
 
 
 /**
@@ -39,6 +43,14 @@ function Router() {
           element={<DashboardLayout />}
         >
           {HomeRoutes()}
+
+          {ProductsRoutes()}
+
+          {PaymentRoutes()}
+
+          {TransactionRoutes()}
+
+          {SettingsRoutes()}
 
         </Route>
 
