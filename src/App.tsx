@@ -47,15 +47,18 @@ function App() {
     // Apply the theme-specific class to the app container.
     <div className={`theme-${theme}`}>
       {/* Render an error modal if validation errors are present. */}
-      {validationError && (
+      {validationError ? (
         <ErrorModal button='Dismiss' heading='Env Validation Error' message={validationError.join(',')} />
+      ) : (
+        <>
+          {/* Display global toasts using the React Hot Toast library. */}
+          <Toaster />
+
+          {/* Render the main application router. */}
+          <Router />
+        </>
       )}
 
-      {/* Display global toasts using the React Hot Toast library. */}
-      <Toaster />
-
-      {/* Render the main application router. */}
-      <Router />
     </div>
   );
 }

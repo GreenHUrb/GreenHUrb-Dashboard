@@ -24,6 +24,7 @@ Follow these steps to set up and run the project on your local machine.
 
 - [Node.js](https://nodejs.org/) (>= 18.x)
 - [npm](https://www.npmjs.com/) or [Yarn](https://yarnpkg.com/) (recommended)
+- [docker](https://www.docker.com/)
 
 ### Installation
 
@@ -39,13 +40,6 @@ Follow these steps to set up and run the project on your local machine.
    cd greenhurb_dashboard
    ```
 
-3. Install the dependencies using npm or Yarn:
-
-   ```bash
-   npm install
-    # or
-   yarn
-   ```
 
 ### Configuration
 
@@ -62,11 +56,12 @@ cp .env.example .env
 To start the development server, run the following command:
 
     ```bash
-    npm run dev
-    yarn dev
+    npm start
+    # or
+    yarn start
     ```
 
-Open your browser and navigate to `http://localhost:5173` to see your application in action.
+Open your browser and navigate to `http://localhost:8000` to see your application in action.
 
 ## Build
 
@@ -100,6 +95,8 @@ In Each directory there is a readme Specifying Guidelines for creating files and
 ├── index.html
 ├── .env.example
 ├── package.json
+├── Dockerfile
+├── docker-compose.yaml
 ├── package-lock.json
 ├── README.md
 └── src

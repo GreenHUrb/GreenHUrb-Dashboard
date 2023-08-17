@@ -12,7 +12,7 @@
 }
 
 .modal .modal-background {
-  background-color: var(--modal-background);
+  background-color: rgba(0, 0, 0, 0.2);
   position: absolute;
   top: 0;
   left: 0;
@@ -28,9 +28,9 @@
   left: 50%;
   max-height: 900px;
   padding: 20px;
-  background-color: var(--white);
+  background-color: #fff;
   border-radius: 10px;
-  border: 1px solid var(--white);
+  border: 1px solid #fff;
   transform: translate(-50%, -50%) scale(0.7, 0.7);
   overflow-y: scroll;
   overflow-x: hidden;

@@ -1,0 +1,11 @@
+version: "3.8"
+services:
+  admin-dashboard:
+    build: .
+    container_name: admin_dashboard_container
+    ports:
+      - "8000:8000"
+    stdin_open: true
+    volumes:
+      - .:/app
+      - /app/node_modules
