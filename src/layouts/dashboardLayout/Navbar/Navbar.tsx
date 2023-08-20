@@ -4,16 +4,21 @@ import './NavbarStyles.scss';
 // Import Custom Hooks
 import { usePageInfoActions } from '../../../hooks/useReduxActions'; // Custom Redux actions hook
 import { useAppSelector } from '../../../hooks/useAppSelector'; // Custom Redux state selector hook
+import usePopOver from '../../../hooks/usePopOver';
 
 // Import Icons
 import Hamburger from '../../../assets/icons/hamburgerIcon.svg';
 import Notification from '../../../assets/icons/notificationIcon.svg';
 import Profile from '../../../assets/icons/profileIcon.svg';
+
 // Import Custom Components
 import SearchInput from '../../../components/NavSearchBar/NavSearchBar';
 
 // Import Libraries
 import { useState } from 'react';
+import Popover from "@mui/material/Popover";
+import Notifications from '../../../components/Notifications/Notifications';
+
 
 const Navbar = () => {
     // Get Redux actions from custom hook
@@ -24,6 +29,9 @@ const Navbar = () => {
 
     // State to manage the search bar's open/closed state
     const [isSearchOpen, setIsSearchOpen] = useState(false);
+
+    const { handleClick: handleShowNotification, handleClose: handleCloseNotification, id: notificationId, anchorEl: notificationAnchor, open: notificationOpen } = usePopOver()
+
 
     return (
         <div>
@@ -51,10 +59,30 @@ const Navbar = () => {
                     <SearchInput isSearchOpen={isSearchOpen} setIsSearchOpen={setIsSearchOpen} />
                     {!(isSearchOpen && isMobile) && (
                         <>
-                            <button className='navbar_icon notification_icon'>
-                                <img src={Notification} alt='Notification' />
-                                <div className="notification_count"></div>
-                            </button>
+
+                            <>
+                                <button className='navbar_icon notification_icon' aria-describedby={notificationId} onClick={handleShowNotification}>
+                                    <img src={Notification} alt='Notification' />
+                                    <div className="notification_count"></div>
+                                </button>
+
+                                <Popover
+                                    id={notificationId}
+                                    open={notificationOpen}
+                                    anchorEl={notificationAnchor}
+                                    onClose={handleCloseNotification}
+                                    anchorOrigin={{
+                                        vertical: 'bottom',
+                                        horizontal: 'left',
+                                    }}
+                                    transformOrigin={{
+                                        vertical: 'top',
+                                        horizontal: 'right',
+                                    }}
+                                >
+                                    <Notifications />
+                                </Popover>
+                            </>
                             <button className='navbar_icon'>
                                 <img src={Profile} alt='Profile' />
                             </button>
