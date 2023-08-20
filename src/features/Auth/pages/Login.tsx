@@ -1,8 +1,8 @@
 // import Styles
-import "../styles/LoginStyles.scss";
+import "../styles/auth_styles.scss";
 
 // import Libraries
-import { Link, } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 // import custom Hooks
 import useLogin from "../hooks/useLogin";
@@ -21,14 +21,15 @@ import Button from "../../../components/Button/Button";
 import Input from "../../../components/form/Input/Input";
 import { AllRouteConstants } from "../../../router/RouteConstants";
 import SocialMediaAuthButton from "../components/SocialMediaAuthButton/SocialMediaAuthButton";
+import Checkbox from "../../../components/form/Checkbox/Checkbox";
 
 // import Interfaces
 import { ILogin } from "../../../interfaces/IApiRequests";
-import Checkbox from "../../../components/form/Checkbox/Checkbox";
 
 export const Login = () => {
   const { handleSubmit, loginForm, loading, error } = useLogin()
   const { passwordType, togglePassword } = usePasswordType()
+  const navigate = useNavigate()
 
   const formChange = (key: keyof ILogin, value: any) => {
     loginForm.onChange(key, value);
@@ -56,6 +57,7 @@ export const Login = () => {
           <Button
             label="Sign Up"
             variant="text"
+            onClick={() => navigate(AllRouteConstants.auth.signup)}
           />
         </p>
 
@@ -72,6 +74,7 @@ export const Login = () => {
                 value: loginForm.form.email,
                 onChange: (e) => formChange("email", e.target.value),
                 required: true,
+                type: 'email'
               }}
             />
           </div>

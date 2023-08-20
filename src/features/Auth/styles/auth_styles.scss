@@ -29,11 +29,13 @@
       font-size: var(--small-paragraph);
       text-align: center;
       margin: 0;
+      line-height: 1.1rem;
     }
 
     &-top_text {
       font-weight: var(--very-light-font);
-      font-size: var(--normal-paragraph);
+      font-size: var(--mini-paragraph);
+
       text-align: center;
       margin-block: 2rem;
       letter-spacing: .5px;
@@ -42,7 +44,16 @@
       justify-content: center;
 
       button {
+        font-size: var(--mini-paragraph);
+      }
+
+      @media screen and (min-width:768px) {
         font-size: var(--normal-paragraph);
+
+        button {
+          font-size: var(--normal-paragraph);
+        }
+
       }
     }
 
@@ -67,15 +78,20 @@
           font-size: var(--normal-paragraph);
         }
 
-        .remember_me_header{
+        .remember_me_header {
           font-weight: var(--medium-font);
         }
       }
     }
 
+
     // AUTH FIELD
     &-field {
-      width: 600px;
+      width: 100%;
+
+      @media screen and (min-width:768px) {
+        width: 600px;
+      }
     }
 
     // OR LINE
@@ -125,104 +141,12 @@
       justify-content: space-between;
       margin-top: 1em;
       gap: 1em;
+      flex-direction: column;
 
-
-    }
-
-    &-signup {
-      font-size: 0.875rem;
-      line-height: 1.25rem;
-      margin-top: 1rem;
-
-      &_popover {
-        background: transparent !important;
-
-        &_container {
-          background: #fcfcfc;
-          box-shadow: 10px 16px 40px rgba(0, 0, 0, 0.16);
-          border-radius: 8px;
-          width: 200px;
-          font-size: 15px;
-          display: flex;
-          flex-direction: column;
-          border: 1px solid #cccccc;
-
-
-          button {
-            outline: none;
-            border: none;
-            background: transparent;
-            padding-block: 0.8rem;
-            cursor: pointer;
-            transition: all 150ms ease-in-out;
-
-
-
-            &:first-child {
-              border-bottom: 1px solid #585858;
-            }
-          }
-        }
+      @media screen and (min-width:768px) {
+        flex-direction: row;
       }
+
     }
-
-    &-link {
-      font-weight: 700;
-      font-style: italic;
-      color: #000;
-      font-size: .9rem;
-      background-color: transparent;
-      border: none;
-      outline: none;
-      text-decoration: none;
-      cursor: pointer;
-      margin: 0;
-      padding: 0;
-    }
-
-  }
-}
-
-.more_options {
-  background: transparent !important;
-}
-
-.auth_user_type {
-  &-label {
-    font-size: 18px;
-    color: black;
-  }
-}
-
-.auth_login_checkboxes {
-  display: flex;
-  align-items: center;
-  gap: 1.5em;
-}
-
-.auth_login_checkboxes input {
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-  margin-right: 10px;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: all 300 ease-in-out;
-}
-
-.auth_login_checkboxes .custom-input {
-  display: flex;
-  align-items: center;
-  gap: 1em;
-  flex-direction: row-reverse;
-
-  label {
-    margin: 0;
-  }
-
-  input {
-    margin: 0;
   }
 }

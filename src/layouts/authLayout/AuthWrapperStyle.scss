@@ -1,10 +1,8 @@
 .auth_layout_container {
-  // width: 450px;
-  // max-height: 600px;
-  padding: 1rem;
-  height: 100vh;
-  overflow: hidden;
+  margin: 3rem 1rem;
+  overflow-y: scroll;
   display: flex;
   align-items: center;
   justify-content: center;
+
 }
