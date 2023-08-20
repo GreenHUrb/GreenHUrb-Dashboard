@@ -1,9 +1,8 @@
-@import "../../../styles/color-palette";
+@import "../../../styles/global.scss";
 
 
 .ml-input-checkbox {
   @include themify($themes) {
-
     position: relative;
     border: 1px solid themed("primary");
     border-radius: 4px;
@@ -28,20 +27,6 @@
       background-color: themed("primary");
       opacity: 1;
       border: none;
-    }
-
-    &:before {
-      content: "";
-      position: absolute;
-      right: 50%;
-      top: 50%;
-      width: 3px;
-      height: 8px;
-      border: solid themed("bg");
-      border-width: 0 2px 2px 0;
-      margin: -1px -1px 0 -1px;
-      transform: rotate(45deg) translate(-50%, -50%);
-      z-index: 2;
     }
   }
 }

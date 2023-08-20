@@ -24,5 +24,5 @@ export const AllRouteConstants = {
   },
   settings: {
     index: "/settings"
-  }
+  },
 };

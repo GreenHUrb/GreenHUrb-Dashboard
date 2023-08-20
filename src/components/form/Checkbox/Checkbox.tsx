@@ -2,15 +2,15 @@ import React from "react";
 import "./CheckboxStyles.scss";
 
 interface CheckboxProps {
-  label?: string;
+  label: string | JSX.Element;
   checkboxProps?: React.InputHTMLAttributes<HTMLInputElement>;
-  animation?:string
+
 }
 
 const Checkbox = (props: CheckboxProps) => {
-  const { label, checkboxProps ,animation} = props;
+  const { label, checkboxProps } = props;
   return (
-    <div className={`checkbox-container ${animation}`}>
+    <div className={`checkbox-container`}>
       <input
         id="ml-checkbox"
         name="ml-checkbox"

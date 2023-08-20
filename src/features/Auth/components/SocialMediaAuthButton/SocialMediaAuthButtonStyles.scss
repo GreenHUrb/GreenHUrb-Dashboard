@@ -1,0 +1,27 @@
+.social_media_auth_button {
+    padding: .4em 1rem;
+    border-radius: var(--pill-shaped-radius);
+    border: 1px solid rgb(#232D23, 40%);
+    background: transparent;
+    display: flex;
+    align-items: center;
+    gap: .5em;
+    justify-content: center;
+    width: 100%;
+
+    span {
+        font-size: 1rem;
+        font-weight: 500;
+    }
+
+    .social_media_auth_image_icon {
+        border-radius: var(--pill-shaped-radius);
+        background: #F7F7F7;
+        padding: .3rem;
+
+        img {
+            width: 2em;
+            height: 2em;
+        }
+    }
+}

@@ -32,5 +32,6 @@ export const sidebarData = [
     icon: TransactionsIcon,
     iconActive: TransactionsIconActive,
     sidebarName: "Transactions"
-  }
+  },
+
 ];

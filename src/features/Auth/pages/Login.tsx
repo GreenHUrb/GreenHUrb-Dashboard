@@ -1,14 +1,30 @@
-import { Link, } from "react-router-dom";
-import visible from "../../../assets/icons/visible.svg";
-import notvisible from "../../../assets/icons/not-visible.svg";
+// import Styles
 import "../styles/LoginStyles.scss";
-import FormError from "../../../components/form/formError/FormError";
+
+// import Libraries
+import { Link, } from "react-router-dom";
+
+// import custom Hooks
 import useLogin from "../hooks/useLogin";
+import usePasswordType from "../hooks/usePasswordType";
+
+// import Icons
+import visibleIcon from "../../../assets/icons/visible.svg";
+import notvisibleIcon from "../../../assets/icons/not-visible.svg";
+import LogoIcon from '../../../assets/icons/logo.svg'
+import GoogleIcon from '../../../assets/icons/google.svg'
+import FacebookIcon from '../../../assets/icons/facebook.svg'
+
+// import custom Components
+import FormError from "../../../components/form/formError/FormError";
 import Button from "../../../components/Button/Button";
 import Input from "../../../components/form/Input/Input";
 import { AllRouteConstants } from "../../../router/RouteConstants";
-import usePasswordType from "../hooks/usePasswordType";
+import SocialMediaAuthButton from "../components/SocialMediaAuthButton/SocialMediaAuthButton";
+
+// import Interfaces
 import { ILogin } from "../../../interfaces/IApiRequests";
+import Checkbox from "../../../components/form/Checkbox/Checkbox";
 
 export const Login = () => {
   const { handleSubmit, loginForm, loading, error } = useLogin()
@@ -21,14 +37,26 @@ export const Login = () => {
 
   return (
     <div className="animate__animated animate__fadeIn">
-      <div className="auth-box">
+      <div>
+
+        <div className="auth_logo">
+          <img src={LogoIcon} alt="logo" />
+        </div>
 
         <h1 className="auth-title">
           Welcome back
         </h1>
 
+        <h2 className="auth-subtitle">
+          Access your dashboard by inputting your login details
+        </h2>
+
         <p className="auth-top_text">
-          We encourage passwordless login being more secure and safe
+          Sell your farm produce at the most convenient store
+          <Button
+            label="Sign Up"
+            variant="text"
+          />
         </p>
 
         <form className="auth-form" onSubmit={handleSubmit}>
@@ -36,11 +64,11 @@ export const Login = () => {
           <div className="auth-field">
             <Input
               id="email"
-              label="Email"
+              label="Email address"
               error={loginForm.formErrors.email}
               animation="animate__animated animate__fadeInLeft"
               inputProps={{
-                placeholder: "Email",
+                placeholder: "E.g John Doe",
                 value: loginForm.form.email,
                 onChange: (e) => formChange("email", e.target.value),
                 required: true,
@@ -60,9 +88,9 @@ export const Login = () => {
                   onClick={togglePassword}
                 >
                   {passwordType === "password" ? (
-                    <img src={visible} style={{ width: "20px" }} />
+                    <img src={visibleIcon} style={{ width: "20px" }} />
                   ) : (
-                    <img src={notvisible} style={{ width: "20px" }} />
+                    <img src={notvisibleIcon} style={{ width: "20px" }} />
                   )}
                 </div>
               }
@@ -76,23 +104,40 @@ export const Login = () => {
             />
           </div>
 
+          <div className="auth_forgot_password_and_remember_me">
+            <Checkbox
+              label={
+                <span className="remember_me_header">
+                  Remember Me
+                </span>
+              }
+            />
+            <Button
+              label="Forgot Password?"
+              variant="text"
+            />
+          </div>
+
           <Button
-            animation="animate__animated animate__backInUp"
-            label="Login"
+            label="Log in"
             variant="contained"
             loading={loading}
+            fullWidth
           />
-
           <FormError error={error?.message} />
         </form>
 
-        <div className="auth-footer">
-          <p className="auth-signup">
-            Don't have an Account?
-            <Link className="auth-link" to={AllRouteConstants.auth.signup}>Sign up</Link>
-          </p>
-          <Link className="auth-link" to={AllRouteConstants.auth.forgotPassword}>Forgot Password</Link>
 
+        <div className="auth-or_container">
+          <div className="auth-or_line"></div>
+          <span className="auth-or_text">or</span>
+          <div className="auth-or_line" />
+        </div>
+
+
+        <div className="auth-footer">
+          <SocialMediaAuthButton image={GoogleIcon} label="Sign In With Google" />
+          <SocialMediaAuthButton image={FacebookIcon} label="Sign In With Facebook" />
         </div>
       </div>
 

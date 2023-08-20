@@ -5,12 +5,10 @@ import { Outlet } from "react-router";
 
 const AuthLayout = () => {
   return (
-    <PopModal onClose={() => console.log('hey')} fullOverlay >
-      <div className="auth_layout_container">
-        <Outlet />
-      </div>
-    </PopModal>
-  );
+    <div className="auth_layout_container">
+      <Outlet />
+    </div>
+  )
 };
 
 export default AuthLayout;
