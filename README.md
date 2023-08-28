@@ -40,7 +40,6 @@ Follow these steps to set up and run the project on your local machine.
    cd greenhurb_dashboard
    ```
 
-
 ### Configuration
 
 1. **Environment Variables:**
@@ -125,18 +124,18 @@ In Each directory there is a readme Specifying Guidelines for creating files and
 
 For detailed explanations of each directory and how the system works within each, refer to the respective sub-directory READMEs:
 
-- [components/README.md](./components/README.md)
-- [config/README.md](./config/README.md)
-- [features/README.md](./features/README.md)
-- [hooks/README.md](./hooks/README.md)
-- [interfaces/README.md](./interfaces/README.md)
-- [layouts/README.md](./layouts/README.md)
-- [pages/README.md](./pages/README.md)
-- [redux/README.md](./redux/README.md)
-- [router/README.md](./router/README.md)
-- [services/README.md](./services/README.md)
-- [styles/README.md](./styles/README.md)
-- [utils/README.md](./utils/README.md)
+- [components/README.md](./src/components/README.md)
+- [config/README.md](./src/config/README.md)
+- [features/README.md](./src/features/README.md)
+- [hooks/README.md](./src/hooks/README.md)
+- [interfaces/README.md](./src/interfaces/README.md)
+- [layouts/README.md](./src/layouts/README.md)
+- [pages/README.md](./src/pages/README.md)
+- [redux/README.md](./src/redux/README.md)
+- [router/README.md](./src/router/README.md)
+- [services/README.md](./src/services/README.md)
+- [styles/README.md](./src/styles/README.md)
+- [utils/README.md](./src/utils/README.md)
 
 ## License
 
