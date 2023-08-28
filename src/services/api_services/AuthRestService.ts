@@ -5,6 +5,7 @@ import { IAuthResponse } from "../../interfaces/IApiResponses";
 class AuthRestApiService implements AuthApiService {
   async login(data: ILogin): Promise<IAuthResponse> {
     // Implement REST API login logic here
+    
     return true; // Placeholder
   }
 

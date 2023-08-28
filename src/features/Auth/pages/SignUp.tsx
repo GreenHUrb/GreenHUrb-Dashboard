@@ -49,7 +49,7 @@ export const SignUp = () => {
                 </h1>
 
                 <h2 className="auth-subtitle">
-                    Grow Your Agricultural Business Online! Join Our E-commerce <br /> Platform and Start Selling Today!
+                    Grow Your Agricultural Business Online! Join Our E-commerce Platform and Start Selling Today!
                 </h2>
 
                 <p className="auth-top_text">

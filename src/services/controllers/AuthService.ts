@@ -3,7 +3,7 @@ import { ILogin } from "../../interfaces/IApiRequests";
 import { IAuthResponse } from "../../interfaces/IApiResponses";
 
 // General auth service class
-class AuthService {
+class AuthService implements AuthApiService {
   private apiService: AuthApiService;
 
   constructor(apiService: AuthApiService) {

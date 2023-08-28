@@ -46,8 +46,9 @@
       }
 
       &:disabled {
-        background-color: #e1ece2;
-        color: #c3c3cb;
+        background-color: rgb(#A9A9A9, 20%);
+        color: rgb(#232D23, 50%);
+        border: none;
       }
     }
 
