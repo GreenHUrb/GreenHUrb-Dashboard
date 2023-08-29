@@ -2,12 +2,13 @@ import './SocialMediaAuthButtonStyles.scss'
 
 interface ISocialMediaAuthButtonProps {
     image: string,
-    label: string
+    label?: string,
+    className?: string,
 }
 const SocialMediaAuthButton = (props: ISocialMediaAuthButtonProps) => {
-    const { image, label } = props
+    const { image, label, className } = props
     return (
-        <button className="social_media_auth_button">
+        <button className={`${className} social_media_auth_button`}>
             <div className="social_media_auth_image_icon">
                 <img src={image} className="auth-google_icon" />
             </div>

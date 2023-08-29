@@ -8,7 +8,9 @@ export const AllRouteConstants = {
     login: "/auth/signin",
     signup: "/auth/signup",
     forgotPassword: "/auth/forgot-password",
-    resetPassword: "/auth/reset-password"
+    resetPassword: "/auth/reset-password",
+    otp: "/auth/otp",
+    tAndC: "/auth/tandc",
   },
   main: {
     index: "/"

@@ -1,13 +1,14 @@
 .social_media_auth_button {
-    padding: .4em 1rem;
-    border-radius: var(--pill-shaped-radius);
-    border: 1px solid rgb(#232D23, 40%);
+    // padding: .4em 1rem;
+    // border-radius: var(--pill-shaped-radius);
+    // border: 1px solid rgb(#232D23, 40%);
+    border: none;
     background: transparent;
     display: flex;
     align-items: center;
-    gap: .5em;
+    // gap: .5em;
     justify-content: center;
-    width: 100%;
+    // width: 100%;
 
     span {
         font-size: 1rem;
