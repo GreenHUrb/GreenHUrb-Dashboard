@@ -10,6 +10,8 @@ import ProductsRoutes from "../features/Products/routes/Routes";
 import PaymentRoutes from "../features/Payments/routes/Routes";
 import TransactionRoutes from "../features/Transactions/routes/Routes";
 import SettingsRoutes from "../features/Settings/routes/Routes";
+import OtpPage from "../features/Auth/pages/OtpPage";
+import ConditionPage from "../features/Auth/pages/ConditionPage";
 
 
 /**
@@ -35,6 +37,9 @@ function Router() {
         >
           {AuthRoutes()}
         </Route>
+
+        <Route path={AllRouteConstants.auth.otp} element={<OtpPage />} />
+        <Route path={AllRouteConstants.auth.tAndC} element={<ConditionPage />} />
 
 
         {/* Routes for the Main Page */}
