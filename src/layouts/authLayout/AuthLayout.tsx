@@ -11,7 +11,28 @@ import { AllRouteConstants } from "../../router/RouteConstants";
 
 const AuthLayout = () => {
   const { pathname } = useLocation();
-  const navigate = useNavigate();
+  const notUseLayoutRoutes = Object.values(AllRouteConstants.auth.notUseLayout)
+
+  console.log(notUseLayoutRoutes, pathname)
+
+  return (
+    <div className="auth_layout">
+      {!notUseLayoutRoutes.includes(pathname) && (
+
+        <AuthLeft />
+      )}
+      <div className="outlet_container">
+        <Outlet />
+      </div>
+    </div>
+  );
+};
+
+export default AuthLayout;
+
+
+const AuthLeft = () => {
+  const { pathname } = useLocation();
 
   const getAuthLayoutImage = () => {
     if (pathname === AllRouteConstants.auth.signup) {
@@ -23,23 +44,15 @@ const AuthLayout = () => {
       return { image: LoginImage, text: "Access your dashboard by inputting your login details" };
     }
   };
-
   return (
-    <div className="auth_layout">
-      <div className="auth_layout_left_container">
-        <div className="auth_layout_left_inner_container">
-          <div className="auth_layout_left_container_image">
-            <LazyLoadImage src={getAuthLayoutImage().image} alt="Authentication" />
-          </div>
-        <p className="auth_layout_left_container_text">{getAuthLayoutImage().text}</p>
+    <div className="auth_layout_left_container">
+      <div className="auth_layout_left_inner_container">
+        <div className="auth_layout_left_container_image">
+          <LazyLoadImage src={getAuthLayoutImage().image} alt="Authentication" />
         </div>
+        <p className="auth_layout_left_container_text">{getAuthLayoutImage().text}</p>
+      </div>
 
-      </div>
-      <div className="outlet_container">
-        <Outlet />
-      </div>
     </div>
-  );
-};
-
-export default AuthLayout;
+  )
+}

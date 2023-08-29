@@ -5,7 +5,7 @@ import Button from "../../../components/Button/Button";
 
 interface ConditionPageProps {}
 
-const ConditionPage: React.FC<ConditionPageProps> = ({}) => {
+export const ConditionPage: React.FC<ConditionPageProps> = ({}) => {
   const navigate = useNavigate();
 
   return (
@@ -50,4 +50,3 @@ const ConditionPage: React.FC<ConditionPageProps> = ({}) => {
   );
 };
 
-export default ConditionPage;

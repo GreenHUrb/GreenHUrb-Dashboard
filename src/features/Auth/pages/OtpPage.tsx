@@ -6,9 +6,9 @@ import Button from "../../../components/Button/Button";
 import "../styles/auth_styles.scss";
 import { useNavigate } from "react-router-dom";
 
-interface OtpPageProps {}
+interface OtpPageProps { }
 
-const OtpPage: React.FC<OtpPageProps> = ({}) => {
+export const OtpPage = () => {
   const navigate = useNavigate();
   const [time, setTime] = useState<number>(59);
 
@@ -16,7 +16,7 @@ const OtpPage: React.FC<OtpPageProps> = ({}) => {
     const id = setInterval(() => {
       if (time === 0) {
         setTime(59);
-      } else [setTime(currentTime => currentTime - 1)];
+      } else[setTime(currentTime => currentTime - 1)];
     }, 1000);
 
     return () => clearInterval(id);
@@ -58,4 +58,3 @@ const OtpPage: React.FC<OtpPageProps> = ({}) => {
   );
 };
 
-export default OtpPage;
