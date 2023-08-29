@@ -31,7 +31,7 @@ Follow these steps to set up and run the project on your local machine.
 1. Clone the repository:
 
    ```bash
-   git clone https://Drex72@bitbucket.org/greenhurb/greenhurb_dashboard.git
+   git clone https://github.com/GreenHUrb/GreenHUrb-Dashboard.git
    ```
 
 2. Navigate to the project directory:
