@@ -2,10 +2,12 @@
 
 .settings_home {
   @include themify($themes) {
-    background-color: themed("light-text");
+    background-color: themed(light-text);
   }
-
   box-shadow: 0 10px 25px 0 rgba(#000000, 5%);
   padding-top: 1.5rem;
-  height: 100vh;
+
+  @media screen and (min-width:768px) {
+    height: 100vh;
+  }
 }

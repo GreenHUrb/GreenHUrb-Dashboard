@@ -1,25 +1,29 @@
 @import "../../../../styles/global.scss";
 
 .settings_link {
-  width: 100%;
-  padding-left: 1.2rem;
-  padding-right: 2.2rem;
-  cursor: pointer;
-  transition: all 200ms ease-in-out;
+  @include themify($themes) {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1em;
+    padding: 1rem 1.5rem;
+    cursor: pointer;
+    transition: all 200ms ease-in-out;
+    color: themed(text-color);
+    border-bottom: 1px solid #DDDDDD;
+    text-decoration: none;
+  }
+
 
   &:hover {
     background: rgb(#000, 5%);
   }
 
-  & a {
-    @include themify($themes) {
-      color: themed(text-color);
-    }
-
-    border-bottom: 1px solid #DDDDDD;
-    display: block;
-    padding: 15px 0;
-    text-decoration: none;
+  &_content {
+    display: flex;
+    flex-direction: column;
+    gap: .5em;
   }
 
   &_name {
@@ -33,22 +37,28 @@
   }
 
   &_icon {
-    font-size: 2rem;
+
+    font-size: var(--mini-heading1);
     color: rgba(0 0 0 / .5);
+
+    @media screen and (min-width:768px) {
+      font-size: var(--small-heading1);
+    }
   }
 
-  & div {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
+
 
   &_desc {
     font-size: var(--normal-paragraph);
     font-weight: var(--very-light-font);
+    width: 80%;
 
     @include themify($themes) {
       color: themed(grey-text);
+    }
+
+    @media screen and (min-width:768px) {
+      width: 100%;
     }
   }
 }
