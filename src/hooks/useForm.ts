@@ -7,6 +7,22 @@ export type Validator<T extends object> = {
   [Prop in keyof T]?: (arg: T[Prop]) => string | null;
 };
 
+/**
+ * useForm custom hook for managing form state and validation.
+ *
+ * @template T - Generic type representing the form data structure.
+ * @param {T} initialState - Initial form state.
+ * @param {Validator<T>} validators - Object containing validation functions for each field.
+ * @returns {{
+*   form: T,
+*   onChange: (name: keyof T, value: T[keyof T]) => void,
+*   reset: () => void,
+*   resetFormErrors: (key?: keyof T) => void,
+*   validate: () => boolean,
+*   formErrors: FormError<T>
+* }} The form object and functions to manage and validate form state.
+*/
+
 export const useForm = <T extends object>(
   initialState: T,
   validators: Validator<T>
