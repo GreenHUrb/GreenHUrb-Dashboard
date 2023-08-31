@@ -16,19 +16,7 @@ interface InputProps {
 type Ref = any;
 
 const Input = forwardRef<Ref, InputProps>(
-  (
-    {
-      id,
-      inputProps,
-      error,
-      label,
-      rightIcon,
-      inputClassName,
-      labelClassName,
-      animation,
-    },
-    ref
-  ) => {
+  ({ id, inputProps, error, label, rightIcon, inputClassName, labelClassName, animation }, ref) => {
     return (
       <div className={`custom-input ${animation}`}>
         <label htmlFor={id} className={`custom-input__label ${labelClassName}`}>
@@ -40,16 +28,18 @@ const Input = forwardRef<Ref, InputProps>(
             ref={ref}
             {...inputProps}
             id={id}
-            className={`custom-input__container__input ${error ? "custom-input__container__input-errored" : undefined
-              }`}
+            className={`custom-input__container__input ${
+              error ? "custom-input__container__input-errored" : undefined
+            }`}
           />
 
-          {rightIcon && <div className="right-icon">{rightIcon}</div>}
+          {rightIcon && <div className={`right-icon ${inputClassName}`}>{rightIcon}</div>}
         </div>
 
         <span
-          className={`custom-input__error ${!error ? "custom-input__error-hidden" : undefined
-            } animate__animated animate__fadeIn`}
+          className={`custom-input__error ${
+            !error ? "custom-input__error-hidden" : undefined
+          } animate__animated animate__fadeIn`}
         >{`${id} ${error}`}</span>
       </div>
     );
@@ -76,7 +66,7 @@ export const TextArea = ({
   rows,
   requiredAstersik,
   labelClassName,
-  animation,
+  animation
 }: TextAreaProps) => {
   return (
     <div className={`custom-input ${animation}`}>
@@ -92,14 +82,16 @@ export const TextArea = ({
           id={id}
           {...textareaProps}
           rows={rows ?? 10}
-          className={`custom-input__container__input ${inputClassName} ${error ? "custom-input__container__input-errored" : undefined
-            }`}
+          className={`custom-input__container__input ${inputClassName} ${
+            error ? "custom-input__container__input-errored" : undefined
+          }`}
         />
       </div>
 
       <span
-        className={`custom-input__error ${!error ? "custom-input__error-hidden" : undefined
-          } animate__animated animate__fadeIn`}
+        className={`custom-input__error ${
+          !error ? "custom-input__error-hidden" : undefined
+        } animate__animated animate__fadeIn`}
       >{`${id} ${error}`}</span>
     </div>
   );
