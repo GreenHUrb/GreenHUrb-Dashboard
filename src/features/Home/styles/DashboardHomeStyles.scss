@@ -1,0 +1,35 @@
+.dashboard_home {
+
+    .flex {
+        display: flex;
+        gap: 1em;
+    }
+
+
+    &_top {
+        @extend .flex;
+        align-items: center;
+
+        &_left {
+            @extend .flex;
+            flex-direction: column;
+            width: 65%;
+
+
+            &_kpi_cards {
+                @extend .flex;
+                align-items: center;
+                justify-content: space-between;
+                flex-direction: column;
+
+                @media screen and (min-width:768px) {
+                    flex-direction: row;
+                }
+            }
+        }
+
+        &_right {
+            width: 35%;
+        }
+    }
+}

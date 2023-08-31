@@ -18,32 +18,21 @@ import useScreenSize from "../../hooks/useScreenSize";
 
 const DashboardLayout = () => {
   const location = useLocation();
-  const { setCurrentPage } = usePageInfoActions();
-  useScreenSize();
+  const { setCurrentPage } = usePageInfoActions()
+  useScreenSize()
 
   const handleSetCurrentPath = () => {
-    const currentPath = location.pathname.split("/");
-
-    let path: string;
-
-    if (currentPath?.length > 2) {
-      // console.log(currentPath)
-      path = currentPath[2].split("-").join(" ");
-      setCurrentPage(path as IPage);
-    } else if (currentPath && currentPath.length < 3) {
-      path = currentPath[1];
-      if (path) {
-        setCurrentPage(path as IPage);
-      } else {
-        setCurrentPage("Dashboard");
-      }
-      // console.log(currentPath)
+    const currentPath = location.pathname.split('/')[1]
+    if (currentPath) {
+      setCurrentPage(currentPath as IPage)
+    } else {
+      setCurrentPage('Dashboard')
     }
-  };
+  }
 
   useEffect(() => {
-    handleSetCurrentPath();
-  }, [location]);
+    handleSetCurrentPath()
+  }, [location])
   return (
     // <RequireAuth>
     <div className="dashboard_layout">

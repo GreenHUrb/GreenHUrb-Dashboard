@@ -2,8 +2,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 type ITheme = "light" | "dark";
-export type IPage = "Dashboard" | "Product" | "Payments" | "Transactions" | "Settings" | "Account Settings";
-
+export type IPage = "Dashboard" | "Product" | "Payments" | "Transactions" | "Settings";
 
 export const pageInfoSlice = createSlice({
   name: "pageInfo",
