@@ -1,28 +1,50 @@
 @import "../../../styles/global.scss";
 
 .settings_home {
-  @include themify($themes) {
-    background-color: themed(light-text);
-  }
-  box-shadow: 0 10px 25px 0 rgba(#000000, 5%);
-  padding-top: 1.5rem;
+    @include themify($themes) {
+        background-color: themed(light-text);
+    }
 
-  @media screen and (min-width:768px) {
-    height: 100vh;
-  }
+    box-shadow: 0 10px 25px 0 rgba(#000000, 5%);
+    padding-top: 1.5rem;
+
+    @media screen and (min-width:768px) {
+        height: 100vh;
+    }
 }
 
 
 // Account Settings
 
 .settings_account {
+
+    &_back_arrow {
+        display: flex;
+        align-items: center;
+        gap: .3em;
+        margin: 0;
+
+        &_button {
+            padding: 0 !important;
+        }
+
+        &_icon {
+            font-size: 1.5rem;
+        }
+
+        &_label {
+            font-size: var(--normal-paragraph);
+        }
+    }
+
     &_profile {
         display: flex;
         flex-direction: column;
-        margin-top: .8rem;
+        margin-top: 1rem;
         margin-bottom: .8rem;
         gap: 2rem;
-        
+
+
 
         @include large-screen {
             flex-direction: row;
@@ -32,15 +54,18 @@
 
     &_profile-info {
         flex-basis: 50%;
+        // max-width: 600px;
+
         @include themify($themes) {
             background-color: themed(light-text);
-          }
+        }
+
         border: 1px solid #DDDDDD;
         border-radius: 10px;
         padding: 1.5rem;
     }
 
-    
+
 
     &_profile-photo-container {
         display: flex;
@@ -72,6 +97,7 @@
         @include themify($themes) {
             color: themed(grey-text);
         }
+
         font-weight: var(--very-light-font);
     }
 
@@ -93,15 +119,17 @@
             line-height: 1.5
         }
 
-        
+
 
     }
+
     &_business-input {
         @extend .settings_account_profile-input;
 
-        > button > span {
+        >button>span {
             justify-content: flex-start !important;
         }
+
         #{&}-item {
             right: 5px !important;
         }

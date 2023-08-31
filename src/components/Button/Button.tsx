@@ -12,6 +12,7 @@ interface buttonProps {
   ref?: any;
   buttonProps?: React.ButtonHTMLAttributes<HTMLButtonElement>;
   fullWidth?: boolean
+  customClassName?: string
 }
 
 const Button: React.FC<buttonProps> = ({
@@ -23,7 +24,8 @@ const Button: React.FC<buttonProps> = ({
   type,
   buttonProps,
   ref,
-  fullWidth
+  fullWidth,
+  customClassName
 }) => {
   return (
     <button
@@ -32,7 +34,7 @@ const Button: React.FC<buttonProps> = ({
       onClick={onClick}
       disabled={disable || loading}
       {...buttonProps}
-      className={`custom-button custom-button_${variant} ${fullWidth ? 'custom-button_full-width' : ''}`}
+      className={`custom-button custom-button_${variant} ${fullWidth ? 'custom-button_full-width' : ''} ${customClassName}`}
     >
       <span>
         {label}
