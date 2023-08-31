@@ -27,6 +27,7 @@ export const AllRouteConstants = {
     index: "/transactions"
   },
   settings: {
-    index: "/settings"
+    index: "/settings",
+    accountSettings: "/settings/account-settings",
   }
 };

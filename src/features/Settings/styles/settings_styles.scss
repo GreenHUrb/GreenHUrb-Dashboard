@@ -1,0 +1,49 @@
+@import "../../../styles/global.scss";
+
+.settings_link {
+    width: 100%;
+    padding-left: 1rem;
+    padding-right: 2rem;
+    
+    
+
+    & a {
+      @include themify($themes) {
+        color: themed(text-color);
+      }
+
+      border-bottom: 1px solid #878787;
+      display: block;
+      padding: 15px 0;
+      text-decoration: none;
+  }
+  &_name {
+    font-size: var(--big-paragraph);
+    font-weight: var(--mediun-font);
+    line-height: 2;
+  }
+
+  & div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &_desc {
+    font-size: var(--normal-paragraph);
+    font-weight: var(--very-light-font);
+
+    @include themify($themes) {
+      color: themed(grey-text);
+    }
+  }
+}
+
+
+.settings {
+    @include themify($themes) {
+        background-color: themed("light-text");
+      }
+    box-shadow: 0 0 10px 0 rgba(135, 135, 135, .5);
+    padding-top: 1.5rem;
+}
