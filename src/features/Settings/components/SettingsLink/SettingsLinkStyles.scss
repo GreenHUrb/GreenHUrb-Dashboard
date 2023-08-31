@@ -1,0 +1,54 @@
+@import "../../../../styles/global.scss";
+
+.settings_link {
+  width: 100%;
+  padding-left: 1.2rem;
+  padding-right: 2.2rem;
+  cursor: pointer;
+  transition: all 200ms ease-in-out;
+
+  &:hover {
+    background: rgb(#000, 5%);
+  }
+
+  & a {
+    @include themify($themes) {
+      color: themed(text-color);
+    }
+
+    border-bottom: 1px solid #DDDDDD;
+    display: block;
+    padding: 15px 0;
+    text-decoration: none;
+  }
+
+  &_name {
+    font-size: var(--big-paragraph);
+    font-weight: var(--medium-font);
+    line-height: 2;
+
+    @include themify($themes) {
+      color: themed(text-color);
+    }
+  }
+
+  &_icon {
+    font-size: 2rem;
+    color: rgba(0 0 0 / .5);
+  }
+
+  & div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &_desc {
+    font-size: var(--normal-paragraph);
+    font-weight: var(--very-light-font);
+
+    @include themify($themes) {
+      color: themed(grey-text);
+    }
+  }
+}

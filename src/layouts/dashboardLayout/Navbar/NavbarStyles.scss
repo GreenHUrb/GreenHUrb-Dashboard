@@ -15,7 +15,8 @@
 
         &_heading {
             text-transform: capitalize;
-            font-weight: var(--medium-font);
+            font-weight: var(--thick-font);
+            color: themed('grey-text');
         }
 
         &_icon {

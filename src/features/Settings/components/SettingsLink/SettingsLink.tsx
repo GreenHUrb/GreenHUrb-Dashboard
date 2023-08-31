@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 
-import "../styles/settings_styles.scss";
+import "./SettingsLinkStyles.scss";
 
 interface SettingsLinkProps {
   path: string;
@@ -12,11 +12,11 @@ interface SettingsLinkProps {
 
 const SettingsLink: React.FC<SettingsLinkProps> = ({ path, name, description }) => {
   return (
-    <div  className="settings_link">
+    <div className="settings_link">
       <Link to={path}>
         <div>
-          <p className="settings_link_name">{name}</p>
-          <MdOutlineKeyboardArrowRight style={{fontSize: '1.5rem', color: 'rgba(0 0 0 / .5)'}} />
+          <h2 className="settings_link_name">{name}</h2>
+          <MdOutlineKeyboardArrowRight className="settings_link_icon"/>
         </div>
         <p className="settings_link_desc">{description}</p>
       </Link>

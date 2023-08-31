@@ -39,8 +39,6 @@ const DashboardLayout = () => {
       }
       // console.log(currentPath)
     }
-
-    console.log(currentPath);
   };
 
   useEffect(() => {

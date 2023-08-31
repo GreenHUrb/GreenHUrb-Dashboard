@@ -1,5 +1,4 @@
-import React from "react";
-import SettingsLink from "../components/SettingsLink";
+import SettingsLink from "../components/SettingsLink/SettingsLink";
 import { AllRouteConstants } from "../../../router/RouteConstants";
 
 const linkDetails = [
@@ -48,5 +47,9 @@ const linkDetails = [
 export const Home = () => {
   const allSettingsLink = linkDetails.map((link, index) => <SettingsLink key={index} {...link} />);
 
-  return <main className="settings">{allSettingsLink}</main>;
+
+  return (
+
+    <main className="settings_home">{allSettingsLink}</main>
+  )
 };

@@ -18,7 +18,6 @@ const AuthLayout = () => {
   return (
     <div className="auth_layout">
       {!notUseLayoutRoutes.includes(pathname) && (
-
         <AuthLeft />
       )}
       <div className="outlet_container">

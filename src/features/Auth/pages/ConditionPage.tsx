@@ -2,6 +2,7 @@ import React from "react";
 import { BiArrowBack } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 import Button from "../../../components/Button/Button";
+import '../styles/auth_styles.scss'
 
 interface ConditionPageProps {}
 
@@ -41,8 +42,8 @@ export const ConditionPage: React.FC<ConditionPageProps> = ({}) => {
         </section>
         <div style={{display: 'flex', justifyContent: 'center'}}>
           <div className="auth_tAndC_btn">
-            <Button label="Accept" variant="contained" fullWidth />
-            <Button label="Decline" variant="contained" fullWidth />
+            <Button label="Accept" variant="contained" fullWidth  />
+            <Button label="Decline" variant="outlined" fullWidth  />
           </div>
         </div>
       </div>
