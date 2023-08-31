@@ -34,6 +34,18 @@
     --pill-shaped-radius:10px;
 }
 
+@mixin large-screen {
+    @media (min-width: 992px) {
+        @content;
+    }
+}
+
+@mixin medium-screen {
+    @media screen and (min-width: 768px) {
+        @content;
+    }
+}
+
 // Color Palette
 $themes: (
     light: (
