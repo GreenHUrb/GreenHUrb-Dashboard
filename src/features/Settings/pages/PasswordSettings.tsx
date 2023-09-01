@@ -9,15 +9,16 @@ import notvisibleIcon from "../../../assets/icons/not-visible.svg";
 import useLogin from "../../Auth/hooks/useLogin";
 import { ILogin } from "../../../interfaces/IApiRequests";
 import Button from "../../../components/Button/Button";
+import useChangePassword, { IChangePassword } from "../hooks/useChangePassword";
 
-interface PasswordSettingsProps {}
+interface PasswordSettingsProps { }
 
-export const PasswordSettings: React.FC<PasswordSettingsProps> = ({}) => {
-  const { loginForm } = useLogin();
+export const PasswordSettings: React.FC<PasswordSettingsProps> = ({ }) => {
+  const { changePasswordForm, handleSubmit } = useChangePassword();
   const { passwordType, togglePassword } = usePasswordType();
 
-  const formChange = (key: keyof ILogin, value: any) => {
-    loginForm.onChange(key, value);
+  const formChange = (key: keyof IChangePassword, value: any) => {
+    changePasswordForm.onChange(key, value);
     return;
   };
 
@@ -30,12 +31,12 @@ export const PasswordSettings: React.FC<PasswordSettingsProps> = ({}) => {
           <p className="password_settings_title">To change your password, you need to put your current password.</p>
         </div>
 
-        <div className="password_settings_form">
+        <form className="password_settings_form" onSubmit={handleSubmit}>
           <div className="auth-field">
             <Input
               id="password"
               label="Password"
-              error={null}
+              error={changePasswordForm.formErrors.oldPassword}
               animation="animate__animated animate__fadeInRight"
               rightIcon={
                 <div style={{ marginLeft: "10px", cursor: "pointer" }} onClick={togglePassword}>
@@ -48,8 +49,8 @@ export const PasswordSettings: React.FC<PasswordSettingsProps> = ({}) => {
               }
               inputProps={{
                 type: passwordType,
-                value: loginForm.form.password,
-                onChange: e => formChange("password", e.target.value),
+                value: changePasswordForm.form.oldPassword,
+                onChange: e => formChange("oldPassword", e.target.value),
                 required: true
               }}
             />
@@ -58,7 +59,7 @@ export const PasswordSettings: React.FC<PasswordSettingsProps> = ({}) => {
             <Input
               id="new password"
               label="New password"
-              error={null}
+              error={changePasswordForm.formErrors.newPassword}
               animation="animate__animated animate__fadeInRight"
               rightIcon={
                 <div style={{ marginLeft: "10px", cursor: "pointer" }} onClick={togglePassword}>
@@ -71,8 +72,8 @@ export const PasswordSettings: React.FC<PasswordSettingsProps> = ({}) => {
               }
               inputProps={{
                 type: passwordType,
-                value: loginForm.form.password,
-                onChange: e => formChange("password", e.target.value),
+                value: changePasswordForm.form.newPassword,
+                onChange: e => formChange("newPassword", e.target.value),
                 required: true
               }}
             />
@@ -81,7 +82,7 @@ export const PasswordSettings: React.FC<PasswordSettingsProps> = ({}) => {
             <Input
               id="confirm password"
               label="Confirm new password"
-              error={null}
+              error={changePasswordForm.formErrors.confirmPassword || changePasswordForm.form.newPassword !== changePasswordForm.form.confirmPassword ? ' is not the Same' : null}
               animation="animate__animated animate__fadeInRight"
               rightIcon={
                 <div style={{ marginLeft: "10px", cursor: "pointer" }} onClick={togglePassword}>
@@ -94,17 +95,17 @@ export const PasswordSettings: React.FC<PasswordSettingsProps> = ({}) => {
               }
               inputProps={{
                 type: passwordType,
-                value: loginForm.form.password,
-                onChange: e => formChange("password", e.target.value),
+                value: changePasswordForm.form.confirmPassword,
+                onChange: e => formChange("confirmPassword", e.target.value),
                 required: true
               }}
             />
           </div>
-          <div style={{marginTop: '2.5rem'}}>
+          <div style={{ marginTop: '2.5rem' }}>
             <Button label="Change Password" variant="contained" fullWidth />
-            <Button label="Forgot Password?" variant="text" customClassName='password_settings_form_btn' />
+            <Button label="Forgot Password?" variant="text" customClassName='password_settings_form_btn' type="button" />
           </div>
-        </div>
+        </form>
       </div>
     </main>
   );
