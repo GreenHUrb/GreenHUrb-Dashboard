@@ -7,10 +7,14 @@ import { GoArrowLeft } from 'react-icons/go'
 import Input from "../../../components/form/Input/Input";
 import Button from "../../../components/Button/Button";
 import ProfileImage from "../../../assets/icons/settingsProfile.png";
+import { useNavigate } from "react-router-dom";
+import { AllRouteConstants } from "../../../router/RouteConstants";
+import SettingsBackButton from "../components/SettingsBackButton";
 
 interface AccountSettingsProps { }
 
 export const AccountSettings: React.FC<AccountSettingsProps> = () => {
+
   const inputFields = [
     { label: "Full name", placeholder: "John Doe", type: "text" },
     { label: "Email address", placeholder: "JohnDoe@gmail.com", type: "text" },
@@ -25,18 +29,7 @@ export const AccountSettings: React.FC<AccountSettingsProps> = () => {
 
   return (
     <main className="settings_account animate__animated animate__fadeIn">
-      <Button
-        customClassName="settings_account_back_arrow_button"
-        label={
-          <div className="settings_account_back_arrow">
-            <GoArrowLeft className="settings_account_back_arrow_icon" />
-            <span className="settings_account_back_arrow_label">
-              Back to product
-            </span>
-          </div>
-        }
-        variant="text"
-      />
+      <SettingsBackButton name="Back to products" route={AllRouteConstants.products.index} />
 
       <div className="settings_account_profile">
         <div className="settings_account_profile-info">

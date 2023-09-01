@@ -116,7 +116,7 @@ export const SignUp = () => {
             />
           </div>
 
-          {/* <div className="auth-field">
+          <div className="auth-field">
             <Input
               id="password"
               label="Password"
@@ -139,9 +139,9 @@ export const SignUp = () => {
                 required: true
               }}
             />
-          </div> */}
+          </div>
 
-          {/* <div className="auth-field">
+          <div className="auth-field">
             <Input
               id="confirmPassword"
               label="Confirm Password"
@@ -164,7 +164,7 @@ export const SignUp = () => {
                 required: true
               }}
             />
-          </div> */}
+          </div>
 
           
 

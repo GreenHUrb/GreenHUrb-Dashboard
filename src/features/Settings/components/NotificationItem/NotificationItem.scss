@@ -1,0 +1,19 @@
+@import "../../../../styles/global.scss";
+
+.notification_item {
+  margin-bottom: .8rem;
+  padding-right: .5rem;
+  > div {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  & p {
+    @include themify($themes) {
+      color: themed(grey-text);
+    }
+    width: 70%;
+    font-weight: var(--very-light-font);
+    font-size: var(--small-paragraph);
+  }
+}

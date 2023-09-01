@@ -29,5 +29,7 @@ export const AllRouteConstants = {
   settings: {
     index: "/settings",
     accountSettings: "/settings/account-settings",
+    notificationSettings: "/settings/notification-settings",
+    passwordSettings: "/settings/password-settings",
   }
 };
