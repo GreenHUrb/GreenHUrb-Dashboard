@@ -1,0 +1,41 @@
+@import "../../../../styles/global.scss";
+
+.switch_button {
+  width: 50px;
+  height: 30px;
+  border-radius: 100vh;
+  outline: none;
+  border: none;
+  padding: 3px;
+  cursor: pointer;
+  position: relative;
+  background-color: #dddddd;
+
+  transition: all 0.2s linear;
+
+  &.right {
+    @include themify($themes) {
+      background-color: themed(dark-primary);
+    }
+  }
+
+  &_circle {
+    display: block;
+    height: 100%;
+    width: 50%;
+    border-radius: 50%;
+    background-color: white;
+    // position: absolute;
+    // inset: 7%;
+    // right: auto;
+    transform: translateX(0);
+    transition: all 0.2s linear;
+
+    &.right {
+      // left: auto;
+      // right: 7%;
+      // transition: all 2s linear;
+      transform: translateX(100%);
+    }
+  }
+}
