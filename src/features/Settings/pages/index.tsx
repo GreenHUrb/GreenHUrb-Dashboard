@@ -3,3 +3,4 @@ export { Home } from "./Home";
 export { AccountSettings } from "./AccountSettings";
 export { NotificationSettings } from "./NotificationSettings";
 export { PasswordSettings } from "./PasswordSettings"
+export { Faq } from './Faq';

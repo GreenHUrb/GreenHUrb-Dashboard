@@ -222,3 +222,33 @@
     }
   }
 }
+
+// FAQ
+.settings_faq {
+  padding-bottom: 1rem;
+  > div {
+    @include themify($themes) {
+      background-color: themed(light-text);
+    }
+
+    border: 1px solid #dddddd;
+    border-radius: 10px;
+    padding: 1.5rem;
+    padding-top: 2.5rem;
+    margin-top: 1rem;
+  }
+
+  &_title {
+    font-weight: var(--very-light-font);
+    font-size: var(--small-paragraph);
+    margin-top: 5px;
+    @include themify($themes) {
+      color: themed(grey-text);
+    }
+  }
+
+  &_container {
+    margin-top: 2.5rem;
+    margin-bottom: 2rem;
+  }
+}

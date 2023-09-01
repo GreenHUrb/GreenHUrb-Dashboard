@@ -27,7 +27,7 @@ const linkDetails = [
   {
     name: "FAQs",
     description: "Get immediate answers to common queries,",
-    path: ""
+    path: AllRouteConstants.settings.faq
   },
   {
     name: "Help center",
