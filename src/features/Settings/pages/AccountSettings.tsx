@@ -1,95 +1,161 @@
-
 import React from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import { MdOutlineKeyboardArrowDown } from "react-icons/md";
-import { GoArrowLeft } from 'react-icons/go'
 
+// Import Custom Components and Styles
+import { AllRouteConstants } from "../../../router/RouteConstants";
+import SettingsBackButton from "../components/SettingsBackButton/SettingsBackButton";
 import Input from "../../../components/form/Input/Input";
 import Button from "../../../components/Button/Button";
 import ProfileImage from "../../../assets/icons/settingsProfile.png";
-import { useNavigate } from "react-router-dom";
-import { AllRouteConstants } from "../../../router/RouteConstants";
-import SettingsBackButton from "../components/SettingsBackButton";
+import "../styles/account_settings_styles.scss";
+import { handleFormatLabelForId } from "../../../utils/formUtils";
+import useAccountSettings from "../hooks/useAccountSettings";
+import { SingleFarmField } from "../components/FarmForm/FarmForm";
 
-interface AccountSettingsProps { }
-
-export const AccountSettings: React.FC<AccountSettingsProps> = () => {
-
-  const inputFields = [
-    { label: "Full name", placeholder: "John Doe", type: "text" },
-    { label: "Email address", placeholder: "JohnDoe@gmail.com", type: "text" },
-    { label: "Phone number", placeholder: "9021010101", type: "number" }
-  ];
-
-  const businessFields = [
-    { label: "Farm name", placeholder: "", type: "text" },
-    { label: "State", placeholder: "Select state", type: "text" },
-    { label: "City", placeholder: "Select city", type: "text" }
-  ];
+export const AccountSettings = () => {
+  // Initialize custom hooks and state variables
+  const {
+    accountSettingsMode,
+    handleChangeAccountSettingsMode,
+    accountProfileForm,
+    accountProfileFormErrors,
+    handleAccountProfileFormChange,
+    handleAddFarm,
+    handleUpdateFarm,
+    addFarm,
+    handleCloseAddFarmForm,
+    handleOpenAddFarmForm
+  } = useAccountSettings();
 
   return (
     <main className="settings_account animate__animated animate__fadeIn">
-      <SettingsBackButton name="Back to products" route={AllRouteConstants.products.index} />
+      {/* Back button */}
+      <SettingsBackButton name="Back to Settings" route={AllRouteConstants.settings.index} />
 
       <div className="settings_account_profile">
         <div className="settings_account_profile-info">
+          {/* Profile photo */}
           <h3>Profile photo</h3>
           <div className="settings_account_profile-photo-container">
             <div className="settings_account_profile-photo">
               <LazyLoadImage src={ProfileImage} alt="profile" width={20} height={20} />
             </div>
-            <Button label="Edit profile photo" variant="text" />
+            {accountSettingsMode === 'edit' && (
+              <Button label="Edit profile photo" variant="text" />
+            )}
           </div>
 
-          <h3>Profile information</h3>
-          <p>Personal information of business owner</p>
+          {/* Profile information */}
+          <div className="settings_account_profile-info_content">
+            <h3>Profile information</h3>
+            <p>Personal information of the business owner</p>
+          </div>
 
           <div className="settings_account_profile-input">
-            {inputFields.map(({ label, placeholder, type }) => (
-              <div className="input" key={label}>
-                <Input
-                  id={label.toLowerCase().replace(/\s+/g, '-')}
-                  inputProps={{ placeholder, type }}
-                  error={null}
-                  animation="animate__animated animate__fadeInRight"
-                  label={label}
-                />
-              </div>
-            ))}
+            {/* Input fields for Full Name, Email Address, and Phone Number */}
+            <div className="input">
+              <Input
+                id={handleFormatLabelForId("Full Name")}
+                error={accountProfileFormErrors.fullName}
+                label="Full Name"
+                inputProps={{
+                  placeholder: "Enter your Full Name",
+                  required: true,
+                  value: accountProfileForm.fullName,
+                  onChange: e => handleAccountProfileFormChange("fullName", e.target.value),
+                  readOnly: accountSettingsMode === "view" ? true : false
+                }}
+              />
+            </div>
+            <div className="input">
+              <Input
+                id={handleFormatLabelForId("Email Address")}
+                error={accountProfileFormErrors.emailAddress}
+                label="Email Address"
+                inputProps={{
+                  placeholder: "Enter your Email Address",
+                  required: true,
+                  value: accountProfileForm.emailAddress,
+                  onChange: e => handleAccountProfileFormChange("emailAddress", e.target.value),
+                  readOnly: accountSettingsMode === "view" ? true : false
+                }}
+              />
+            </div>
+            <div className="input">
+              <Input
+                id={handleFormatLabelForId("Phone Number")}
+                error={accountProfileFormErrors.phoneNumber}
+                label="Phone Number"
+                inputProps={{
+                  placeholder: "Enter your Phone Number",
+                  required: true,
+                  value: accountProfileForm.phoneNumber,
+                  onChange: e => handleAccountProfileFormChange("phoneNumber", e.target.value),
+                  readOnly: accountSettingsMode === "view" ? true : false
+                }}
+              />
+            </div>
           </div>
         </div>
 
         <div className="settings_account_business-info">
-          <h3>Business information</h3>
-          <p>The information presented here is solely relevant to business matters.</p>
+          <div className="settings_account_business-info_header">
+            <h3>Business information</h3>
+            <p>The information presented here is solely relevant to business matters.</p>
+          </div>
 
-          <div className="settings_account_business-input">
-            {businessFields.map(({ label, placeholder, type }) => (
-              <div className="input" key={label}>
-                <Input
-                  id={label.toLowerCase().replace(/\s+/g, '-')}
-                  inputProps={{ placeholder, type }}
-                  error={null}
-                  animation="animate__animated animate__fadeInRight"
-                  label={label}
-                  inputClassName={
-                    label === "State" || label === "City"
-                      ? "settings_account_business-input-item"
-                      : undefined
-                  }
-                  rightIcon={
-                    (label === "State" || label === "City") ? <MdOutlineKeyboardArrowDown size={30} /> : <></>
-                  }
+          <div className="settings_account_business-form_container">
+            <div className="settings_account_business-form_container_inputs">
+              {/* Render farm fields */}
+              {accountProfileForm.farms.map((farm, index) => (
+                <SingleFarmField
+                  onFormSubmit={(farm) => handleUpdateFarm(farm, index)}
+                  farm={farm}
+                  key={index}
+                  pageMode={accountSettingsMode}
                 />
-              </div>
-            ))}
-            <Button label="Add more farms" variant="text" />
+              ))}
+
+              {/* Add farm field if the 'addFarm' status is true */}
+              {addFarm.status && (
+                <SingleFarmField
+                  onFormSubmit={handleAddFarm}
+                  farm={addFarm.farm}
+                  pageMode={"add"}
+                  handleCancel={handleCloseAddFarmForm}
+                />
+              )}
+            </div>
+
+            {/* Add More Farms button (visible in edit mode) */}
+            {accountSettingsMode === "edit" && !addFarm.status && (
+              <Button
+                label="Add More Farms"
+                variant="text"
+                onClick={handleOpenAddFarmForm}
+                type="button"
+              />
+            )}
 
             <div
               style={{ marginTop: "1rem", display: "flex", flexDirection: "column", gap: "1rem" }}
             >
-              <Button label="Edit information" variant="contained" fullWidth />
-              <Button label="Cancel" variant="outlined" fullWidth />
+              {/* Update/Edit and Cancel buttons */}
+              <Button
+                label={`${accountSettingsMode === "edit" ? "Update " : "Edit"} information`}
+                variant="contained"
+                fullWidth
+                onClick={() => handleChangeAccountSettingsMode("edit")}
+                type="button"
+              />
+              {accountSettingsMode === "edit" && (
+                <Button
+                  label="Cancel"
+                  variant="outlined"
+                  onClick={() => handleChangeAccountSettingsMode("view")}
+                  fullWidth
+                />
+              )}
             </div>
           </div>
         </div>
@@ -97,4 +163,3 @@ export const AccountSettings: React.FC<AccountSettingsProps> = () => {
     </main>
   );
 };
-
