@@ -2,7 +2,7 @@ import React from "react";
 import "./CheckboxStyles.scss";
 
 interface CheckboxProps {
-  label: string | JSX.Element;
+  label?: string | JSX.Element;
   checkboxProps?: React.InputHTMLAttributes<HTMLInputElement>;
 
 }

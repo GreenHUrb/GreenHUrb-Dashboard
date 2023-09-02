@@ -1,0 +1,29 @@
+.transaction_table {
+    &_status_button {
+        padding: 15px;
+        border-radius: 10px;
+        margin: 0 auto;
+
+
+        &_cancelled {
+            background: #FFF5F5;
+            color: #870E14;
+        }
+
+        &_successful {
+            background: #F5FFF9;
+            color: #0E8742;
+        }
+
+        &_pending {
+            background: #F9F9F9;
+            color: #878787;
+        }
+    }
+
+    &_actions {
+        cursor: pointer;
+        font-size: 18px;
+        color: #878787;
+    }
+}

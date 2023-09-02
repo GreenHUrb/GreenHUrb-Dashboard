@@ -1,4 +1,5 @@
 .dashboard_home {
+    padding-bottom: 3rem;
 
     .flex {
         display: flex;
@@ -8,12 +9,11 @@
 
     &_top {
         @extend .flex;
-        align-items: center;
 
         &_left {
             @extend .flex;
             flex-direction: column;
-            width: 65%;
+            width: 70%;
             gap: 2em !important;
 
 
@@ -30,7 +30,14 @@
         }
 
         &_right {
-            width: 35%;
+            width: 30%;
+            display: flex;
+            flex-direction: column;
+            gap: 1em;
         }
+    }
+
+    &_bottom {
+        margin-top: 1.5em;
     }
 }

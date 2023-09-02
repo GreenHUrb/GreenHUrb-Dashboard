@@ -1,0 +1,31 @@
+@import "../../../../styles/global.scss";
+
+.top_products_dashboard {
+    @include themify($themes) {
+
+        width: 100%;
+        height: 100%;
+        border: 1px solid #DDDDDD;
+        border-radius: 10px;
+        background: white;
+        padding-block: 1.5em;
+
+        &_container {
+            width: 85%;
+            margin: 0 auto;
+        }
+
+        &_header {
+            font-weight: var(--medium-font);
+            font-size: calc(var(--big-paragraph) + 1px);
+        }
+
+        &_content {
+            font-weight: var(--very-light-font);
+            letter-spacing: 2%;
+            margin-block: 1em;
+            font-size: var(--small-paragraph);
+            color: themed(grey-text);
+        }
+    }
+}
