@@ -32,5 +32,6 @@ export const AllRouteConstants = {
     notificationSettings: "/settings/notification-settings",
     passwordSettings: "/settings/password-settings",
     faq: "/settings/faq",
+    helpCenter: "/settings/help-center",
   }
 };
