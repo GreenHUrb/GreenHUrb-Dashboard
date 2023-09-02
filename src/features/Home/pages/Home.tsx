@@ -8,7 +8,15 @@ import AccVerification from '../../../assets/icons/AccountVerificationIcon.svg';
 import { AllRouteConstants } from '../../../router/RouteConstants';
 import TopProducts from '../components/TopProducts/TopProducts';
 import TransactionTable from '../components/Tables/TransactionTable';
-import { dummyTransactions } from '../data/dummyTransactions';
+import { dummyTransactions, transactionTableHead } from '../data/dummyTransactions';
+import { Pagination } from "swiper/modules";
+
+import { Swiper, SwiperSlide } from "swiper/react";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/pagination";
+import Button from '../../../components/Button/Button';
 
 export const Home = () => {
     const walletBalance = '100,000.00';
@@ -34,9 +42,11 @@ export const Home = () => {
         cardTextColor: '#50870E',
     };
 
-    const transactionTableInformation = {
-        tableHead: ['Date', 'Product Name', 'Order No', 'Amount', 'Status', 'Customer Name', '']
-    }
+    const dashboardRightItems = [
+        <DashboardNotification {...accountVerificationData} />,
+        <DashboardNotification {...premiumPlanData} />,
+        <TopProducts />
+    ]
 
     return (
         <div className='dashboard_home'>
@@ -50,15 +60,42 @@ export const Home = () => {
                         <Overview />
                     </div>
                 </div>
-                <div className="dashboard_home_top_right">
-                    <DashboardNotification {...accountVerificationData} />
-                    <DashboardNotification {...premiumPlanData} />
-                    <TopProducts />
+                <div className="dashboard_home_top_right_desktop">
+                    {dashboardRightItems.map((item, index) => (
+                        <div key={index}>
+                            {item}
+                        </div>
+                    ))}
                 </div>
+                <div className='dashboard_home_top_right_mobile'>
+                    <Swiper
+                        modules={[Pagination]}
+                        spaceBetween={40}
+                        slidesPerView={1}
+                        pagination={{ clickable: true }}
+                        navigation
+                        scrollbar={{ draggable: true }}
+                    >
+                        {dashboardRightItems.map((item, index) => (
+                            <SwiperSlide key={index}>
+                                {item}
+                            </SwiperSlide>
+
+                        ))}
+                    </Swiper>
+                </div>
+
             </div>
             <div className="dashboard_home_bottom">
-                <TransactionTable tableData={dummyTransactions} tableHead={transactionTableInformation.tableHead} />
+                <div className="dashboard_home_bottom_table_card">
+                    <div className="dashboard_home_bottom_table_card_header">
+                        <h2>Recent Transactions</h2>
+                        <Button variant='text' label='View All' customClassName='view_all_button' />
+                    </div>
+                    <TransactionTable tableData={dummyTransactions} tableHead={transactionTableHead} />
+                </div>
             </div>
+
         </div>
     );
 }

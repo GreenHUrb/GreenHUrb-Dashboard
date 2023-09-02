@@ -1,4 +1,13 @@
 import { ITransaction } from "../interfaces/ITransaction";
+export const transactionTableHead = [
+  "Date",
+  "Product Name",
+  "Order No",
+  "Amount",
+  "Status",
+  "Customer Name",
+  ""
+];
 
 export const dummyTransactions: ITransaction[] = [
   {
