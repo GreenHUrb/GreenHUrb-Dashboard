@@ -18,7 +18,7 @@ interface SettingsBackButtonProps {
 const SettingsBackButton: React.FC<SettingsBackButtonProps> = ({ name, route }) => {
   const navigate = useNavigate()
   return (
-    <div>
+    <>
       <Button
         customClassName="settings_back_arrow_button"
         label={
@@ -33,7 +33,7 @@ const SettingsBackButton: React.FC<SettingsBackButtonProps> = ({ name, route }) 
         onClick={() => navigate(route)}
       />
 
-    </div>
+    </>
   );
 };
 
