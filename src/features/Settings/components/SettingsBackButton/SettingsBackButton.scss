@@ -1,0 +1,22 @@
+// Account Settings
+.settings_back_arrow {
+    display: flex;
+    align-items: center;
+    gap: 0.3em;
+    margin: 0;
+
+
+    &_button {
+        padding: 0 !important;
+    }
+
+    &_icon {
+        font-size: 1.5rem;
+    }
+
+    &_label {
+        font-size: var(--normal-paragraph);
+        font-weight: var(--light-font);
+    }
+
+}

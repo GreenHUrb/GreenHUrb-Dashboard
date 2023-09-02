@@ -1,7 +1,7 @@
 import { AllRouteConstants } from "../../../router/RouteConstants";
 import FaqItem from "../components/FaqItem/FaqItem";
-import SettingsBackButton from "../components/SettingsBackButton";
-import "../styles/settings_styles.scss";
+import SettingsBackButton from "../components/SettingsBackButton/SettingsBackButton";
+// import "../styles/settings_styles.scss";
 
 const faqLists = [
   {
@@ -52,10 +52,10 @@ export const Faq = () => {
         </div>
 
         <div className="settings_faq_container">
-            {faqLists.map((list, index)=>(
-                <FaqItem key={index} list={list} />
+          {faqLists.map((list, index) => (
+            <FaqItem key={index} list={list} />
 
-            ))}
+          ))}
         </div>
       </div>
     </main>

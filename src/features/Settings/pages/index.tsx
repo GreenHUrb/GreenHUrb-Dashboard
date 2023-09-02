@@ -1,4 +1,4 @@
-import '../styles/settings_styles.scss'
+import '../styles/settings_home_styles.scss'
 export { Home } from "./Home";
 export { AccountSettings } from "./AccountSettings";
 export { NotificationSettings } from "./NotificationSettings";

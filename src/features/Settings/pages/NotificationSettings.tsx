@@ -1,4 +1,4 @@
-import SettingsBackButton from "../components/SettingsBackButton";
+import SettingsBackButton from "../components/SettingsBackButton/SettingsBackButton";
 import { AllRouteConstants } from "../../../router/RouteConstants";
 import NotificationItem from "../components/NotificationItem/NotificationItem";
 import { notificationSettingsList } from "../data/notificationSettingsList";

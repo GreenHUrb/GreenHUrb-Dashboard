@@ -25,20 +25,25 @@
         padding-right: 30px;
         width: 100%;
         outline: none;
-        line-height: 120%;
-        caret-color: themed('primary');
+        line-height: 30px;
+        caret-color: #1C1C1C;
         background-color: white;
         font-size: var(--normal-paragraph);
-        border: 1px solid themed('text-color');
+        border: 1px solid #DDDDDD;
         border-radius: var(--pill-shaped-radius);
         transition: all 0.3s ease-in;
+        letter-spacing: 2.5%;
+        color: #1C1C1C;
 
         &:focus {
-          border-color: #377e3f;
+          border-color: #1C1C1C;
         }
 
         &::placeholder {
-          color: rgb(#1c1c1c, 70%);
+          color: #878787;
+          font-weight: var(--very-light-font);
+          font-size: 1rem;
+          letter-spacing: 2%;
         }
 
         &-errored {
