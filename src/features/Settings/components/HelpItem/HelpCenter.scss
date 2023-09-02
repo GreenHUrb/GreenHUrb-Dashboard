@@ -1,0 +1,52 @@
+@import "../../../../styles/global.scss";
+
+.help_center {
+  @include themify($themes) {
+    background-color: themed(light-text);
+  }
+  border: 1px solid #dddddd;
+  border-radius: 10px;
+  padding: 1.5rem;
+  padding-top: 2.5rem;
+//   margin-top: 1rem;
+  display: flex;
+  gap: 1rem;
+
+  &_inner_container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    & h3 {
+        font-size: var(--normal-paragraph);
+    }
+
+    & p {
+        font-weight: var(--very-light-font);
+        font-size: var(--small-paragraph);
+        line-height: 2;
+
+        @include themify($themes) {
+            color: themed(grey-text);
+          }
+    }
+  }
+
+  &_btn {
+    width: 100%;
+    @include medium-screen {
+        padding: 10px 5px !important;
+    }
+    
+    @include very-large-screen {
+        width: 50%;
+    }
+
+    
+
+    & span {
+      gap: 2px;
+      font-size: var(--small-paragraph);
+    }
+  }
+}

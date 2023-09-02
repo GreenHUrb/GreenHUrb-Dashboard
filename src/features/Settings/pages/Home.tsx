@@ -32,7 +32,7 @@ const linkDetails = [
   {
     name: "Help center",
     description: "Get immediate answers to common queries,",
-    path: ""
+    path: AllRouteConstants.settings.helpCenter
   },
   {
     name: "Subscription plan",

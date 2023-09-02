@@ -7,6 +7,7 @@ interface InputProps {
   error: string | null;
   inputClassName?: string;
   labelClassName?: string;
+  className?: string;
   rightIcon?: JSX.Element;
   inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
   requiredAstersik?: boolean;
@@ -16,7 +17,7 @@ interface InputProps {
 type Ref = any;
 
 const Input = forwardRef<Ref, InputProps>(
-  ({ id, inputProps, error, label, rightIcon, inputClassName, labelClassName, animation }, ref) => {
+  ({ id, inputProps, error, label, rightIcon, inputClassName, labelClassName, animation, className }, ref) => {
     return (
       <div className={`custom-input ${animation}`}>
         <label htmlFor={id} className={`custom-input__label ${labelClassName}`}>
@@ -30,7 +31,7 @@ const Input = forwardRef<Ref, InputProps>(
             id={id}
             className={`custom-input__container__input ${
               error ? "custom-input__container__input-errored" : undefined
-            }`}
+            } ${className}`}
           />
 
           {rightIcon && <div className={`right-icon ${inputClassName}`}>{rightIcon}</div>}
