@@ -1,5 +1,4 @@
-import React from "react";
-import SettingsBackButton from "../components/SettingsBackButton";
+import SettingsBackButton from "../components/SettingsBackButton/SettingsBackButton";
 import { AllRouteConstants } from "../../../router/RouteConstants";
 
 import Input from "../../../components/form/Input/Input";
