@@ -31,7 +31,7 @@
     --very-thick-font: 700;
 
     // Border Radiuses
-    --pill-shaped-radius:10px;
+    --pill-shaped-radius: 10px;
 }
 
 @mixin large-screen {
@@ -48,8 +48,7 @@
 
 // Color Palette
 $themes: (
-    light: (
-        primary: #50870E,
+    light: (primary: #50870E,
         dark-primary: #0b6a0b,
         light-primary:rgb(#0E870E, 10%),
 
@@ -67,9 +66,13 @@ html {
     font-size: 16px;
 }
 
+button {
+    font-family: inherit
+}
+
 body {
     margin: 0;
-    font-family: 'Lexend', sans-serif;
+    font-family: 'Lexend', sans-serif !important;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }

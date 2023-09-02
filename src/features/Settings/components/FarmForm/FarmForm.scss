@@ -1,0 +1,76 @@
+@import "../../../../styles/global.scss";
+
+.single_farm_field {
+    position: relative;
+    padding: 0 1rem 1rem;
+    margin-top: 1.2em;
+    transition: all 200ms ease-in-out;
+
+    &_edit {
+        padding: 1.1rem 1rem;
+        border: 1px solid #dddddd;
+        border-radius: 10px;
+    }
+
+    &_add {
+        @include themify($themes) {
+            padding: 1.1rem 1rem;
+            border: 1px solid themed(primary);
+            border-radius: 10px;
+        }
+    }
+
+    &_form {
+        .input {
+            margin-top: 1em;
+        }
+    }
+
+    &_top_icons {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 1em;
+        position: absolute;
+        top: 15px;
+        right: 10px;
+
+        .single_farm_field_icon {
+            border-radius: 5px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 200ms ease-in-out;
+
+            &:hover {
+                transform: scale(1.1);
+            }
+        }
+    }
+
+    &_bottom_input {
+        display: flex;
+        align-items: center;
+        gap: 1em;
+        justify-content: space-between;
+        margin-top: 1em;
+
+        .input {
+            width: 45%;
+        }
+    }
+
+    &_update_btn_container {
+        display: flex;
+        align-items: center;
+        gap: 1em;
+        width: 100%;
+        justify-content: flex-end;
+        margin-top: 1.5em;
+
+        .custom-button {
+            width: 25% !important;
+            font-size: .8rem !important;
+            font-weight: 400 !important;
+        }
+    }
+}
