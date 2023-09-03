@@ -1,4 +1,3 @@
-import { AllRouteConstants } from "../../../router/RouteConstants";
 import FaqItem from "../components/FaqItem/FaqItem";
 import SettingsBackButton from "../components/SettingsBackButton/SettingsBackButton";
 // import "../styles/settings_styles.scss";
@@ -41,7 +40,7 @@ const faqLists = [
 export const Faq = () => {
   return (
     <main className="settings_faq animate__animated animate__fadeIn">
-      <SettingsBackButton name="Back to settings" route={AllRouteConstants.settings.index} />
+      <SettingsBackButton />
 
       <div>
         <div>

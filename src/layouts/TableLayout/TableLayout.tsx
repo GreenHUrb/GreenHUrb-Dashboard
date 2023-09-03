@@ -1,6 +1,6 @@
 import { ReactElement } from "react";
 import "./TableLayoutStyles.scss";
-import Checkbox from "../../components/Checkbox/Checkbox";
+import Checkbox from "../../components/form/Checkbox/Checkbox";
 
 export const TableLayout = ({
   children,
@@ -9,7 +9,11 @@ export const TableLayout = ({
   children: JSX.Element[];
   className?: string;
 }) => {
-  return <table className={className}>{children}</table>;
+  return (
+    <div className="table_layout_container">
+      <table className={className}>{children}</table>
+    </div>
+  );
 };
 
 export const TableHeadContainer = ({

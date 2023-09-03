@@ -23,14 +23,13 @@
 
   box-shadow: 0 10px 25px 0 rgba(#000000, 5%);
   padding-top: 1.5rem;
-  border: 1px solid #DDDDDD;
+  border: 1px solid #dddddd;
   border-radius: 10px;
 
   @media screen and (min-width: 768px) {
     min-height: 100vh;
   }
 }
-
 
 // Notification
 .settings_notification {
@@ -163,7 +162,7 @@
 
 .settings_help_center {
   @include container();
-  
+
   & > div {
     display: grid;
     row-gap: 1.5rem;
@@ -182,3 +181,4 @@
     border: 1px solid #dddddd !important;
   }
 }
+

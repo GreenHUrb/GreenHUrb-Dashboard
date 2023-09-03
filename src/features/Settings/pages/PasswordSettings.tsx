@@ -1,7 +1,6 @@
 import React from "react";
 
 import SettingsBackButton from "../components/SettingsBackButton/SettingsBackButton";
-import { AllRouteConstants } from "../../../router/RouteConstants";
 import Input from "../../../components/form/Input/Input";
 import usePasswordType from "../../Auth/hooks/usePasswordType";
 import visibleIcon from "../../../assets/icons/visible.svg";
@@ -24,7 +23,7 @@ export const PasswordSettings: React.FC<PasswordSettingsProps> = ({ }) => {
 
   return (
     <main className="password_settings animate__animated animate__fadeIn">
-      <SettingsBackButton name="Back to settings" route={AllRouteConstants.settings.index} />
+      <SettingsBackButton />
       <div>
         <div style={{ gridColumn: "span 2" }}>
           <h3>Change Password</h3>

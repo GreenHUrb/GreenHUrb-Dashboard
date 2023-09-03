@@ -1,36 +1,92 @@
+@import '../../../styles/global.scss';
+
 .dashboard_home {
+    @include themify($themes) {
+        padding-bottom: 3rem;
+        overflow-x: scroll;
 
-    .flex {
-        display: flex;
-        gap: 1em;
-    }
+        .flex {
+            display: flex;
+            gap: 1em;
+        }
 
 
-    &_top {
-        @extend .flex;
-        align-items: center;
-
-        &_left {
+        &_top {
             @extend .flex;
-            flex-direction: column;
-            width: 65%;
-            gap: 2em !important;
+            flex-direction: column-reverse;
 
+            @include large-screen {
+                flex-direction: row;
+            }
 
-            &_kpi_cards {
+            &_left {
                 @extend .flex;
-                align-items: center;
-                justify-content: space-between;
                 flex-direction: column;
+                gap: 2em !important;
+                width: 100%;
 
-                @media screen and (min-width:768px) {
-                    flex-direction: row;
+                @include large-screen {
+                    width: 70%;
+                }
+
+
+                &_kpi_cards {
+                    @extend .flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    flex-direction: column;
+                    gap: 2em !important;
+
+                    @include large-screen {
+                        flex-direction: row;
+                    }
+                }
+            }
+
+            &_right_desktop {
+                display: none;
+
+                @include large-screen {
+                    gap: 1em;
+                    display: flex;
+                    flex-direction: column;
+                    width: 30%;
+                }
+            }
+
+            &_right_mobile {
+
+                @include large-screen {
+                    display: none;
                 }
             }
         }
 
-        &_right {
-            width: 35%;
+        &_bottom {
+            margin-top: 1.5em;
+
+            &_table_card {
+                background: white;
+                border: 1px solid #DDDDDD;
+                border-radius: 10px;
+
+                &_header {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    padding: 1em;
+
+                    h2 {
+                        font-weight: var(--medium-font);
+                        font-size: calc(var(--big-paragraph));
+                    }
+
+                    .view_all_button {
+                        font-weight: var(--light-font);
+                        font-size: var(--normal-paragraph);
+                    }
+                }
+            }
         }
     }
 }

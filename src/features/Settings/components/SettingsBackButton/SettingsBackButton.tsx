@@ -8,32 +8,29 @@ import { useNavigate } from 'react-router-dom';
 
 // Import Custom Components
 import Button from '../../../../components/Button/Button';
+import { AllRouteConstants } from '../../../../router/RouteConstants';
 
 
-interface SettingsBackButtonProps {
-  name: string;
-  route: string
-}
 
-const SettingsBackButton: React.FC<SettingsBackButtonProps> = ({ name, route }) => {
+const SettingsBackButton = () => {
   const navigate = useNavigate()
   return (
-    <div>
+    <>
       <Button
         customClassName="settings_back_arrow_button"
         label={
           <div className="settings_back_arrow">
             <GoArrowLeft className="settings_back_arrow_icon" />
             <span className="settings_back_arrow_label">
-              {name}
+              Back to Settings
             </span>
           </div>
         }
         variant="text"
-        onClick={() => navigate(route)}
+        onClick={() => navigate(AllRouteConstants.settings.index)}
       />
 
-    </div>
+    </>
   );
 };
 

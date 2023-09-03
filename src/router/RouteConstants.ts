@@ -33,5 +33,7 @@ export const AllRouteConstants = {
     passwordSettings: "/settings/password-settings",
     faq: "/settings/faq",
     helpCenter: "/settings/help-center",
+    subscription: '/settings/subscription',
+    subscriptionPayment: '/settings/subscription/subscription-payment',
   }
 };

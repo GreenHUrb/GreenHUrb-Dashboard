@@ -1,9 +1,15 @@
 table {
   border-collapse: collapse;
   font-size: 14px;
-  background: white;
-  border: 1px solid #e2e2e6;
   width: 100%;
+}
+
+.table_layout_container {
+  border: 1px solid #DDDDDD;
+  border-radius: 10px;
+  overflow: scroll;
+  height: 100%;
+
 }
 
 th,
@@ -14,6 +20,12 @@ td {
 
 td {
   border-bottom: 1px solid rgb(240, 239, 239);
+  font-weight: 300;
+  color: #1C1C1C;
+  letter-spacing: 2.5%;
+}
+tr {
+  background: white;
 }
 
 .capitalize {
@@ -21,15 +33,15 @@ td {
 }
 
 thead {
-  background-color: #5CA6CE;
+  background-color: #F9F9F9;
   margin-bottom: 10px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.04);
 }
 
 th {
-  color: white;
+  color: #1C1C1C;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .table_head_checkbox_container {

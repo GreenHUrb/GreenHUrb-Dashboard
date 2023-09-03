@@ -1,6 +1,5 @@
-import React from "react";
 import SettingsBackButton from "../components/SettingsBackButton/SettingsBackButton";
-import { AllRouteConstants } from "../../../router/RouteConstants";
+
 
 import Input from "../../../components/form/Input/Input";
 import HelpItem from "../components/HelpItem/HelpItem";
@@ -36,7 +35,7 @@ const helpCenterList = [
 export const HelpCenter = ({}) => {
   return (
     <main className="settings_help_center animate__animated animate__fadeIn">
-      <SettingsBackButton name="Back to settings" route={AllRouteConstants.settings.index} />
+      <SettingsBackButton />
 
       <div>
         <div>
