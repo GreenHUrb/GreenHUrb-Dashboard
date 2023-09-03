@@ -18,6 +18,8 @@ import { PersistGate } from 'redux-persist/integration/react';
 // The Redux store and persistor configuration.
 import { store, persistor } from './redux/store.ts';
 
+
+
 // Use the createRoot API from ReactDOM to enable concurrent mode rendering.
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   // Wrap the entire application in a strict mode for enhanced development checks.

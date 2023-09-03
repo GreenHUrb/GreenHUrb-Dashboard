@@ -24,8 +24,8 @@ const Overview = () => {
           <h2>Overview</h2>
         </div>
         <div className="overview_card_bottom">
-          {appOverview.map((item) => (
-            <div className='overview_card_bottom_item'>
+          {appOverview.map((item, index) => (
+            <div key={index} className='overview_card_bottom_item'>
               <h2>{item.amount}</h2>
               <span>{item.name}</span>
             </div>

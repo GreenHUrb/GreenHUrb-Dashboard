@@ -3,7 +3,7 @@
 .overview_card {
     @include themify($themes) {
         width: 100%;
-        height: 250px;
+        min-height: 300px;
         border: 1px solid #DDDDDD;
         background: white;
         border-radius: 10px;
@@ -31,10 +31,15 @@
         }
 
         &_bottom {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
             margin-top: 2em;
+
+            @include large-screen {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
 
             &_item {
                 display: flex;
