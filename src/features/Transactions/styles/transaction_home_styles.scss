@@ -1,0 +1,33 @@
+.transaction_home {
+    &_table_filter {
+        border: 1px solid #DDDDDD;
+        border-radius: 10px;
+        padding: 1rem;
+        width: 100%;
+        background: white;
+
+        &_container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        &_left {
+            display: flex;
+            align-items: center;
+            gap: 1.5em;
+
+            &_button {
+                font-size: var(--big-paragraph) !important;
+
+                &.inactive {
+                    color: #878787 !important;
+                }
+            }
+        }
+    }
+
+    &_table_container {
+        margin-top: 1em;
+    }
+}

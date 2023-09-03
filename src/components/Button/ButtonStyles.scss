@@ -68,6 +68,10 @@
       border: none;
       background: transparent;
       color: themed('primary');
+
+      &:disabled {
+        color: rgb(#232D23, 50%);
+      }
     }
   }
 }

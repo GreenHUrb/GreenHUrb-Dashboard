@@ -7,7 +7,6 @@ import MedalIcon from '../../../assets/icons/MedalIcon.svg';
 import AccVerification from '../../../assets/icons/AccountVerificationIcon.svg';
 import { AllRouteConstants } from '../../../router/RouteConstants';
 import TopProducts from '../components/TopProducts/TopProducts';
-import TransactionTable from '../components/Tables/TransactionTable';
 import { dummyTransactions, transactionTableHead } from '../data/dummyTransactions';
 import { Pagination } from "swiper/modules";
 
@@ -17,8 +16,11 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import Button from '../../../components/Button/Button';
+import TransactionTable from '../../Transactions/components/Tables/TransactionTable';
+import { useNavigate } from 'react-router-dom';
 
 export const Home = () => {
+    const navigate = useNavigate()
     const walletBalance = '100,000.00';
     const todaysBalance = '35,000.00';
 
@@ -90,9 +92,9 @@ export const Home = () => {
                 <div className="dashboard_home_bottom_table_card">
                     <div className="dashboard_home_bottom_table_card_header">
                         <h2>Recent Transactions</h2>
-                        <Button variant='text' label='View All' customClassName='view_all_button' />
+                        <Button variant='text' label='View All' customClassName='view_all_button' onClick={() => navigate(AllRouteConstants.transactions.index)} />
                     </div>
-                    <TransactionTable tableData={dummyTransactions} tableHead={transactionTableHead} />
+                    <TransactionTable dataLimit={5} tableData={dummyTransactions} tableHead={transactionTableHead} />
                 </div>
             </div>
 
