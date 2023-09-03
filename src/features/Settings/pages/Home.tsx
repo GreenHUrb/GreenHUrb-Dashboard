@@ -37,7 +37,7 @@ const linkDetails = [
   {
     name: "Subscription plan",
     description: "Get immediate answers to common queries,",
-    path: ""
+    path: AllRouteConstants.settings.subscription
   },
   {
     name: "Delete account",

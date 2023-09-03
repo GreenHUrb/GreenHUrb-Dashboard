@@ -23,14 +23,13 @@
 
   box-shadow: 0 10px 25px 0 rgba(#000000, 5%);
   padding-top: 1.5rem;
-  border: 1px solid #DDDDDD;
+  border: 1px solid #dddddd;
   border-radius: 10px;
 
   @media screen and (min-width: 768px) {
     min-height: 100vh;
   }
 }
-
 
 // Notification
 .settings_notification {
@@ -163,7 +162,7 @@
 
 .settings_help_center {
   @include container();
-  
+
   & > div {
     display: grid;
     row-gap: 1.5rem;
@@ -180,5 +179,87 @@
 
   &_input {
     border: 1px solid #dddddd !important;
+  }
+}
+
+// SUBSRIPTION SETTINGS
+
+.settings_subscription {
+  @include container();
+
+  > div {
+    @include medium-screen {
+      width: 50%;
+    }
+    padding: 1rem;
+  }
+
+  &_top {
+    padding: 1rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #dddddd;
+
+    & p {
+      padding: 3px 12px;
+      border-radius: 10px;
+      background-color: #fafff5;
+      font-size: var(--small-paragraph);
+
+      @include themify($themes) {
+        color: themed(primary);
+      }
+    }
+  }
+
+  &_main {
+    &_top {
+      margin-top: 1rem;
+      margin-bottom: 1.5rem;
+
+      & s {
+        font-weight: var(--very-light-font);
+        @include themify($themes) {
+          color: themed(grey-text);
+        }
+      }
+
+      & h2 {
+        font-weight: var(--thick-font);
+        margin-top: 0.5rem;
+
+        & span {
+          font-size: var(--small-paragraph);
+          font-weight: var(--very-light-font);
+          @include themify($themes) {
+            color: themed(grey-text);
+          }
+        }
+      }
+    }
+
+    &_middle {
+      margin-bottom: 3rem;
+
+      & h3 {
+        margin-bottom: 0.7rem;
+        font-weight: var(--medium-font);
+      }
+
+      & p {
+        line-height: 2;
+        font-size: var(--normal-paragraph);
+        font-weight: var(--very-light-font);
+      }
+    }
+
+    &_btn {
+      width: 50%;
+
+      & span {
+        font-size: var(--small-paragraph);
+      }
+    }
   }
 }

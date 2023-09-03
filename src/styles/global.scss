@@ -52,6 +52,12 @@
     }
 }
 
+@mixin small-screen {
+    @media screen and (min-width: 576px) {
+        @content;
+    }
+}
+
 // Color Palette
 $themes: (
     light: (primary: #50870E,

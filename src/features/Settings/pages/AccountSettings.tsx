@@ -2,7 +2,6 @@ import React from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
 // Import Custom Components and Styles
-import { AllRouteConstants } from "../../../router/RouteConstants";
 import SettingsBackButton from "../components/SettingsBackButton/SettingsBackButton";
 import Input from "../../../components/form/Input/Input";
 import Button from "../../../components/Button/Button";
@@ -30,7 +29,7 @@ export const AccountSettings = () => {
   return (
     <main className="settings_account animate__animated animate__fadeIn">
       {/* Back button */}
-      <SettingsBackButton name="Back to Settings" route={AllRouteConstants.settings.index} />
+      <SettingsBackButton />
 
       <div className="settings_account_profile">
         <div className="settings_account_profile-info">
