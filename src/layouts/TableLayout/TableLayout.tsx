@@ -70,7 +70,7 @@ export const TableBodyRow = ({
     <tr className={className}>
       {checkbox && (
         <TableBodyRowChild>
-          <Checkbox  />
+          <Checkbox />
         </TableBodyRowChild>
       )}
       {children}

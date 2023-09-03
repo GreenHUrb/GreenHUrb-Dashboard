@@ -57,8 +57,9 @@ const Sidebar = () => {
 
                     <div className="dashboard_sidebar_items">
                         {/* Mapping through sidebar data to render sidebar items */}
-                        {sidebarData.map((item) => (
+                        {sidebarData.map((item, index) => (
                             <SidebarItem
+                                key={index}
                                 onClick={goToPage(item.route)}
                                 sidebarIcon={item.icon}
                                 sidebarItemName={item.sidebarName}
