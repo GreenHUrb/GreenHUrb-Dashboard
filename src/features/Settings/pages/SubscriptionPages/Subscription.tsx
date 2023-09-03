@@ -1,9 +1,11 @@
-import Button from "../../../components/Button/Button";
-import SettingsBackButton from "../components/SettingsBackButton/SettingsBackButton";
+import { Link } from "react-router-dom";
+import { AllRouteConstants } from "../../../../router/RouteConstants";
+import SettingsBackButton from "../../components/SettingsBackButton/SettingsBackButton";
+import "../../styles/subscription_settings.scss";
 
 export const Subscription = () => {
   return (
-    <main className="settings_subscription">
+    <main className="settings_subscription animate__animated animate__fadeIn">
       <SettingsBackButton />
       <div>
         <div className="settings_subscription_top">
@@ -27,8 +29,7 @@ export const Subscription = () => {
             <p>Manage up to 2 farms in one dashboard</p>
             <p>Access to improved seeds and investment opportunities</p>
           </div>
-
-          <Button label="Subscribe" variant="contained" fullWidth={false} customClassName='settings_subscription_main_btn' />
+          <Link to={AllRouteConstants.settings.subscriptionPayment}>Subscribe</Link>
         </div>
       </div>
     </main>

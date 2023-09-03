@@ -2,7 +2,7 @@
 import { Route } from "react-router-dom";
 
 // Import Pages
-import { AccountSettings, Home, NotificationSettings, PasswordSettings, Faq, HelpCenter, Subscription} from "../pages";
+import { AccountSettings, Home, NotificationSettings, PasswordSettings, Faq, HelpCenter, Subscription, SubscriptionPayment} from "../pages";
 
 // Import Constants
 import { AllRouteConstants } from "../../../router/RouteConstants";
@@ -17,6 +17,7 @@ const SettingsRoutes = () => {
       <Route path={AllRouteConstants.settings.faq} element={<Faq />} />
       <Route path={AllRouteConstants.settings.helpCenter} element={<HelpCenter />} />
       <Route path={AllRouteConstants.settings.subscription} element={<Subscription />} />
+      <Route path={AllRouteConstants.settings.subscriptionPayment} element={<SubscriptionPayment />} />
     </>
   );
 };

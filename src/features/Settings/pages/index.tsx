@@ -5,4 +5,5 @@ export { NotificationSettings } from "./NotificationSettings";
 export { PasswordSettings } from "./PasswordSettings"
 export { Faq } from './Faq';
 export { HelpCenter } from './HelpCenter';
-export { Subscription } from './Subscription';
+export { Subscription } from './SubscriptionPages/Subscription';
+export { SubscriptionPayment } from './SubscriptionPages/SubscriptionPayment';
