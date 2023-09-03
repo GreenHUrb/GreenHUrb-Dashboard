@@ -25,7 +25,7 @@ td {
   letter-spacing: 2.5%;
 }
 tr {
-  background: white;
+  background: #FFFFFF;
 }
 
 .capitalize {
@@ -33,9 +33,13 @@ tr {
 }
 
 thead {
-  background-color: #F9F9F9;
+  background: #F9F9F9;
   margin-bottom: 10px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.04);
+
+  tr {
+    background: inherit;
+  }
 }
 
 th {
