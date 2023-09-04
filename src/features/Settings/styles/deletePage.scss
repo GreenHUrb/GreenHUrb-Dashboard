@@ -1,0 +1,85 @@
+@import "../../../styles/global.scss";
+@import "./settings_home_styles.scss";
+
+// DELETE PAGE
+
+.delete_modal {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0 0 0 / 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  height: max-content;
+
+  @include container;
+}
+
+.delete_backdrop {
+  width: 90%;
+  max-width: 900px;
+  padding: 2rem;
+
+  @include medium-screen {
+    padding: 5rem !important;
+  }
+}
+
+.delete_settings {
+  &_warning {
+    background-color: #fffbf5;
+    border: 1px solid #dda338;
+    border-radius: 10px;
+    padding: 1rem;
+    margin-top: 2rem;
+    color: #dda338;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+
+    @include medium-screen {
+      flex-direction: row;
+      text-align: left;
+      padding: 1.5rem;
+      gap: 2rem;
+    }
+
+    & p {
+      font-weight: var(--medium-font);
+      font-size: var(--small-paragraph);
+      line-height: 26.6px;
+      color: #875d0e;
+
+      & a {
+        font-weight: var(--very-light-font);
+        color: #875d0e;
+      }
+
+      @include medium-screen {
+        font-size: var(--big-paragraph);
+      }
+    }
+
+    &_text {
+      margin: 0.6rem 0;
+      font-weight: var(--very-light-font);
+      margin: 1rem 0;
+      @include themify($themes) {
+        color: themed(grey-text);
+      }
+      @include medium-screen {
+        line-height: 2;
+      }
+    }
+  }
+
+
+  &_input {
+    margin: 1.5rem 0 3rem 0 !important;
+    font-weight: var(--very-light-font);
+  }
+}

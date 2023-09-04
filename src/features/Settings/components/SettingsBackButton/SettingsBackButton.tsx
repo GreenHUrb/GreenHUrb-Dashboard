@@ -10,9 +10,11 @@ import { useNavigate } from 'react-router-dom';
 import Button from '../../../../components/Button/Button';
 import { AllRouteConstants } from '../../../../router/RouteConstants';
 
+interface ISettingsBackButton {
+  locationName?: string;
+}
 
-
-const SettingsBackButton = () => {
+const SettingsBackButton = ({locationName = 'Back to Settings'}: ISettingsBackButton) => {
   const navigate = useNavigate()
   return (
     <>
@@ -22,7 +24,7 @@ const SettingsBackButton = () => {
           <div className="settings_back_arrow">
             <GoArrowLeft className="settings_back_arrow_icon" />
             <span className="settings_back_arrow_label">
-              Back to Settings
+              {locationName}
             </span>
           </div>
         }

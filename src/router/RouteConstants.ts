@@ -35,5 +35,7 @@ export const AllRouteConstants = {
     helpCenter: "/settings/help-center",
     subscription: '/settings/subscription',
     subscriptionPayment: '/settings/subscription/subscription-payment',
+    subscribedPage: '/settings/subscription/subscribed',
+    deleteSettings: '/settings/delete',
   }
 };

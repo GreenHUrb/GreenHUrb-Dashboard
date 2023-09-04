@@ -42,7 +42,7 @@ const linkDetails = [
   {
     name: "Delete account",
     description: "Permanently delete your account",
-    path: ""
+    path: AllRouteConstants.settings.deleteSettings
   }
 ];
 
