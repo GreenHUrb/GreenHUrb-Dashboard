@@ -206,7 +206,6 @@
           gap: 0.5rem;
           font-size: var(--small-paragraph);
           font-weight: var(--very-light-font);
-
         }
       }
     }
@@ -270,4 +269,74 @@
       }
     }
   }
+}
+
+// SUBSCRIBED PAGE
+
+.settings_subscribed {
+  &_top {
+    @include container();
+    display: grid;
+    gap: 1rem;
+
+    @include small-screen {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    & > div {
+      & h3 {
+        font-weight: var(--medium-font);
+      }
+    }
+  }
+
+  &_status {
+    padding: 3px 12px;
+    border-radius: 10px;
+    background-color: #f5fff9;
+    font-size: var(--small-paragraph);
+    color: #0e8742;
+  }
+
+  &_top {
+    & > div > p {
+      margin: .5rem 0;
+        font-weight: var(--very-light-font);
+        font-size: var(--small-paragraph);
+        // width: 80%;
+        @include themify($themes) {
+          color: themed(grey-text);
+        }
+    }
+  }
+
+  &_btn_container {
+    display: flex;
+    margin-top: 2.5rem;
+    @include small-screen {
+      display: block;
+    }
+    @include large-screen {
+      display: flex;
+    }
+
+    & button span {
+      font-weight: var(--very-light-font);
+      font-size: var(--normal-paragraph);
+
+      @include large-screen {
+        font-size: var(--medium-paragraph);
+      }
+    }
+  }
+
+  &_table {
+    margin-top: 2rem;
+    & h3 {
+      font-weight: var(--medium-font);
+      margin-left: 1rem;
+      margin-bottom: 1rem;
+    }
+  }
+
 }

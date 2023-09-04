@@ -4,13 +4,14 @@ import "./CheckboxStyles.scss";
 interface CheckboxProps {
   label?: string | JSX.Element;
   checkboxProps?: React.InputHTMLAttributes<HTMLInputElement>;
+  inputClassName?: string;
 
 }
 
 const Checkbox = (props: CheckboxProps) => {
-  const { label, checkboxProps } = props;
+  const { label, checkboxProps, inputClassName } = props;
   return (
-    <div className={`checkbox-container`}>
+    <div className={`checkbox-container ${inputClassName}`}>
       <input
         id="ml-checkbox"
         name="ml-checkbox"
