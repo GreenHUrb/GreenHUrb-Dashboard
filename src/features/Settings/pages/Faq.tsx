@@ -1,5 +1,6 @@
+import BackButton from "../../../components/BackButton/SettingsBackButton";
+import { AllRouteConstants } from "../../../router/RouteConstants";
 import FaqItem from "../components/FaqItem/FaqItem";
-import SettingsBackButton from "../components/SettingsBackButton/SettingsBackButton";
 // import "../styles/settings_styles.scss";
 
 const faqLists = [
@@ -40,7 +41,7 @@ const faqLists = [
 export const Faq = () => {
   return (
     <main className="settings_faq animate__animated animate__fadeIn">
-      <SettingsBackButton />
+      <BackButton locationName="Back to Settings" locationRoute={AllRouteConstants.settings.index} />
 
       <div>
         <div>

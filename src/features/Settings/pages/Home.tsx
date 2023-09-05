@@ -50,8 +50,8 @@ export const Home = () => {
   const allSettingsLink = linkDetails.map((link, index) => <SettingsLink key={index} {...link} />);
 
   return (
-    <>
+    <div className="animate__animated animate__fadeIn">
       <main className="settings_home">{allSettingsLink}</main>
-    </>
+    </div>
   );
 };

@@ -1,11 +1,12 @@
-import SettingsBackButton from "../components/SettingsBackButton/SettingsBackButton";
+import BackButton from "../../../components/BackButton/SettingsBackButton";
+import { AllRouteConstants } from "../../../router/RouteConstants";
 import NotificationItem from "../components/NotificationItem/NotificationItem";
 import { notificationSettingsList } from "../data/notificationSettingsList";
 
 export const NotificationSettings = () => {
   return (
     <main className="settings_notification animate__animated animate__fadeIn">
-      <SettingsBackButton />
+      <BackButton locationName="Back to Settings" locationRoute={AllRouteConstants.settings.index} />
       <div>
         {notificationSettingsList.map((item, index) => (
           <div key={index} className="settings_notification_section">

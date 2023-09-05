@@ -18,7 +18,8 @@ export const AllRouteConstants = {
     index: "/"
   },
   products: {
-    index: "/products"
+    index: "/products",
+    createProduct:'/products/create'
   },
   payments: {
     index: "/payments"

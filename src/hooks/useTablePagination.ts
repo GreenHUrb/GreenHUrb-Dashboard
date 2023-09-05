@@ -1,6 +1,16 @@
 import { useState } from "react";
 
-function usePagination(data: any[], itemsPerPage = 10) {
+interface PaginationResult<T> {
+  currentItems: T[];
+  currentPage: number;
+  nextPage: () => void;
+  prevPage: () => void;
+  totalPages: number;
+  goToPage: (pageNumber: number) => void;
+  totalDataLength: number;
+}
+
+const usePagination = <T>(data: T[], itemsPerPage = 10): PaginationResult<T> => {
   const [currentPage, setCurrentPage] = useState(1);
 
   // Calculate the index range for the current page
@@ -34,8 +44,8 @@ function usePagination(data: any[], itemsPerPage = 10) {
     prevPage,
     totalPages: Math.ceil(data.length / itemsPerPage),
     goToPage: handlePageChange,
-    totalDataLength:data.length
+    totalDataLength: data.length
   };
-}
+};
 
 export default usePagination;

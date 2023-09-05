@@ -2,10 +2,11 @@ import { useState, useRef } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import Button from "../../../../components/Button/Button";
 import Input from "../../../../components/form/Input/Input";
-import SettingsBackButton from "../../components/SettingsBackButton/SettingsBackButton";
 import Card from "../../../../assets/icons/card (1).svg";
 import Money from "../../../../assets/icons/money-send.svg";
 import Copy from "../../../../assets/icons/copy.svg";
+import BackButton from "../../../../components/BackButton/SettingsBackButton";
+import { AllRouteConstants } from "../../../../router/RouteConstants";
 
 export const SubscriptionPayment = () => {
   const [useCard, setUseCard] = useState<boolean>(true);
@@ -31,7 +32,7 @@ export const SubscriptionPayment = () => {
 
   return (
     <main className="subscription_payment animate__animated animate__fadeIn">
-      <SettingsBackButton />
+      <BackButton locationName="Back to Settings" locationRoute={AllRouteConstants.settings.index} />
       <div>
         <div>
           <div className="subscription_payment_top">

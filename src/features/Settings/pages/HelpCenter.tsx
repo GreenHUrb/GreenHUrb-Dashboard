@@ -1,4 +1,3 @@
-import SettingsBackButton from "../components/SettingsBackButton/SettingsBackButton";
 
 
 import Input from "../../../components/form/Input/Input";
@@ -7,6 +6,8 @@ import mobbile from "../../../assets/icons/monitor-mobbile.svg";
 import money from "../../../assets/icons/money-send.svg";
 import status from "../../../assets/icons/status-up.svg";
 import mobbile1 from "../../../assets/icons/monitor-mobbile (1).svg";
+import BackButton from "../../../components/BackButton/SettingsBackButton";
+import { AllRouteConstants } from "../../../router/RouteConstants";
 
 const helpCenterList = [
   {
@@ -35,7 +36,7 @@ const helpCenterList = [
 export const HelpCenter = ({}) => {
   return (
     <main className="settings_help_center animate__animated animate__fadeIn">
-      <SettingsBackButton />
+      <BackButton locationName="Back to Settings" locationRoute={AllRouteConstants.settings.index} />
 
       <div>
         <div>

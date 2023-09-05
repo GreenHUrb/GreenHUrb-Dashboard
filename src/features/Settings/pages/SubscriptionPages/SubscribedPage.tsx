@@ -1,12 +1,13 @@
+import BackButton from "../../../../components/BackButton/SettingsBackButton";
 import Button from "../../../../components/Button/Button";
+import { AllRouteConstants } from "../../../../router/RouteConstants";
 import { dummyTransactions, transactionTableHead } from "../../../Home/data/dummyTransactions";
 import TransactionTable from "../../../Transactions/components/Tables/TransactionTable";
-import SettingsBackButton from "../../components/SettingsBackButton/SettingsBackButton";
 
 export const SubscribedPage = () => {
   return (
     <main className="settings_subscribed animate__animated animate__fadeIn">
-      <SettingsBackButton />
+      <BackButton locationName="Back to Settings" locationRoute={AllRouteConstants.settings.index} />
       <div className="settings_subscribed_top">
         <div>
           <div style={{display: 'flex', justifyContent: 'space-between'}}>

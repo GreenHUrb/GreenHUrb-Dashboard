@@ -32,7 +32,6 @@
         border: 1px solid #DDDDDD;
         border-radius: var(--pill-shaped-radius);
         transition: all 0.3s ease-in;
-        letter-spacing: 2.5%;
         color: #1C1C1C;
 
         &:focus {
@@ -43,7 +42,6 @@
           color: #878787;
           font-weight: var(--very-light-font);
           font-size: 1rem;
-          letter-spacing: 2%;
         }
 
         &-errored {

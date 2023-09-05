@@ -1,24 +1,22 @@
 import React from "react";
 import "./ImageStack.scss";
 
-const ImageStack = () => {
+interface IImageStackProps {
+    images: string[]
+    limit?: number
+}
+
+const ImageStack = (props: IImageStackProps) => {
+    const { images, limit } = props
     return (
-        <div className="avatars">
-            <a href="#" className="avatars__item">
-                <img className="avatar" src="https://randomuser.me/api/portraits/women/65.jpg" alt="" />
-            </a>
-            <a href="#" className="avatars__item">
-                <img className="avatar" src="https://randomuser.me/api/portraits/men/25.jpg" alt="" />
-            </a>
-            <a href="#" className="avatars__item">
-                <img className="avatar" src="https://randomuser.me/api/portraits/women/25.jpg" alt="" />
-            </a>
-            <a href="#" className="avatars__item">
-                <img className="avatar" src="https://randomuser.me/api/portraits/men/55.jpg" alt="" />
-            </a>
-            <a href="#" className="avatars__item">
-                <img className="avatar" src="https://via.placeholder.com/300/09f/fff.png" alt="" />
-            </a>
+        <div className="image_stack">
+            {images.slice(0, limit).map((image, index) => (
+                <div className="image_stack_item" key={index}>
+                    <img className="image_stack_image" src={image} alt="" />
+                </div>
+            ))}
+            
+            ...
         </div>
     );
 };

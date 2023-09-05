@@ -20,8 +20,8 @@ import ErrorModal from './components/Modals/ErrorModal';
 
 // Global SCSS styles for consistent styling throughout the app.
 import './styles/global.scss';
-import { useLocation } from 'react-router-dom';
-import { usePageInfoActions } from './hooks/useReduxActions';
+import 'animate.css';
+
 
 // Define the main App component.
 function App() {

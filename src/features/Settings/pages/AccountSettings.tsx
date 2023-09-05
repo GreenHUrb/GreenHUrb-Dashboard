@@ -2,7 +2,6 @@ import React from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
 // Import Custom Components and Styles
-import SettingsBackButton from "../components/SettingsBackButton/SettingsBackButton";
 import Input from "../../../components/form/Input/Input";
 import Button from "../../../components/Button/Button";
 import ProfileImage from "../../../assets/icons/settingsProfile.png";
@@ -10,6 +9,8 @@ import "../styles/account_settings_styles.scss";
 import { handleFormatLabelForId } from "../../../utils/formUtils";
 import useAccountSettings from "../hooks/useAccountSettings";
 import { SingleFarmField } from "../components/FarmForm/FarmForm";
+import BackButton from "../../../components/BackButton/SettingsBackButton";
+import { AllRouteConstants } from "../../../router/RouteConstants";
 
 export const AccountSettings = () => {
   // Initialize custom hooks and state variables
@@ -29,7 +30,7 @@ export const AccountSettings = () => {
   return (
     <main className="settings_account animate__animated animate__fadeIn">
       {/* Back button */}
-      <SettingsBackButton />
+      <BackButton locationName="Back to Settings" locationRoute={AllRouteConstants.settings.index} />
 
       <div className="settings_account_profile">
         <div className="settings_account_profile-info">

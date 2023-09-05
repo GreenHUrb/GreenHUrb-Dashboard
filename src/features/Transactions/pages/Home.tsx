@@ -18,7 +18,7 @@ export const Home = () => {
     }, [transactionTableFilter])
     
     return (
-        <div className='transaction_home'>
+        <div className='transaction_home animate__animated animate__fadeIn'>
             <div className="transaction_home_table_filter">
                 <div className="transaction_home_table_filter_container">
                     <div className='transaction_home_table_filter_left'>

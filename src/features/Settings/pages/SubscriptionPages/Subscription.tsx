@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
 import { AllRouteConstants } from "../../../../router/RouteConstants";
-import SettingsBackButton from "../../components/SettingsBackButton/SettingsBackButton";
 import "../../styles/subscription_settings.scss";
+import BackButton from "../../../../components/BackButton/SettingsBackButton";
 
 export const Subscription = () => {
   return (
     <main className="settings_subscription animate__animated animate__fadeIn">
-      <SettingsBackButton />
+      <BackButton locationName="Back to Settings" locationRoute={AllRouteConstants.settings.index} />
       <div>
         <div className="settings_subscription_top">
           <h3>GreenHUrb pro</h3>

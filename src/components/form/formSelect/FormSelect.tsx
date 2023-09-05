@@ -1,18 +1,15 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import Select from "react-select";
-import styles from "./formSelect.module.css";
+import "./FormSelect.scss";
 import { FormSelectProps } from "./propType";
 
 function FormSelect(props: FormSelectProps) {
-  const { error, id, options, bottomLabel, disabled, dropdownProps, isMulti, label, loading, placeholder, small, subLabel } = props
+  const { error, id, options, disabled, dropdownProps, isMulti, label, loading, placeholder, labelClassName } = props
   return (
-    <div className={`${styles.FormSelect} ${small ? styles["FormSelect-small"] : ""} ${styles["transparent"]}`}>
-      <div className={styles["label-wrapper"]}>
-        <label htmlFor={id}>{label}</label>
-      </div>
-
-
-      {subLabel && <p className={styles.subLabel}>{subLabel}</p>}
+    <div className="custom-select">
+      <label htmlFor={id} className={`custom-select__label ${labelClassName}`}>
+        {label}
+      </label>
       <div data-testid={id}>
         <Select
           options={options}
@@ -24,12 +21,11 @@ function FormSelect(props: FormSelectProps) {
           id={id}
         />
       </div>
-      {bottomLabel && <p className={styles["bottom-label"]}>{bottomLabel}</p>}
-      {error && (
-        <p className={styles.formfeedback}>
-          {`${id} ${error}`}
-        </p>
-      )}
+
+      <span
+        className={`custom-select__error ${!error ? "custom-select__error-hidden" : undefined
+          } animate__animated animate__fadeIn`}
+      >{`${id} ${error}`}</span>
     </div>
   );
 }

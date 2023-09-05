@@ -1,6 +1,5 @@
 import React from "react";
 
-import SettingsBackButton from "../components/SettingsBackButton/SettingsBackButton";
 import Input from "../../../components/form/Input/Input";
 import usePasswordType from "../../Auth/hooks/usePasswordType";
 import visibleIcon from "../../../assets/icons/visible.svg";
@@ -9,6 +8,8 @@ import useLogin from "../../Auth/hooks/useLogin";
 import { ILogin } from "../../../interfaces/IApiRequests";
 import Button from "../../../components/Button/Button";
 import useChangePassword, { IChangePassword } from "../hooks/useChangePassword";
+import BackButton from "../../../components/BackButton/SettingsBackButton";
+import { AllRouteConstants } from "../../../router/RouteConstants";
 
 interface PasswordSettingsProps { }
 
@@ -23,7 +24,7 @@ export const PasswordSettings: React.FC<PasswordSettingsProps> = ({ }) => {
 
   return (
     <main className="password_settings animate__animated animate__fadeIn">
-      <SettingsBackButton />
+      <BackButton locationName="Back to Settings" locationRoute={AllRouteConstants.settings.index} />
       <div>
         <div style={{ gridColumn: "span 2" }}>
           <h3>Change Password</h3>

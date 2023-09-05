@@ -1,4 +1,3 @@
-import SettingsBackButton from "../components/SettingsBackButton/SettingsBackButton";
 import "../styles/deletePage.scss";
 import Warning from "../../../assets/icons/Group.svg";
 import { LazyLoadImage } from "react-lazy-load-image-component";
@@ -6,6 +5,8 @@ import { Link } from "react-router-dom";
 import Input from "../../../components/form/Input/Input";
 import Checkbox from "../../../components/form/Checkbox/Checkbox";
 import Button from "../../../components/Button/Button";
+import BackButton from "../../../components/BackButton/SettingsBackButton";
+import { AllRouteConstants } from "../../../router/RouteConstants";
 
 interface IBackDrop {
   children: React.ReactNode;
@@ -28,7 +29,7 @@ export const DeletePage = () => {
     <Modal>
       <main className="delete_settings animate__animated animate__fadeIn">
         <div style={{display: 'flex', gap: '.5rem'}}>
-          <SettingsBackButton locationName="" />
+        <BackButton locationName="Back to Settings" locationRoute={AllRouteConstants.settings.index} />
           <h3>Delete your GreenHUrb account</h3>
         </div>
         <div className="delete_settings_warning">

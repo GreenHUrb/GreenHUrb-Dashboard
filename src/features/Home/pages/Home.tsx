@@ -51,7 +51,7 @@ export const Home = () => {
     ]
 
     return (
-        <div className='dashboard_home'>
+        <div className='dashboard_home animate__animated animate__fadeIn'>
             <div className="dashboard_home_top">
                 <div className="dashboard_home_top_left">
                     <div className="dashboard_home_top_left_kpi_cards">
