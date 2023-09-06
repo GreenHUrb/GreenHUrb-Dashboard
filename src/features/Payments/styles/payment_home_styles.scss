@@ -1,0 +1,60 @@
+@import '../../../styles/global.scss';
+
+.payment_home {
+    @include themify($themes) {
+        padding-bottom: 3rem;
+        overflow-x: scroll;
+
+        .flex {
+            display: flex;
+            gap: 1em;
+        }
+
+
+        &_top {
+            @extend .flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-direction: column;
+            gap: 2em !important;
+
+            @include large-screen {
+                flex-direction: row;
+            }
+        }
+
+        &_table_filter {
+            border: 1px solid #DDDDDD;
+            border-radius: 10px;
+            padding: 1rem;
+            width: 100%;
+            background: white;
+            margin-top: 2em;
+
+            &_container {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            &_left {
+                display: flex;
+                align-items: center;
+                gap: 1.5em;
+
+                &_button {
+                    font-size: var(--big-paragraph) !important;
+
+                    &.inactive {
+                        color: #878787 !important;
+                    }
+                }
+            }
+        }
+
+        &_table_container {
+            margin-top: 1em;
+        }
+
+    }
+}

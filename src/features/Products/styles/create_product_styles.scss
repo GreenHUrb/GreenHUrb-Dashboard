@@ -4,6 +4,7 @@
 // Account Settings
 .create_product {
     @include themify($themes) {
+        padding-bottom: 5em;
 
         &_container {
             display: flex;
@@ -19,7 +20,8 @@
         }
 
         &_form {
-            width: 50%;
+            // width: 50%;
+            flex-basis: 50%;
             border: 1px solid #dddddd;
             border-radius: 10px;
             padding: 1.5rem;
@@ -154,6 +156,31 @@
                         }
                     }
                 }
+
+            }
+
+            .side_inputs {
+                display: flex;
+                align-items: center;
+                gap: 1em;
+                margin-top: 1em;
+                justify-content: space-between;
+
+                &-item {
+                    width: 50%;
+
+                    &.weight {
+                        display: flex;
+                        align-items: end;
+                        gap: 1em;
+                        justify-content: space-between;
+
+                        .custom-input, .custom-select {
+                            width: 45%;
+                        }
+                    }
+                }
+
 
             }
 

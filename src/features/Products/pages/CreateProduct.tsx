@@ -19,6 +19,7 @@ import FormSelect from "../../../components/form/formSelect/FormSelect";
 import { convertDataToDropdownData } from "../../../utils/convertDataToDropdownData";
 import { productCategories } from "../data/ProductCategories";
 import { availabilityOptions } from "../data/ProductAvailability";
+import { weightUnits } from "../data/ProductWeightUnits";
 
 export const CreateProduct = () => {
 
@@ -138,7 +139,7 @@ export const CreateProduct = () => {
                 options={convertDataToDropdownData(productCategories, 'name', 'id')}
                 label="Product Category"
                 dropdownProps={{
-                  placeholder: "Enter your Product Category",
+                  placeholder: "Select your Product Category",
                   required: true,
                   onChange: (val: { value: string; label: string }) => {
                     return handleProductFormChange("productCategory", val.value)
@@ -156,7 +157,7 @@ export const CreateProduct = () => {
                 options={convertDataToDropdownData(productCategories.find((category) => category.id === form.productCategory!)?.subcategories ?? [], 'name', 'id')}
                 label="Product Sub Category"
                 dropdownProps={{
-                  placeholder: "Enter your Product Sub Category",
+                  placeholder: "Select your Product Sub Category",
                   required: true,
                   readOnly: productMode === "view",
                   onChange: (val: { value: string; label: string }) => {
@@ -166,6 +167,7 @@ export const CreateProduct = () => {
               />
 
             </div>
+
             <div className="input">
               <FormSelect
                 id={handleFormatLabelForId("Product Availability")}
@@ -173,7 +175,7 @@ export const CreateProduct = () => {
                 options={convertDataToDropdownData(availabilityOptions, 'name', 'id')}
                 label="Product Availability"
                 dropdownProps={{
-                  placeholder: "Enter your Product Availability",
+                  placeholder: "Choose when product will be available",
                   required: true,
                   onChange: (val: { value: string; label: string }) => {
                     return handleProductFormChange("productAvailability", val.value)
@@ -185,7 +187,53 @@ export const CreateProduct = () => {
             </div>
 
 
+            <div className="side_inputs">
+              <div className="side_inputs-item">
+                <Input
+                  id={handleFormatLabelForId("Product Quantity")}
+                  error={formErrors.quantity}
+                  label="Product Quantity"
+                  inputProps={{
+                    placeholder: "3",
+                    required: true,
+                    type: 'number',
+                    onChange: e => handleProductFormChange("quantity", e.target.value),
+                    readOnly: productMode === "view" ? true : false
+                  }}
+                />
 
+              </div>
+              <div className="side_inputs-item weight">
+                <Input
+                  id={handleFormatLabelForId("Product Weight")}
+                  error={formErrors.weight}
+                  label=" Weight"
+                  inputProps={{
+                    placeholder: "5",
+                    required: true,
+                    type: 'number',
+                    onChange: e => handleProductFormChange("weight", e.target.value),
+                    readOnly: productMode === "view" ? true : false
+                  }}
+                />
+                <FormSelect
+                  id={handleFormatLabelForId("weight unit")}
+                  error={formErrors.weightUnit}
+                  options={convertDataToDropdownData(weightUnits, 'name', 'id')}
+                  label=""
+                  dropdownProps={{
+                    placeholder: "kg",
+                    required: true,
+                    onChange: (val: { value: string; label: string }) => {
+                      return handleProductFormChange("weightUnit", val.value)
+                    },
+                    readOnly: productMode === "view"
+                  }}
+                />
+              </div>
+
+
+            </div>
           </form>
         </div>
 

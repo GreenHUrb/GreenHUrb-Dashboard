@@ -12,7 +12,6 @@ export const Home = () => {
     const navigate = useNavigate()
     const [products, setProducts] = useState({
         all: [],
-        fiiltered:  []
     })
 
 

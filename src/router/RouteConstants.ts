@@ -19,7 +19,7 @@ export const AllRouteConstants = {
   },
   products: {
     index: "/products",
-    createProduct:'/products/create'
+    createProduct:'/products/add'
   },
   payments: {
     index: "/payments"
