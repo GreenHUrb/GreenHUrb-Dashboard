@@ -12,6 +12,7 @@ export const Home = () => {
     const navigate = useNavigate()
     const [products, setProducts] = useState({
         all: [],
+        filtered:[]
     })
 
 
@@ -27,7 +28,7 @@ export const Home = () => {
             )}
             <div className="product_home_table_container">
 
-                <ProductTable tableData={products.fiiltered} tableHead={productTableHead} >
+                <ProductTable tableData={products.filtered} tableHead={productTableHead} >
                     {/* Table Empty State */}
                     <div className='product_home_table_empty_state'>
                         <div className="product_home_table_empty_state_container">

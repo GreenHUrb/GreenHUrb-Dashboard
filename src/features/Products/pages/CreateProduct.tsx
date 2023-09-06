@@ -8,11 +8,11 @@ import { AllRouteConstants } from "../../../router/RouteConstants";
 import BackButton from "../../../components/BackButton/SettingsBackButton";
 import useProductAction from "../hooks/useCreateProducts";
 
-import AddProductImageIcon from '../../../assets/icons/AddProducticon.svg'
+import AddProductImageIcon from "../../../assets/icons/AddProducticon.svg";
 import Spinner from "../../../components/Spinner/Spinner";
 import { MdDelete } from "react-icons/md";
 import { IProductForm } from "../interfaces/IProduct";
-import Input from "../../../components/form/Input/Input";
+import Input, { TextArea } from "../../../components/form/Input/Input";
 import { handleFormatLabelForId } from "../../../utils/formUtils";
 import { useLocation } from "react-router-dom";
 import FormSelect from "../../../components/form/formSelect/FormSelect";
@@ -20,9 +20,10 @@ import { convertDataToDropdownData } from "../../../utils/convertDataToDropdownD
 import { productCategories } from "../data/ProductCategories";
 import { availabilityOptions } from "../data/ProductAvailability";
 import { weightUnits } from "../data/ProductWeightUnits";
+import Button from "../../../components/Button/Button";
+import Checkbox from "../../../components/form/Checkbox/Checkbox";
 
 export const CreateProduct = () => {
-
   const { pathname } = useLocation();
   const pathSegments = pathname.split("/");
   const productModes = pathSegments.includes("edit")
@@ -31,8 +32,7 @@ export const CreateProduct = () => {
       ? "add"
       : "view";
 
-  const [productMode, setProductMode] = useState<"edit" | "view" | 'add'>(productModes);
-
+  const [productMode, setProductMode] = useState<"edit" | "view" | "add">(productModes);
 
   const dummyProductData: IProductForm = {
     productImages: [
@@ -50,38 +50,41 @@ export const CreateProduct = () => {
     priceBid: "499.99",
     description: "This is a sample product description.",
     tags: ["sample", "electronics", "smartphone"],
-    sharedPurchase: true,
+    sharedPurchase: true
   };
 
   // Initialize custom hooks and state variables
-  const { form, allProductImagesString, handleProductImageAdd, formErrors, handleProductFormChange } = useProductAction({ action: 'edit', product: dummyProductData })
+  const {
+    form,
+    allProductImagesString,
+    handleProductImageAdd,
+    formErrors,
+    handleProductFormChange
+  } = useProductAction({ action: "edit", product: dummyProductData });
 
-
-
-
-
-  const handleImageUpload: React.ChangeEventHandler<HTMLInputElement> = (e) => {
+  const handleImageUpload: React.ChangeEventHandler<HTMLInputElement> = e => {
     const files = e?.target?.files;
     for (let file of files!) {
-      handleProductImageAdd(file)
+      handleProductImageAdd(file);
     }
-
-  }
+  };
 
   return (
     <main className="create_product animate__animated animate__fadeIn">
       {/* Back button */}
-      <BackButton locationName="Back to Products" locationRoute={AllRouteConstants.products.index} />
+      <BackButton
+        locationName="Back to Products"
+        locationRoute={AllRouteConstants.products.index}
+      />
 
-      <div className="create_product_container">
+      <form className="create_product_container">
+
+
         <div className="create_product_left_form create_product_form">
           <form>
             <div className="product_image">
-              <label className="product_image_label">
-                Product Image
-              </label>
+              <label className="product_image_label">Product Image</label>
               <div className="product_image_container">
-
                 {/* Add Product Image Button */}
                 <label className="product_image_add product_image_box">
                   <div className="product_image_add_container">
@@ -114,8 +117,6 @@ export const CreateProduct = () => {
                   </div>
                 ))}
               </div>
-
-
             </div>
 
             <div className="input">
@@ -136,56 +137,57 @@ export const CreateProduct = () => {
               <FormSelect
                 id={handleFormatLabelForId("Product Category")}
                 error={formErrors.productCategory}
-                options={convertDataToDropdownData(productCategories, 'name', 'id')}
+                options={convertDataToDropdownData(productCategories, "name", "id")}
                 label="Product Category"
                 dropdownProps={{
                   placeholder: "Select your Product Category",
                   required: true,
                   onChange: (val: { value: string; label: string }) => {
-                    return handleProductFormChange("productCategory", val.value)
+                    return handleProductFormChange("productCategory", val.value);
                   },
                   readOnly: productMode === "view"
                 }}
               />
-
             </div>
 
             <div className="input">
               <FormSelect
                 id={handleFormatLabelForId("Product Sub Category")}
                 error={formErrors.productSubCategory}
-                options={convertDataToDropdownData(productCategories.find((category) => category.id === form.productCategory!)?.subcategories ?? [], 'name', 'id')}
+                options={convertDataToDropdownData(
+                  productCategories.find(category => category.id === form.productCategory!)
+                    ?.subcategories ?? [],
+                  "name",
+                  "id"
+                )}
                 label="Product Sub Category"
                 dropdownProps={{
                   placeholder: "Select your Product Sub Category",
                   required: true,
                   readOnly: productMode === "view",
                   onChange: (val: { value: string; label: string }) => {
-                    return handleProductFormChange("productSubCategory", val.value)
-                  },
+                    return handleProductFormChange("productSubCategory", val.value);
+                  }
                 }}
               />
-
             </div>
 
             <div className="input">
               <FormSelect
                 id={handleFormatLabelForId("Product Availability")}
                 error={formErrors.productAvailability}
-                options={convertDataToDropdownData(availabilityOptions, 'name', 'id')}
+                options={convertDataToDropdownData(availabilityOptions, "name", "id")}
                 label="Product Availability"
                 dropdownProps={{
                   placeholder: "Choose when product will be available",
                   required: true,
                   onChange: (val: { value: string; label: string }) => {
-                    return handleProductFormChange("productAvailability", val.value)
+                    return handleProductFormChange("productAvailability", val.value);
                   },
                   readOnly: productMode === "view"
                 }}
               />
-
             </div>
-
 
             <div className="side_inputs">
               <div className="side_inputs-item">
@@ -196,12 +198,11 @@ export const CreateProduct = () => {
                   inputProps={{
                     placeholder: "3",
                     required: true,
-                    type: 'number',
+                    type: "number",
                     onChange: e => handleProductFormChange("quantity", e.target.value),
                     readOnly: productMode === "view" ? true : false
                   }}
                 />
-
               </div>
               <div className="side_inputs-item weight">
                 <Input
@@ -211,7 +212,7 @@ export const CreateProduct = () => {
                   inputProps={{
                     placeholder: "5",
                     required: true,
-                    type: 'number',
+                    type: "number",
                     onChange: e => handleProductFormChange("weight", e.target.value),
                     readOnly: productMode === "view" ? true : false
                   }}
@@ -219,28 +220,99 @@ export const CreateProduct = () => {
                 <FormSelect
                   id={handleFormatLabelForId("weight unit")}
                   error={formErrors.weightUnit}
-                  options={convertDataToDropdownData(weightUnits, 'name', 'id')}
+                  options={convertDataToDropdownData(weightUnits, "name", "id")}
                   label=""
                   dropdownProps={{
                     placeholder: "kg",
                     required: true,
                     onChange: (val: { value: string; label: string }) => {
-                      return handleProductFormChange("weightUnit", val.value)
+                      return handleProductFormChange("weightUnit", val.value);
                     },
                     readOnly: productMode === "view"
                   }}
                 />
               </div>
-
-
             </div>
           </form>
         </div>
 
         <div className="create_product_right_form create_product_form">
 
+          <div className="input product_price_input">
+            <Input
+              id={handleFormatLabelForId("Product Price")}
+              error={formErrors.price}
+              label="Product Price"
+              leftIcon={<h1>N</h1>}
+              inputProps={{
+                placeholder: "1500",
+                type: 'number',
+                required: true,
+                onChange: e => handleProductFormChange("price", e.target.value),
+                readOnly: productMode === "view" ? true : false
+              }}
+            />
+          </div>
+          <div className="input product_price_input">
+            <Input
+              id={handleFormatLabelForId("Product Bid")}
+              error={formErrors.priceBid}
+              label="Product Bid"
+              leftIcon={<h1>N</h1>}
+              inputProps={{
+                placeholder: "1500",
+                type: 'number',
+                required: true,
+                onChange: e => handleProductFormChange("priceBid", e.target.value),
+                readOnly: productMode === "view" ? true : false
+              }}
+            />
+          </div>
+
+          <div className="input ">
+            <TextArea
+              id={handleFormatLabelForId("Description")}
+              error={formErrors.description}
+              label="Description"
+              rows={4}
+              textareaProps={{
+                placeholder: "E.g: New Benue yam to be ready in 10 days",
+                required: true,
+                onChange: e => handleProductFormChange("priceBid", e.target.value),
+                readOnly: productMode === "view" ? true : false
+              }}
+            />
+          </div>
+
+
+          <div className="input ">
+            <TextArea
+              id={handleFormatLabelForId("Tags")}
+              error={formErrors.tags}
+              label="Tags"
+              rows={3}
+              textareaProps={{
+                placeholder: "Put keywords that are associated with products to aid consumer search. E.g fresh vegetables.",
+                required: true,
+                onChange: e => handleProductFormChange("priceBid", e.target.value),
+                readOnly: productMode === "view" ? true : false
+              }}
+            />
+          </div>
+
+          <div className="input shared_purchase_checkbox ">
+            <Checkbox label={'Shared Purchase'} />
+          </div>
+
+          {productMode === 'add' && (
+            <Button variant="contained" label='Add Product' customClassName="create_product_submit_button" />
+          )}
+
+          {productMode === 'view' && (
+            <Button variant="contained" label='Edit Product' customClassName="create_product_submit_button" />
+          )}
         </div>
-      </div>
+      </form>
     </main>
   );
 };
