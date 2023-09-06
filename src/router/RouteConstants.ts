@@ -38,5 +38,6 @@ export const AllRouteConstants = {
     subscriptionPayment: '/settings/subscription/subscription-payment',
     subscribedPage: '/settings/subscription/subscribed',
     deleteSettings: '/settings/delete',
+    paymentSettings: '/settings/payment',
   }
 };
