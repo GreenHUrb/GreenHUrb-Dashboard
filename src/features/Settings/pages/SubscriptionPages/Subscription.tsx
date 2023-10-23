@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { AllRouteConstants } from "../../../../router/RouteConstants";
 import "../../styles/subscription_settings.scss";
-import BackButton from "../../../../components/BackButton/SettingsBackButton";
+import {BackButton} from "../../../../components/BackButton";
 
 export const Subscription = () => {
   return (

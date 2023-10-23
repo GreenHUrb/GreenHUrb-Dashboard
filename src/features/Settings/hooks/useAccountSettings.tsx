@@ -20,16 +20,7 @@ const useAccountSettings = () => {
         {
             emailAddress: "david@gmail.com",
             farms: [
-                {
-                    farmCity: "Lagos",
-                    farmName: "David's Farm",
-                    farmState: "Lagos"
-                },
-                {
-                    farmCity: "Lagos",
-                    farmName: "David's Farm",
-                    farmState: "Lagos"
-                }
+                
             ],
             fullName: "Okunoye David",
             phoneNumber: "08088092667"

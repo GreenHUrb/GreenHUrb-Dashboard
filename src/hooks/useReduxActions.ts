@@ -1,15 +1,21 @@
 import { useDispatch } from "react-redux";
-import { ActionCreatorsMapObject, bindActionCreators } from "redux";
-import { pageInfoSlice } from "../redux/pageInfoSlice";
+import { bindActionCreators } from "redux";
+import { appSliceActions, authSliceActions,productSliceActions } from "@redux";
 
-export const useReduxActions = (action: ActionCreatorsMapObject<any>) => {
+export const useAppActions = () => {
   const dispatch = useDispatch();
 
-  return bindActionCreators(Object.assign({}, action), dispatch);
+  return bindActionCreators(Object.assign({}, appSliceActions), dispatch);
 };
 
-export const usePageInfoActions = () => {
+export const useAuthActions = () => {
   const dispatch = useDispatch();
 
-  return bindActionCreators(Object.assign({}, pageInfoSlice.actions), dispatch);
+  return bindActionCreators(Object.assign({}, authSliceActions), dispatch);
+};
+
+export const useProductActions = () => {
+  const dispatch = useDispatch();
+
+  return bindActionCreators(Object.assign({}, productSliceActions), dispatch);
 };

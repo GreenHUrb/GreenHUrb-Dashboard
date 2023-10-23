@@ -1,4 +1,4 @@
-import BackButton from "../../../components/BackButton/SettingsBackButton";
+import {BackButton} from "../../../components/BackButton";
 import { AllRouteConstants } from "../../../router/RouteConstants";
 import FaqItem from "../components/FaqItem/FaqItem";
 // import "../styles/settings_styles.scss";

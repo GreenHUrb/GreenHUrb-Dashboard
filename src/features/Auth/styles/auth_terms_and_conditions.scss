@@ -1,0 +1,48 @@
+@import "../../../styles/global.scss";
+
+
+.auth_tAndC {
+    @include themify($themes) {
+
+        &_container {
+            gap: 2rem;
+            position: relative;
+        }
+
+        &_text {
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+
+            p {
+                line-height: 2;
+            }
+        }
+
+        &_back-btn {
+            color: themed("dark-primary");
+            border: none;
+            outline: none;
+            background-color: transparent;
+            font-size: var(--big-paragraph);
+            cursor: pointer;
+            position: absolute;
+            top: 5%;
+            left: 5%;
+        }
+
+        &_btn {
+            display: flex;
+            gap: 1rem;
+            flex-direction: column;
+            text-align: center;
+            width: 100%;
+
+            @media screen and (min-width: 768px) {
+                width: 70%;
+                flex-direction: row;
+            }
+        }
+    }
+}

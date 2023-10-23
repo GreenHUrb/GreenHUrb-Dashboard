@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
-import { usePageInfoActions } from './useReduxActions';
+import { useAppActions } from './useReduxActions';
 
-const useScreenSize = () => {
+export const useScreenSize = () => {
     const [screen, setScreen] = useState<number | null>(null);
-    const { setIsMobile ,toggleSidebar} = usePageInfoActions();
+    const { setIsMobile ,toggleSidebar} = useAppActions();
 
     // Setting the Screen Size State whenever the screen is resized
     useEffect(() => {
@@ -27,4 +27,3 @@ const useScreenSize = () => {
     return null
 }
 
-export default useScreenSize

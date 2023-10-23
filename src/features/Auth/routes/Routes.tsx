@@ -1,6 +1,6 @@
 import { Route } from "react-router-dom";
-import { Login, SignUp, OtpPage,ConditionPage } from "../pages";
-import { AllRouteConstants, } from "../../../router/RouteConstants";
+import { Login, SignUp, OtpPage, ConditionPage } from "../pages";
+import { AllRouteConstants, } from "@router";
 
 const AuthRoutes = () => {
   return (

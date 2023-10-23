@@ -1,9 +1,7 @@
-type FormHeaderProps = {
-  content: string;
-  size: "xs" | "sm" | "md" | "lg" | "xl";
-  color?: string;
-};
-export default function FormHeader(props: FormHeaderProps) {
+import "./styles.scss";
+import { FormHeaderProps } from "./types";
+
+export const FormHeader = (props: FormHeaderProps) => {
   const { content, size, color } = props;
 
   const fontSize = () => {
@@ -27,10 +25,10 @@ export default function FormHeader(props: FormHeaderProps) {
       className="header"
       style={{
         fontSize: fontSize(),
-        color: color ?? "rgb(51, 51, 51)",
+        color: color ?? "rgb(51, 51, 51)"
       }}
     >
       {content}
     </h1>
   );
-}
+};

@@ -5,8 +5,8 @@ import "./SidebarStyles.scss";
 import React, { useEffect, useState } from "react";
 
 // import custon hooks
-import { useAppSelector } from "../../../hooks/useAppSelector";
-import { usePageInfoActions } from "../../../hooks/useReduxActions";
+import { useAppSelector, useAppActions } from '@hooks';
+
 
 interface NavItemProps {
   onClick: VoidFunction;
@@ -23,8 +23,8 @@ const SidebarItem: React.FC<NavItemProps> = ({
   onClick,
   isLogout
 }) => {
-  const { currentPage, isMobile } = useAppSelector(state => state.pageInfo)
-  const { toggleSidebar } = usePageInfoActions()
+  const { currentPage, isMobile } = useAppSelector(state => state.appSlice)
+  const { toggleSidebar } = useAppActions()
   const [isActive, setActive] = useState(false)
 
   useEffect(() => {
@@ -51,7 +51,7 @@ const SidebarItem: React.FC<NavItemProps> = ({
           <img src={sidebarIcon} alt={sidebarItemName} />
         )}
       </div>
-      <span className={`dashboard_sidebar_item_text`}>{sidebarItemName}</span>
+      <span className={`dashboard_sidebar_item_text ${isLogout && "bold"}`}>{sidebarItemName}</span>
     </div>
   );
 };

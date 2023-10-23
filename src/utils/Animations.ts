@@ -1,4 +1,4 @@
-import { Variants, animate } from "framer-motion";
+import { Variants } from "framer-motion";
 
 type ITransition = {
   duration: number;
@@ -10,23 +10,23 @@ interface IAnimation {
   transition: ITransition;
 }
 
-class Animations implements IAnimation {
+export class Animations implements IAnimation {
   easeing!: [0.6, -0.05, 0.01, 0.99];
   transition = { duration: 1.4, ease: [0.6, 0.01, -0.05, 0.9] };
 
   stagger = (): Variants => {
     return {
       initial: {
-        y: -20,
+        y: -20
       },
       animate: {
         y: 0,
         transition: {
           delayChildren: 0.4,
           staggerChildren: 0.2,
-          staggerDirection: 1,
-        },
-      },
+          staggerDirection: 1
+        }
+      }
     };
   };
 
@@ -34,9 +34,9 @@ class Animations implements IAnimation {
     return {
       show: {
         transition: {
-          staggerChildren: 0.2,
-        },
-      },
+          staggerChildren: 0.2
+        }
+      }
     };
   };
 
@@ -48,9 +48,9 @@ class Animations implements IAnimation {
         y: 0,
         transition: {
           ease: "easeInOut",
-          duration: 0.2,
-        },
-      },
+          duration: 0.2
+        }
+      }
     };
   };
 
@@ -61,8 +61,8 @@ class Animations implements IAnimation {
         opacity: 0,
         transition: {
           duration: 0.6,
-          ease: this.easeing,
-        },
+          ease: this.easeing
+        }
       },
       animate: {
         y: 0,
@@ -70,41 +70,41 @@ class Animations implements IAnimation {
         transition: {
           duration: 0.6,
           delay: 0.5,
-          ease: this.easeing,
-        },
-      },
+          ease: this.easeing
+        }
+      }
     };
   };
 
   firstName = (): Variants => {
     return {
       initial: {
-        y: -20,
+        y: -20
       },
       animate: {
         y: 0,
         transition: {
           delayChildren: 0.4,
           staggerChildren: 0.04,
-          staggerDirection: -1,
-        },
-      },
+          staggerDirection: -1
+        }
+      }
     };
   };
 
   lastName = (): Variants => {
     return {
       initial: {
-        y: -20,
+        y: -20
       },
       animate: {
         y: 0,
         transition: {
           delayChildren: 0.4,
           staggerChildren: 0.04,
-          staggerDirection: 1,
-        },
-      },
+          staggerDirection: 1
+        }
+      }
     };
   };
   letter = (): Variants => {
@@ -112,12 +112,12 @@ class Animations implements IAnimation {
 
     return {
       initial: {
-        y: 400,
+        y: 400
       },
       animate: {
         y: 0,
-        transition: { duration: 1, ease },
-      },
+        transition: { duration: 1, ease }
+      }
     };
   };
 
@@ -126,18 +126,18 @@ class Animations implements IAnimation {
       initial: {
         y: -60,
         opacity: 0,
-        transition: { duration: 0.6, ease: this.easeing },
+        transition: { duration: 0.6, ease: this.easeing }
       },
 
       animate: {
         y: 0,
         opacity: 1,
-        animation: "",
+        animation: ""
         // animation: {
         //   duration: 0.6,
         //   ease: this.easeing,
         // },
-      },
+      }
     };
   };
 
@@ -146,7 +146,7 @@ class Animations implements IAnimation {
       initial: {
         y: 60,
         opacity: 0,
-        transition: { duration: 0.8, ease: this.easeing },
+        transition: { duration: 0.8, ease: this.easeing }
       },
       // animate: {
       //   y: 0,
@@ -162,9 +162,9 @@ class Animations implements IAnimation {
         transition: {
           duration: 0.6,
           delay: 0.5,
-          ease: this.easeing,
-        },
-      },
+          ease: this.easeing
+        }
+      }
     };
   };
 
@@ -173,18 +173,16 @@ class Animations implements IAnimation {
       initial: {
         y: -60,
         opacity: 0,
-        transition: { duration: 0.05, ease: this.easeing },
+        transition: { duration: 0.05, ease: this.easeing }
       },
       animate: {
         y: 0,
         opacity: 1,
         transition: {
           duration: 0.6,
-          ease: this.easeing,
-        },
-      },
+          ease: this.easeing
+        }
+      }
     };
   };
 }
-
-export default Animations;

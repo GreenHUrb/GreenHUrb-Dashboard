@@ -2,32 +2,27 @@
 import './NavbarStyles.scss';
 
 // Import Custom Hooks
-import { usePageInfoActions } from '../../../hooks/useReduxActions'; // Custom Redux actions hook
-import { useAppSelector } from '../../../hooks/useAppSelector'; // Custom Redux state selector hook
-import usePopOver from '../../../hooks/usePopOver';
+import { useAppSelector, useAppActions, usePopOver } from '@hooks';
 
 // Import Icons
-import Hamburger from '../../../assets/icons/hamburgerIcon.svg';
-import Notification from '../../../assets/icons/notificationIcon.svg';
-import Profile from '../../../assets/icons/profileIcon.svg';
+import Hamburger from '@icons/hamburgerIcon.svg';
+import Notification from '@icons/notificationIcon.svg';
+import Profile from '@icons/profileIcon.svg';
 
 // Import Custom Components
-import SearchInput from '../../../components/NavSearchBar/NavSearchBar';
+import { SearchInput, Notifications } from '@components';
 
 // Import Libraries
 import { useState } from 'react';
 import Popover from "@mui/material/Popover";
-import Notifications from '../../../components/Notifications/Notifications';
 
 
 const Navbar = () => {
-    // Get Redux actions from custom hook
-    const { toggleSidebar } = usePageInfoActions();
+    const { toggleSidebar } = useAppActions();
 
     // Get relevant Redux state using custom selector hooks
-    const { currentPage, isMobile } = useAppSelector((state) => state.pageInfo);
+    const { currentPage, isMobile } = useAppSelector((state) => state.appSlice);
 
-    // State to manage the search bar's open/closed state
     const [isSearchOpen, setIsSearchOpen] = useState(false);
 
     const { handleClick: handleShowNotification, handleClose: handleCloseNotification, id: notificationId, anchorEl: notificationAnchor, open: notificationOpen } = usePopOver()

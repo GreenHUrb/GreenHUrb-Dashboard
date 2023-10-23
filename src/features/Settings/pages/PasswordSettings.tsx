@@ -1,19 +1,18 @@
 import React from "react";
 
-import Input from "../../../components/form/Input/Input";
-import usePasswordType from "../../Auth/hooks/usePasswordType";
+import {Input} from "../../../components/form/Input";
+import { usePasswordType } from "../../Auth/hooks/usePasswordType";
 import visibleIcon from "../../../assets/icons/visible.svg";
 import notvisibleIcon from "../../../assets/icons/not-visible.svg";
-import useLogin from "../../Auth/hooks/useLogin";
-import { ILogin } from "../../../interfaces/IApiRequests";
-import Button from "../../../components/Button/Button";
+import { useLogin } from "../../Auth/hooks/useLogin";
+import { Button } from "../../../components/Button";
 import useChangePassword, { IChangePassword } from "../hooks/useChangePassword";
-import BackButton from "../../../components/BackButton/SettingsBackButton";
+import { BackButton } from "../../../components/BackButton";
 import { AllRouteConstants } from "../../../router/RouteConstants";
 
-interface PasswordSettingsProps { }
+interface PasswordSettingsProps {}
 
-export const PasswordSettings: React.FC<PasswordSettingsProps> = ({ }) => {
+export const PasswordSettings: React.FC<PasswordSettingsProps> = ({}) => {
   const { changePasswordForm, handleSubmit } = useChangePassword();
   const { passwordType, togglePassword } = usePasswordType();
 
@@ -24,11 +23,16 @@ export const PasswordSettings: React.FC<PasswordSettingsProps> = ({ }) => {
 
   return (
     <main className="password_settings animate__animated animate__fadeIn">
-      <BackButton locationName="Back to Settings" locationRoute={AllRouteConstants.settings.index} />
+      <BackButton
+        locationName="Back to Settings"
+        locationRoute={AllRouteConstants.settings.index}
+      />
       <div>
         <div style={{ gridColumn: "span 2" }}>
           <h3>Change Password</h3>
-          <p className="password_settings_title">To change your password, you need to put your current password.</p>
+          <p className="password_settings_title">
+            To change your password, you need to put your current password.
+          </p>
         </div>
 
         <form className="password_settings_form" onSubmit={handleSubmit}>
@@ -82,7 +86,12 @@ export const PasswordSettings: React.FC<PasswordSettingsProps> = ({ }) => {
             <Input
               id="confirm password"
               label="Confirm new password"
-              error={changePasswordForm.formErrors.confirmPassword || changePasswordForm.form.newPassword !== changePasswordForm.form.confirmPassword ? ' is not the Same' : null}
+              error={
+                changePasswordForm.formErrors.confirmPassword ||
+                changePasswordForm.form.newPassword !== changePasswordForm.form.confirmPassword
+                  ? " is not the Same"
+                  : null
+              }
               animation="animate__animated animate__fadeInRight"
               rightIcon={
                 <div style={{ marginLeft: "10px", cursor: "pointer" }} onClick={togglePassword}>
@@ -101,9 +110,14 @@ export const PasswordSettings: React.FC<PasswordSettingsProps> = ({ }) => {
               }}
             />
           </div>
-          <div style={{ marginTop: '2.5rem' }}>
+          <div style={{ marginTop: "2.5rem" }}>
             <Button label="Change Password" variant="contained" fullWidth />
-            <Button label="Forgot Password?" variant="text" customClassName='password_settings_form_btn' type="button" />
+            <Button
+              label="Forgot Password?"
+              variant="text"
+              customClassName="password_settings_form_btn"
+              type="button"
+            />
           </div>
         </form>
       </div>

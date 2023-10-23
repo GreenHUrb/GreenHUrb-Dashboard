@@ -3,7 +3,7 @@ import "../styles/payment_home_styles.scss";
 
 import { AllRouteConstants } from "../../../router/RouteConstants";
 
-import Button from "../../../components/Button/Button";
+import {Button} from "../../../components/Button";
 import TransactionTable from "../../Transactions/components/Tables/TransactionTable";
 import { useNavigate } from "react-router-dom";
 import KpiBalanceCard from "../../Home/components/KpiBalanceCard/KpiBalanceCard";
@@ -30,8 +30,8 @@ export const Home = () => {
     setPayment(filteredPayment);
   }, [paymentTableFilter]);
 
-  const walletBalance = "100,000.00";
-  const todaysBalance = "35,000.00";
+  const walletBalance = "0.00";
+  const todaysBalance = "0.00";
 
   return (
     <div className="payment_home animate__animated animate__fadeIn">
@@ -61,25 +61,22 @@ export const Home = () => {
               <Button
                 label="All Payments"
                 variant="text"
-                customClassName={`payment_home_table_filter_left_button ${
-                  paymentTableFilter !== "all" && "inactive"
-                }`}
+                customClassName={`payment_home_table_filter_left_button ${paymentTableFilter !== "all" && "inactive"
+                  }`}
                 onClick={() => setPaymentTableFilter("all")}
               />
               <Button
                 label="Received"
                 variant="text"
-                customClassName={`payment_home_table_filter_left_button ${
-                  paymentTableFilter !== "received" && "inactive"
-                }`}
+                customClassName={`payment_home_table_filter_left_button ${paymentTableFilter !== "received" && "inactive"
+                  }`}
                 onClick={() => setPaymentTableFilter("received")}
               />
               <Button
                 label="Withdrawn"
                 variant="text"
-                customClassName={`payment_home_table_filter_left_button ${
-                  paymentTableFilter !== "withdrawn" && "inactive"
-                }`}
+                customClassName={`payment_home_table_filter_left_button ${paymentTableFilter !== "withdrawn" && "inactive"
+                  }`}
                 onClick={() => setPaymentTableFilter("withdrawn")}
               />
             </div>

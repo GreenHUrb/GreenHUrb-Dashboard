@@ -1,15 +1,14 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import NotFound from "../pages/NotFound/NotFound";
-import ScrollToTop from "../components/ScrollToTop";
-import { AllRouteConstants } from "./RouteConstants";
-import AuthLayout from "../layouts/authLayout/AuthLayout";
+import { NotFound } from "@pages";
 import AuthRoutes from "../features/Auth/routes/Routes";
-import DashboardLayout from "../layouts/dashboardLayout/DashboardLayout";
 import HomeRoutes from "../features/Home/routes/Routes";
 import ProductsRoutes from "../features/Products/routes/Routes";
 import PaymentRoutes from "../features/Payments/routes/Routes";
 import TransactionRoutes from "../features/Transactions/routes/Routes";
 import SettingsRoutes from "../features/Settings/routes/Routes";
+import { DashboardLayout, AuthLayout } from "@layouts";
+import { AllRouteConstants } from "@router";
+import { ScrollToTop } from "@components";
 
 
 /**
@@ -17,7 +16,7 @@ import SettingsRoutes from "../features/Settings/routes/Routes";
  * It workes by having a Route component that 
  * @returns 
  */
-function Router() {
+export const Router = () => {
   return (
     <BrowserRouter>
       <ScrollToTop />
@@ -36,7 +35,7 @@ function Router() {
           {AuthRoutes()}
         </Route>
 
-        
+
 
 
         {/* Routes for the Main Page */}
@@ -63,4 +62,3 @@ function Router() {
   );
 }
 
-export default Router;

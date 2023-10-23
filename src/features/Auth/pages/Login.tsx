@@ -2,37 +2,34 @@
 import "../styles/auth_styles.scss";
 
 // import Libraries
-import { useNavigate } from "react-router-dom";
 import { BiArrowBack } from "react-icons/bi";
+import { useNavigate } from "react-router-dom";
 
 // import custom Hooks
-import useLogin from "../hooks/useLogin";
-import usePasswordType from "../hooks/usePasswordType";
+import { useLogin, usePasswordType } from "../hooks";
 
 // import Icons
-import visibleIcon from "../../../assets/icons/visible.svg";
-import notvisibleIcon from "../../../assets/icons/not-visible.svg";
-import LogoIcon from "../../../assets/icons/logo.svg";
-import GoogleIcon from "../../../assets/icons/google.svg";
-import FacebookIcon from "../../../assets/icons/facebook.svg";
+import GoogleIcon from "@icons/google.svg";
+import visibleIcon from "@icons/visible.svg";
+import FacebookIcon from "@icons/facebook.svg";
+import notvisibleIcon from "@icons/not-visible.svg";
 
 // import custom Components
-import FormError from "../../../components/form/formError/FormError";
-import Button from "../../../components/Button/Button";
-import Input from "../../../components/form/Input/Input";
-import { AllRouteConstants } from "../../../router/RouteConstants";
-import SocialMediaAuthButton from "../components/SocialMediaAuthButton/SocialMediaAuthButton";
-import Checkbox from "../../../components/form/Checkbox/Checkbox";
+import { ILoginRequest } from "@/services";
+import { AllRouteConstants } from "@router";
+import { Button, Checkbox, Input } from "@components";
+import { SocialMediaAuthButton } from "../components";
 
 // import Interfaces
-import { ILogin } from "../../../interfaces/IApiRequests";
 
 export const Login = () => {
-  const { handleSubmit, loginForm, loading, error } = useLogin();
-  const { passwordType, togglePassword } = usePasswordType();
   const navigate = useNavigate();
 
-  const formChange = (key: keyof ILogin, value: any) => {
+  const { handleSubmit, loginForm, loading } = useLogin();
+
+  const { passwordType, togglePassword } = usePasswordType();
+
+  const formChange = (key: keyof ILoginRequest, value: any) => {
     loginForm.onChange(key, value);
     return;
   };
@@ -40,40 +37,23 @@ export const Login = () => {
   return (
     <div className="animate__animated animate__fadeIn auth-login">
       <div>
-        {/* <div className="auth_logo">
-          <img src={LogoIcon} alt="logo" />
-        </div> */}
         <div className="auth-header">
-          <button className="auth-back-btn" onClick={()=> navigate(-1)}>
+          <button className="auth-back-btn" onClick={() => navigate(-1)}>
             <BiArrowBack />
           </button>
           <h1 className="auth-title">Welcome back</h1>
         </div>
-
-        {/* <h2 className="auth-subtitle">
-          Access your dashboard by inputting your login details
-        </h2> */}
-
-        {/* <p className="auth-top_text">
-          Sell your farm produce at the most convenient store
-          <Button
-            label="Sign Up"
-            variant="text"
-            onClick={() => navigate(AllRouteConstants.auth.signup)}
-          />
-        </p> */}
 
         <form className="auth-form" onSubmit={handleSubmit}>
           <div className="auth-field">
             <Input
               id="email"
               label="Email address"
-              error={loginForm.formErrors.email}
-              animation="animate__animated animate__fadeInLeft"
+              error={loginForm.formErrors.emailAddress}
               inputProps={{
                 placeholder: "E.g John Doe",
-                value: loginForm.form.email,
-                onChange: e => formChange("email", e.target.value),
+                value: loginForm.form.emailAddress,
+                onChange: e => formChange("emailAddress", e.target.value),
                 required: true,
                 type: "email"
               }}
@@ -85,7 +65,6 @@ export const Login = () => {
               id="password"
               label="Password"
               error={loginForm.formErrors.password}
-              animation="animate__animated animate__fadeInRight"
               rightIcon={
                 <div style={{ marginLeft: "10px", cursor: "pointer" }} onClick={togglePassword}>
                   {passwordType === "password" ? (
@@ -111,7 +90,6 @@ export const Login = () => {
           </div>
 
           <Button label="Log in" variant="contained" loading={loading} fullWidth />
-          <FormError error={error?.message} />
         </form>
 
         <div className="auth-or_container">

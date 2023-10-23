@@ -1,7 +1,8 @@
+import { makeToast } from "@/libs";
 import { AxiosResponse } from "axios";
 import { useState } from "react";
 
-const useApi = <T, K>(apiFunc: (arg: K) => Promise<AxiosResponse>) => {
+export const useApi = <T, K>(apiFunc: (arg: K) => Promise<AxiosResponse>) => {
   const [data, setData] = useState<T | null>(null);
   const [error, setError] = useState<any>({});
   const [loading, setLoading] = useState(false);
@@ -14,15 +15,20 @@ const useApi = <T, K>(apiFunc: (arg: K) => Promise<AxiosResponse>) => {
       return result.data;
     } catch (err: any) {
       const error = err.response?.data;
+      console.log(err);
 
-      if (!error.message) {
+      if (!error?.error) {
         if (err.message) {
-          error.message = err.message;
+          error.message = err?.message;
         } else {
           error.message = "Something Went Wrong!";
         }
       }
-      setError(err.response?.data);
+
+      error.message = error?.error;
+      makeToast({ message: error?.message || "", type: "error", id: "api-error" });
+
+      setError(error);
       return null;
     } finally {
       setLoading(false);
@@ -40,8 +46,6 @@ const useApi = <T, K>(apiFunc: (arg: K) => Promise<AxiosResponse>) => {
     error,
     loading,
     request,
-    reset,
+    reset
   };
 };
-
-export default useApi;

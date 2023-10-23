@@ -1,11 +1,11 @@
 import { useState, useRef } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import Button from "../../../../components/Button/Button";
-import Input from "../../../../components/form/Input/Input";
+import { Button } from "../../../../components/Button";
+import {Input} from "../../../../components/form/Input";
 import Card from "../../../../assets/icons/card (1).svg";
 import Money from "../../../../assets/icons/money-send.svg";
 import Copy from "../../../../assets/icons/copy.svg";
-import BackButton from "../../../../components/BackButton/SettingsBackButton";
+import { BackButton } from "../../../../components/BackButton";
 import { AllRouteConstants } from "../../../../router/RouteConstants";
 
 export const SubscriptionPayment = () => {
@@ -32,7 +32,10 @@ export const SubscriptionPayment = () => {
 
   return (
     <main className="subscription_payment animate__animated animate__fadeIn">
-      <BackButton locationName="Back to Settings" locationRoute={AllRouteConstants.settings.index} />
+      <BackButton
+        locationName="Back to Settings"
+        locationRoute={AllRouteConstants.settings.index}
+      />
       <div>
         <div>
           <div className="subscription_payment_top">
@@ -44,8 +47,14 @@ export const SubscriptionPayment = () => {
               error={null}
               inputProps={{
                 type: "text",
-                style: { width: "50%", padding: "3px", marginLeft: "auto", textAlign: 'center', color: '#000000' },
-                placeholder: 'Yearly'
+                style: {
+                  width: "50%",
+                  padding: "3px",
+                  marginLeft: "auto",
+                  textAlign: "center",
+                  color: "#000000"
+                },
+                placeholder: "Yearly"
               }}
             />
             <p>Amount</p>
@@ -103,7 +112,9 @@ export const SubscriptionPayment = () => {
                   error={null}
                   inputProps={{ placeholder: "0000-0000-0000-0000", type: "text" }}
                 />
-                <div style={{display: 'grid', gap: '1rem', gridTemplateColumns: 'repeat(2, 1fr)'}}>
+                <div
+                  style={{ display: "grid", gap: "1rem", gridTemplateColumns: "repeat(2, 1fr)" }}
+                >
                   <Input
                     id="Expiry"
                     label="Expiry date"

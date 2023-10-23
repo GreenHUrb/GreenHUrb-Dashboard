@@ -151,6 +151,10 @@
       font-weight: var(--medium-font);
       font-size: var(--medium-paragraph);
     }
+
+    .bold {
+      font-weight: 600;
+    }
   }
 }
 
@@ -163,4 +167,5 @@
 .dashboard_sidebar_open {
   padding: 0 1rem 0 4rem;
   width: 320px;
+  min-width: 270px;
 }

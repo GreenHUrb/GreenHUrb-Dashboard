@@ -2,15 +2,17 @@ import React from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
 // Import Custom Components and Styles
-import Input from "../../../components/form/Input/Input";
-import Button from "../../../components/Button/Button";
+import { Input } from "../../../components/form/Input";
+import { Button } from "../../../components/Button";
 import ProfileImage from "../../../assets/icons/settingsProfile.png";
 import "../styles/account_settings_styles.scss";
 import { handleFormatLabelForId } from "../../../utils/formUtils";
 import useAccountSettings from "../hooks/useAccountSettings";
 import { SingleFarmField } from "../components/FarmForm/FarmForm";
-import BackButton from "../../../components/BackButton/SettingsBackButton";
+import { BackButton } from "../../../components/BackButton";
 import { AllRouteConstants } from "../../../router/RouteConstants";
+import { useSelector } from "react-redux";
+import { RootState } from "@/redux";
 
 export const AccountSettings = () => {
   // Initialize custom hooks and state variables
@@ -27,10 +29,14 @@ export const AccountSettings = () => {
     handleOpenAddFarmForm
   } = useAccountSettings();
 
+
   return (
     <main className="settings_account animate__animated animate__fadeIn">
       {/* Back button */}
-      <BackButton locationName="Back to Settings" locationRoute={AllRouteConstants.settings.index} />
+      <BackButton
+        locationName="Back to Settings"
+        locationRoute={AllRouteConstants.settings.index}
+      />
 
       <div className="settings_account_profile">
         <div className="settings_account_profile-info">
@@ -40,9 +46,7 @@ export const AccountSettings = () => {
             <div className="settings_account_profile-photo">
               <LazyLoadImage src={ProfileImage} alt="profile" width={20} height={20} />
             </div>
-            {accountSettingsMode === 'edit' && (
-              <Button label="Edit profile photo" variant="text" />
-            )}
+            {accountSettingsMode === "edit" && <Button label="Edit profile photo" variant="text" />}
           </div>
 
           {/* Profile information */}
@@ -109,7 +113,7 @@ export const AccountSettings = () => {
               {/* Render farm fields */}
               {accountProfileForm.farms.map((farm, index) => (
                 <SingleFarmField
-                  onFormSubmit={(farm) => handleUpdateFarm(farm, index)}
+                  onFormSubmit={farm => handleUpdateFarm(farm, index)}
                   farm={farm}
                   key={index}
                   pageMode={accountSettingsMode}

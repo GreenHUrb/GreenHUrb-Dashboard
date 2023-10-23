@@ -1,12 +1,12 @@
-import { AllRouteConstants } from "../router/RouteConstants";
-import DashboardIcon from "../assets/icons/dashboardIconActive.svg";
-import DashboardIconActive from "../assets/icons/dashboardIcon.svg";
-import PaymentIcon from "../assets/icons/paymentsIcon.svg";
-import PaymentIconActive from "../assets/icons/paymentsIconActive.svg";
-import ProductIcon from "../assets/icons/productsIcon.svg";
-import ProductIconActive from "../assets/icons/productsIconActive.svg";
-import TransactionsIcon from "../assets/icons/transactionsIcon.svg";
-import TransactionsIconActive from "../assets/icons/transactionsIconActive.svg";
+import { AllRouteConstants } from "@router";
+import DashboardIcon from "@icons/dashboardIconActive.svg";
+import DashboardIconActive from "@icons/dashboardIcon.svg";
+import PaymentIcon from "@icons/paymentsIcon.svg";
+import PaymentIconActive from "@icons/paymentsIconActive.svg";
+import ProductIcon from "@icons/productsIcon.svg";
+import ProductIconActive from "@icons/productsIconActive.svg";
+import TransactionsIcon from "@icons/transactionsIcon.svg";
+import TransactionsIconActive from "@icons/transactionsIconActive.svg";
 
 export const sidebarData = [
   {
@@ -24,7 +24,7 @@ export const sidebarData = [
   {
     route: AllRouteConstants.payments.index,
     icon: PaymentIcon,
-    iconActive:PaymentIconActive,
+    iconActive: PaymentIconActive,
     sidebarName: "Payments"
   },
   {
@@ -32,6 +32,5 @@ export const sidebarData = [
     icon: TransactionsIcon,
     iconActive: TransactionsIconActive,
     sidebarName: "Transactions"
-  },
-
+  }
 ];

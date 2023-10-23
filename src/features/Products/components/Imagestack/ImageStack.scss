@@ -5,6 +5,7 @@
     padding: 0px;
     flex-direction: row;
     align-items: flex-end;
+    z-index: 2;
 
     &_item {
         border-radius: 100%;
@@ -19,6 +20,7 @@
         transition: margin 0.1s ease-in-out;
         overflow: hidden;
         margin-left: -15px;
+        
 
         &:first-child {
             z-index: 5;

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-const usePasswordType = () => {
+export const usePasswordType = () => {
     const [passwordType, setPasswordType] = useState("password");
 
     const togglePassword = () => {
@@ -16,4 +16,3 @@ const usePasswordType = () => {
     }
 }
 
-export default usePasswordType

@@ -1,4 +1,4 @@
-.transaction_table {
+.product_table {
     &_status_button {
         padding: 15px;
         border-radius: 10px;
@@ -31,4 +31,44 @@
 
 .table_pagination {
     margin-top: 1.5em;
+}
+
+
+.product_options_container {
+    background: #fcfcfc;
+    box-shadow: 16px 16px 40px rgba(0, 0, 0, 0.16);
+    border-radius: 8px;
+    width: 150px;
+    font-size: 15px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #cccccc;
+    overflow: hidden;
+
+    button {
+        outline: none;
+        border: none;
+        background: transparent;
+        padding-block: 0.8rem;
+        cursor: pointer;
+        transition: all 150ms ease-in-out;
+
+
+        &:hover {
+            background: rgb(#000, 0.1);
+
+            &:nth-child(1) {
+                background: rgb(#0E8742, 1);
+                color: white;
+            }
+
+
+            &:nth-child(3) {
+                background: rgb(216, 10, 10);
+                color: white;
+            }
+        }
+
+
+    }
 }

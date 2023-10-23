@@ -10,9 +10,8 @@ interface PaginationResult<T> {
   totalDataLength: number;
 }
 
-const usePagination = <T>(data: T[], itemsPerPage = 10): PaginationResult<T> => {
+export const usePagination = <T>(data: T[], itemsPerPage = 10): PaginationResult<T> => {
   const [currentPage, setCurrentPage] = useState(1);
-
   // Calculate the index range for the current page
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -47,5 +46,3 @@ const usePagination = <T>(data: T[], itemsPerPage = 10): PaginationResult<T> => 
     totalDataLength: data.length
   };
 };
-
-export default usePagination;

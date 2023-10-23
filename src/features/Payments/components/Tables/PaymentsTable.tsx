@@ -1,10 +1,10 @@
-import usePopOver from '../../../../hooks/usePopOver';
+import {usePopOver} from '../../../../hooks/usePopOver';
 import { SlOptionsVertical } from 'react-icons/sl';
-import { TableLayout, TableHeadContainer, TableBodyContainer, TableBodyRow, TableBodyRowChild, TableHead } from '../../../../layouts/TableLayout/TableLayout';
+import { TableLayout, TableHeadContainer, TableBodyContainer, TableBodyRow, TableBodyRowChild, TableHead } from '../../../../layouts/TableLayout';
 import { Popover } from '@mui/material';
 import './Tables.scss'
-import usePagination from '../../../../hooks/useTablePagination';
-import TablePagination from '../../../../components/TablePagination/TablePagination';
+import {usePagination} from '../../../../hooks/useTablePagination';
+import {TablePagination} from '../../../../components/TablePagination';
 import { IPayment } from '../../interfaces/IPayment';
 
 
@@ -27,7 +27,7 @@ const PaymentsTable = (props: IPaymentTable) => {
         totalPages,
         goToPage,
         totalDataLength
-    } = usePagination(tableData,  10);
+    } = usePagination(tableData, 10);
 
     return (
         <>

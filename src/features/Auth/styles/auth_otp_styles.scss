@@ -1,0 +1,79 @@
+@import "../../../styles/global.scss";
+
+.auth_otp {
+    @include themify($themes) {
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        text-align: center;
+
+        &_top {
+            & h1 {
+                margin-bottom: 10px;
+            }
+
+            p {
+                color: grey;
+                line-height: 2rem;
+            }
+        }
+
+        &_back-btn {
+            color: themed("dark-primary");
+            border: none;
+            outline: none;
+            background-color: transparent;
+            font-size: var(--big-paragraph);
+            cursor: pointer;
+            position: absolute;
+            top: 5%;
+            left: 5%;
+        }
+
+        &_container {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+            padding: 1rem;
+            max-width: 500px;
+
+            & form {
+                display: flex;
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+
+        }
+
+        &_resend-text {
+            color: themed("text-color");
+            font-weight: var(--very-light-font);
+            font-size: calc(var(--normal-paragraph) + 1px);
+        }
+
+        &_bottom_text {
+            font-weight: var(--very-light-font);
+            font-size: var(--mini-paragraph);
+
+            text-align: center;
+            letter-spacing: 0.5px;
+
+            button {
+                font-size: var(--mini-paragraph) !important;
+                padding: 0 !important;
+            }
+
+            @media screen and (min-width: 768px) {
+                font-size: var(--normal-paragraph);
+
+                button {
+                    font-size: var(--normal-paragraph) !important;
+                }
+            }
+        }
+    }
+}

@@ -47,7 +47,8 @@
                     align-items: center;
                     gap: 1em;
                     overflow-x: scroll;
-                    width: 100%;
+                    // width: 100%;
+                    max-width: 400px;
                 }
 
                 &_loader {
