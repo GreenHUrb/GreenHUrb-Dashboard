@@ -11,7 +11,7 @@ import { Spinner } from "../../../components/Spinner";
 import { MdDelete } from "react-icons/md";
 import { Input, TextArea } from "../../../components/form/Input";
 import { handleFormatLabelForId } from "../../../utils/formUtils";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { FormSelect } from "../../../components/form/formSelect";
 import {
   convertDataToDropdownData,
@@ -23,19 +23,25 @@ import { Checkbox } from "../../../components/form/Checkbox";
 import useProduct from "../hooks/useProduct";
 import { useProductInfoApi } from "../services/useProductInfoApi.service";
 import { ExitProductForm, PriceBidModal } from "../components/Modals";
+import { useAppSelector } from "@/hooks";
+import { IProductFullResponse } from "../interfaces/ProductApi";
 
-export const CreateProduct = () => {
-  const { pathname } = useLocation();
-  const pathSegments = pathname.split("/");
-  const productModes = pathSegments.includes("edit")
-    ? "edit"
-    : pathSegments.includes("add")
-    ? "add"
-    : "view";
+interface IProps {
+  product_state: "edit" | "view" | "add";
+}
+export const Product = (props: IProps) => {
+  const { product_state } = props;
 
-  const [productMode, setProductMode] = useState<"edit" | "view" | "add">(productModes);
+  const navigate = useNavigate();
 
-  const { images, product, page } = useProduct({ action: productMode });
+  const { products: allProducts } = useAppSelector(product => product.productSlice);
+
+  const [selectedProduct, setSelectedProduct] = useState<IProductFullResponse | null>(null);
+
+  const { images, product, page } = useProduct({
+    action: product_state,
+    fullProduct: selectedProduct ?? undefined
+  });
 
   const { category, sub_category, availability } = useProductInfoApi();
 
@@ -50,16 +56,36 @@ export const CreateProduct = () => {
   };
 
   useEffect(() => {
-    category.handler();
-    availability.handler();
-  }, []);
-
-  useEffect(() => {
     const category_id = product.form.category_id;
     if (category_id) {
       sub_category.handler(category_id);
     }
   }, [product.form.category_id]);
+
+  const getSelectedProduct = () => {
+    const product_id = window.location.pathname.split("/")[3];
+
+    if (!product_id) {
+      return navigate(AllRouteConstants.products.index);
+    }
+
+    const item = allProducts.find(product => product.product.id === product_id);
+
+    if (!item) {
+      return navigate(AllRouteConstants.products.index);
+    }
+
+    setSelectedProduct(item);
+  };
+
+  useEffect(() => {
+    if (product_state !== "add") {
+      getSelectedProduct();
+    }
+
+    category.handler();
+    availability.handler();
+  }, []);
 
   return (
     <main className="create_product animate__animated animate__fadeIn">
@@ -128,9 +154,10 @@ export const CreateProduct = () => {
                 label="Product Name"
                 inputProps={{
                   placeholder: "Enter your Product Name",
+                  value: product.form.product_name,
                   required: true,
                   onChange: e => product.form_change("product_name", e.target.value),
-                  readOnly: productMode === "view" ? true : false
+                  readOnly: product_state === "view" ? true : false
                 }}
               />
             </div>
@@ -154,7 +181,7 @@ export const CreateProduct = () => {
                     "id",
                     product.form.category_id
                   ),
-                  readOnly: productMode === "view"
+                  readOnly: product_state === "view"
                 }}
               />
             </div>
@@ -169,7 +196,7 @@ export const CreateProduct = () => {
                 dropdownProps={{
                   placeholder: "Select your Product Sub Category",
                   required: true,
-                  readOnly: productMode === "view",
+                  readOnly: product_state === "view",
                   onChange: (val: { value: string; label: string }) => {
                     return product.form_change("sub_category_id", val.value);
                   },
@@ -192,7 +219,7 @@ export const CreateProduct = () => {
                 dropdownProps={{
                   placeholder: "Choose when product will be available",
                   required: true,
-                  readOnly: productMode === "view",
+                  readOnly: product_state === "view",
                   onChange: (val: { value: string; label: string }) => {
                     return product.form_change("availability_id", val.value);
                   },
@@ -213,11 +240,12 @@ export const CreateProduct = () => {
                   error={product.formErrors.product_quantity}
                   label="Product Quantity"
                   inputProps={{
+                    value: product.form.product_quantity,
                     placeholder: "3",
                     required: true,
                     type: "number",
                     onChange: e => product.form_change("product_quantity", e.target.value),
-                    readOnly: productMode === "view" ? true : false
+                    readOnly: product_state === "view" ? true : false
                   }}
                 />
               </div>
@@ -227,11 +255,12 @@ export const CreateProduct = () => {
                   error={product.formErrors.product_weight}
                   label=" Weight"
                   inputProps={{
+                    value: product.form.product_weight,
                     placeholder: "5",
                     required: true,
                     type: "number",
                     onChange: e => product.form_change("product_weight", e.target.value),
-                    readOnly: productMode === "view" ? true : false
+                    readOnly: product_state === "view" ? true : false
                   }}
                 />
                 <FormSelect
@@ -242,10 +271,14 @@ export const CreateProduct = () => {
                   dropdownProps={{
                     placeholder: "kg",
                     required: true,
+                    readOnly: product_state === "view",
+                    value: {
+                      label: product.form.product_weight_unit,
+                      value: product.form.product_weight_unit
+                    },
                     onChange: (val: { value: string; label: string }) => {
                       return product.form_change("product_weight_unit", val.value);
-                    },
-                    readOnly: productMode === "view"
+                    }
                   }}
                 />
               </div>
@@ -261,11 +294,12 @@ export const CreateProduct = () => {
               label="Product Price"
               leftIcon={<h1>N</h1>}
               inputProps={{
+                value: product.form.product_price,
                 placeholder: "1500",
                 type: "number",
                 required: true,
                 onChange: e => product.form_change("product_price", e.target.value),
-                readOnly: productMode === "view" ? true : false
+                readOnly: product_state === "view" ? true : false
               }}
             />
           </div>
@@ -286,11 +320,12 @@ export const CreateProduct = () => {
               }
               leftIcon={<h1>N</h1>}
               inputProps={{
+                value: product.form.product_price_bid,
                 placeholder: "1500",
                 type: "number",
                 required: true,
                 onChange: e => product.form_change("product_price_bid", e.target.value),
-                readOnly: productMode === "view" ? true : false
+                readOnly: product_state === "view" ? true : false
               }}
             />
           </div>
@@ -302,10 +337,11 @@ export const CreateProduct = () => {
               label="Description"
               rows={4}
               textareaProps={{
+                value: product.form.product_description,
                 placeholder: "E.g: New Benue yam to be ready in 10 days",
                 required: true,
                 onChange: e => product.form_change("product_description", e.target.value),
-                readOnly: productMode === "view" ? true : false
+                readOnly: product_state === "view" ? true : false
               }}
             />
           </div>
@@ -321,16 +357,22 @@ export const CreateProduct = () => {
                   "Put keywords that are associated with products to aid consumer search. E.g fresh vegetables.",
                 required: true,
                 onChange: e => product.form_change("product_tags", e.target.value.split(", ")),
-                readOnly: productMode === "view" ? true : false
+                readOnly: product_state === "view" ? true : false
               }}
             />
           </div>
 
           <div className="input shared_purchase_checkbox ">
-            <Checkbox label={"Shared Purchase"} />
+            <Checkbox
+              label={"Shared Purchase"}
+              checkboxProps={{
+                checked: product.form.shared_purchase,
+                onChange: e => product.form_change("shared_purchase", e.target.checked)
+              }}
+            />
           </div>
 
-          {productMode === "add" && (
+          {product_state === "add" && (
             <>
               <Button
                 variant="contained"
@@ -342,13 +384,14 @@ export const CreateProduct = () => {
                 variant="text"
                 label="Save as Draft"
                 customClassName="create_product_submit_button"
-                loading={product.product_creating}
                 type="button"
+                disable={product.product_creating}
+
               />
             </>
           )}
 
-          {productMode === "view" && (
+          {product_state === "view" && (
             <Button
               variant="contained"
               label="Edit Product"

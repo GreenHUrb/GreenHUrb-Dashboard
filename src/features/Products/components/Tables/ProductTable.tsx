@@ -80,7 +80,7 @@ export const ProductTable = (props: IProductsTable) => {
                         {product.createdAt.slice(0, 10)}
                       </TableBodyRowChild>
 
-                      <TableBodyRowChild>
+                      <TableBodyRowChild >
                         <SlOptionsVertical
                           aria-describedby={id}
                           className="product_table_actions"
@@ -95,6 +95,7 @@ export const ProductTable = (props: IProductsTable) => {
                             vertical: "bottom",
                             horizontal: "left"
                           }}
+                          className="product_table_actions_container"
                         >
                           <div className="product_options_container">
                             <button

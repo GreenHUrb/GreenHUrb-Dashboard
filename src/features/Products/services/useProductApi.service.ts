@@ -1,14 +1,15 @@
 import { useApi, useAppActions, useProductActions } from "@/hooks";
-import { ICreateProductApiResponse, IGetProductApiResponse, IProduct, IProductFullResponse } from "../interfaces/ProductApi";
+import {
+  ICreateProductApiResponse,
+  IGetProductApiResponse,
+  IProduct,
+  IProductFullResponse
+} from "../interfaces/ProductApi";
 import { Services } from "@/services";
 import { makeToast } from "@/libs";
 
-interface ApiHandlerOptions {
-  useAppLoader?: boolean;
-}
 export const useProductApi = () => {
   const { initializeProducts, addProduct, updateProduct, deleteProduct } = useProductActions();
-  const { toggleAppLoader } = useAppActions();
 
   const createProductRequest = useApi<ICreateProductApiResponse, FormData>((data: FormData) => {
     return Services.Product.createProduct(data);
@@ -21,7 +22,7 @@ export const useProductApi = () => {
 
     if (!product) return;
 
-    addProduct(product.data);
+    addProduct({ images: product.data.images, product: product.data.product, variant: [] });
 
     makeToast({ message: "Product Created Successfully", type: "success", id: "create-product" });
 
@@ -65,11 +66,7 @@ export const useProductApi = () => {
     return Services.Product.getFarmerProducts();
   });
 
-  const handleGetFarmerProduct = async ({ useAppLoader }: ApiHandlerOptions) => {
-    if (useAppLoader) {
-      toggleAppLoader(true);
-    }
-
+  const handleGetFarmerProduct = async () => {
     const products = await getFarmerProductRequest.request();
 
     if (!products) return;
@@ -77,8 +74,6 @@ export const useProductApi = () => {
     initializeProducts(products.data);
 
     makeToast({ message: "Products Fetched Successfully", type: "success", id: "fetch-product" });
-
-    toggleAppLoader(false);
   };
 
   return {

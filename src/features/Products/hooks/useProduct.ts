@@ -1,7 +1,12 @@
 import { useForm } from "../../../hooks/useForm";
 import { emptyValidator } from "../../../utils/validators/emptyValidator";
-import { useState } from "react";
-import { ICreateProductRequest, IProduct } from "../interfaces/ProductApi";
+import { useEffect, useState } from "react";
+import {
+  ICreateProductRequest,
+  IProduct,
+  IProductFullResponse,
+  IProductImage
+} from "../interfaces/ProductApi";
 import { convertFileToReadableStream } from "../utils/fileToStreamConverter";
 import { useProductApi } from "../services";
 import { makeToast } from "@/libs";
@@ -10,7 +15,7 @@ import { AllRouteConstants } from "@/router";
 
 interface IUseProductAction {
   action: IProductAction;
-  product?: IProduct;
+  fullProduct?: IProductFullResponse;
 }
 type IProductAction = "add" | "view" | "edit";
 
@@ -26,7 +31,7 @@ interface IProductImagesState {
  * @returns {Object} An object containing product-related data and functions.
  */
 const useProduct = (data: IUseProductAction) => {
-  const { action, product } = data;
+  const { action, fullProduct } = data;
 
   const navigate = useNavigate();
 
@@ -36,19 +41,19 @@ const useProduct = (data: IUseProductAction) => {
   // Product Form
   const productForm = useForm<ICreateProductRequest>(
     {
-      product_name: product?.name ?? "",
-      product_description: product?.description ?? "",
-      product_weight_unit: product?.weight_unit ?? "",
-      category_id: product?.category_id ?? "",
-      sub_category_id: product?.sub_category_id ?? "",
-      product_weight: product?.weight ?? 0,
-      product_quantity: product?.quantity ?? 0,
-      availability_id: product?.availability_id ?? "",
-      product_price: product?.price ?? 0,
-      product_status: product?.status ?? "AVAILABLE",
-      shared_purchase: product?.shared_purchase ?? false,
-      product_tags: product?.tags.split(", ") ?? [],
-      product_price_bid: product?.price_bid ?? 0
+      product_name: fullProduct?.product?.name ?? "",
+      product_description: fullProduct?.product?.description ?? "",
+      product_weight_unit: fullProduct?.product?.weight_unit ?? "",
+      category_id: fullProduct?.product?.category_id ?? "",
+      sub_category_id: fullProduct?.product?.sub_category_id ?? "",
+      product_weight: fullProduct?.product?.weight ?? 0,
+      product_quantity: fullProduct?.product?.quantity ?? 0,
+      availability_id: fullProduct?.product?.availability_id ?? "",
+      product_price: fullProduct?.product?.price ?? 0,
+      product_status: fullProduct?.product?.status ?? "AVAILABLE",
+      shared_purchase: fullProduct?.product?.shared_purchase ?? false,
+      product_tags: fullProduct?.product?.tags.split(", ") ?? [],
+      product_price_bid: fullProduct?.product?.price_bid ?? 0
     },
     {
       product_name: emptyValidator,
@@ -68,8 +73,61 @@ const useProduct = (data: IUseProductAction) => {
   );
 
   // This is the onchange function for the product form
-  const handleProductFormChange = (key: keyof ICreateProductRequest, value: string | string[]) => {
+  const handleProductFormChange = (
+    key: keyof ICreateProductRequest,
+    value: string | string[] | boolean
+  ) => {
     return productForm.onChange(key, value);
+  };
+
+  /**
+   * Handles the population of the product form with a particular product.
+   *
+   * @param {IProduct} product - The initialProduct to be Added.
+   */
+  const handleSetForm = (product: IProduct) => {
+    handleProductFormChange("product_name", product.name);
+    handleProductFormChange("product_description", product.description);
+    handleProductFormChange("product_weight_unit", product.weight_unit);
+    handleProductFormChange("category_id", product.category_id);
+    handleProductFormChange("sub_category_id", product.sub_category_id);
+    handleProductFormChange("product_weight", product.weight.toString());
+    handleProductFormChange("product_quantity", product.quantity.toString());
+    handleProductFormChange("availability_id", product.availability_id);
+    handleProductFormChange("product_price", product.price.toString());
+    handleProductFormChange("product_status", product.status);
+    handleProductFormChange("shared_purchase", product.shared_purchase);
+    handleProductFormChange("product_tags", product.tags.split(","));
+    handleProductFormChange("product_price_bid", product.price_bid.toString());
+  };
+
+  /**
+   * Handles the population of the product form with a particular product.
+   *
+   * @param {IProduct} product - The initialProduct to be Added.
+   */
+  const handleSetProductImages = async (images: IProductImage[]) => {
+    const i: { file: File; url: string }[] = [];
+
+    await Promise.all(
+      images.map(async image => {
+        console.log(image)
+        let response = await fetch(image.image_url);
+        let data = await response.blob();
+        let metadata = {
+          type: "image/jpeg"
+        };
+        let file = new File([data], "test.jpg", metadata);
+
+        i.push({
+          file,
+          url: image.image_url
+        });
+      })
+    );
+
+    console.log(i)
+    setProductImages({ ...productImages, images: i });
   };
 
   // State to store all Product Images
@@ -77,6 +135,13 @@ const useProduct = (data: IUseProductAction) => {
     images: [],
     loading: false
   });
+
+  useEffect(() => {
+    if (fullProduct) {
+      handleSetForm(fullProduct.product);
+      handleSetProductImages(fullProduct.images);
+    }
+  }, [fullProduct]);
 
   /**
    * Handles the addition of a single product image by processing a single file and updating the product images state.
@@ -125,8 +190,6 @@ const useProduct = (data: IUseProductAction) => {
           response.push({ file, url: image_url });
         })
       );
-
-      console.log(response);
 
       return setProductImages({
         ...productImages,
@@ -246,6 +309,10 @@ const useProduct = (data: IUseProductAction) => {
 
   const handleGoBack = () => {
     let formIsEmpty = true;
+
+    if (action === "view") {
+      return navigate(AllRouteConstants.products.index);
+    }
 
     const form = Object.entries(productForm.form);
 

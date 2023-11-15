@@ -6,7 +6,7 @@ import { BiArrowBack } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 
 // import custom Hooks
-import { useLogin, usePasswordType } from "../hooks";
+import { useGoogleLogin, useLogin, usePasswordType } from "../hooks";
 
 // import Icons
 import GoogleIcon from "@icons/google.svg";
@@ -26,6 +26,8 @@ export const Login = () => {
   const navigate = useNavigate();
 
   const { handleSubmit, loginForm, loading } = useLogin();
+
+  const { googleLoginUrl, loggingIn } = useGoogleLogin();
 
   const { passwordType, togglePassword } = usePasswordType();
 
@@ -99,8 +101,8 @@ export const Login = () => {
         </div>
 
         <div className="auth-footer">
-          <SocialMediaAuthButton image={GoogleIcon} />
-          <SocialMediaAuthButton image={FacebookIcon} />
+          <SocialMediaAuthButton loading={loggingIn} link={googleLoginUrl} image={GoogleIcon} />
+          <SocialMediaAuthButton link={googleLoginUrl} image={FacebookIcon} />
         </div>
 
         <p className="auth-top_text">

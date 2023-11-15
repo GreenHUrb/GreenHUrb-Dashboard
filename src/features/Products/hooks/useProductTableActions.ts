@@ -1,4 +1,6 @@
+import { AllRouteConstants } from "@/router";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 interface IProductActionHandler {
   id: string;
@@ -10,6 +12,8 @@ interface IDeleteProductState {
   id: null | string;
 }
 const useProductTableActions = () => {
+  const navigate = useNavigate();
+
   const [deleteProduct, setDeleteProduct] = useState<IDeleteProductState>({
     status: false,
     id: null
@@ -19,8 +23,15 @@ const useProductTableActions = () => {
     const { id, type } = options;
 
     if (type === "delete") {
-      console.log("hey");
       return setDeleteProduct({ status: true, id });
+    }
+
+    if (type === "edit") {
+      return navigate(`/products/edit/${id}`);
+    }
+
+    if (type === "view") {
+      return navigate(`/products/view/${id}`);
     }
   };
 

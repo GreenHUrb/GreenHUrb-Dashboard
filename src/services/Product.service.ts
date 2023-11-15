@@ -11,7 +11,8 @@ export class ProductService {
   private productUrl!: string;
 
   constructor(baseURL: string) {
-    this.productUrl = `${baseURL}/product`;
+    // this.productUrl = `${baseURL}/product`;
+    this.productUrl = "http://localhost:8004"
   }
 
   public async getProductCategories() {

@@ -4,7 +4,8 @@ import {
   ISignupRequest,
   IEmailRequest,
   IValidateForgotPasswordRequest,
-  IValidateVerifyAccountRequest
+  IValidateVerifyAccountRequest,
+  IGoogleAuth
 } from "./interfaces/AuthServiceInterface";
 
 export class AuthService {
@@ -20,6 +21,10 @@ export class AuthService {
 
   public async signup(data: ISignupRequest) {
     return await axiosInstance.post(`${this.authUrl}/signup`, data);
+  }
+
+  public async googleAuth(data: IGoogleAuth) {
+    return await axiosInstance.post(`${this.authUrl}/google-auth`, data);
   }
 
   public async verifyAccount(data: IEmailRequest) {

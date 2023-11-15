@@ -8,6 +8,7 @@
     align-items: center;
     // gap: .5em;
     justify-content: center;
+    cursor: pointer;
     // width: 100%;
 
     span {
@@ -19,6 +20,13 @@
         border-radius: var(--pill-shaped-radius);
         background: #F7F7F7;
         padding: .3rem;
+        transition: all 200ms ease-in-out;
+
+        &:hover{
+            background: transparent;
+            border: 1px solid #F7F7F7;
+
+        }
 
         img {
             width: 2em;

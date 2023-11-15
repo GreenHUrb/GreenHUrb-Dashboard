@@ -48,20 +48,22 @@ export interface IProduct extends IProductBase {
   createdAt: string;
 }
 
+export interface IProductImage {
+  image_id: string;
+  image_url: string;
+}
+
 export interface IProductFullResponse {
   product: IProduct;
   variant: IProductVariant[];
-  images: {
-    image_id: string;
-    image_url: string;
-  }[];
+  images: IProductImage[];
 }
 
 export interface IGetProductApiResponse
   extends IProductServiceApiResponse<IProductFullResponse[]> {}
 
 export interface ICreateProductApiResponse
-extends IProductServiceApiResponse<IProductFullResponse> {}
+  extends IProductServiceApiResponse<IProductFullResponse> {}
 
 export interface IGetCategoriesApiResponse extends IProductServiceApiResponse<ICategory[]> {}
 export interface IGetSubCategoriesApiResponse extends IProductServiceApiResponse<ISubCategory[]> {}

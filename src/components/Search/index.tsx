@@ -4,6 +4,8 @@ import { useSearch } from "./useSearch";
 import { ISearchProps } from "./types";
 import { AiOutlineClose } from "react-icons/ai";
 
+import SearchActive from "@icons/searchIconActive.svg";
+
 export const Search = <T extends Record<string, any>, K extends keyof T>({
   initialState,
   setState,
@@ -19,21 +21,19 @@ export const Search = <T extends Record<string, any>, K extends keyof T>({
 
   return (
     <div className="search_bar">
-      <Input
-        id="Search"
-        label=""
-        error={null}
-        rightIcon={
-          <div style={{ marginLeft: "10px", cursor: "pointer" }} onClick={clearSearch}>
-            {searchKeyword && <AiOutlineClose />}
-          </div>
-        }
-        inputProps={{
-          placeholder: "Search .....",
-          value: searchKeyword,
-          onChange: e => handleSearch(e)
-        }}
+      <span className="search_bar_icon">
+        <img src={SearchActive} />
+      </span>
+      <input
+        type="text"
+        className="search"
+        placeholder="Search ....."
+        value={searchKeyword}
+        onChange={handleSearch}
       />
+      <span className="search_bar_clear_icon" onClick={clearSearch}>
+        {searchKeyword && <AiOutlineClose />}
+      </span>
     </div>
   );
 };

@@ -20,6 +20,8 @@ export const AllRouteConstants = {
   products: {
     index: "/products",
     createProduct:'/products/add',
+    viewproduct:'/products/view/:id',
+    editProduct:'/products/edit/:id',
     drafts:"/product/drafts"
   },
   payments: {

@@ -5,11 +5,11 @@ import './styles.scss'
 import { useEffect } from 'react';
 
 // Import Icons
-import Search from '../../assets/icons/searchIcon.svg'
-import SearchActive from '../../assets/icons/searchIconActive.svg'
+import Search from '@icons/searchIcon.svg'
+import SearchActive from '@icons/searchIconActive.svg'
 
 // Import Custom Hooks
-import { useAppSelector } from '../../hooks/useAppSelector';
+import { useAppSelector } from '@hooks';
 import { ISearchInputProps } from './types';
 
 

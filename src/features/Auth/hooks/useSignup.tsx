@@ -53,7 +53,7 @@ export const useSignup = () => {
 
 
         if (user) {
-          makeToast({ message: user.message, type: "success" });
+          makeToast({ message: user.message, type: "success",id:"user-created" });
 
           await sendVerificationEmailRequest.request({
             emailAddress: user.data.emailAddress

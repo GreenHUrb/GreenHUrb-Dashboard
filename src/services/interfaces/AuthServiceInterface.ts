@@ -38,3 +38,9 @@ export interface IValidateForgotPasswordRequest extends IEmailRequest {
   otp: number;
   password: string;
 }
+
+
+export interface IGoogleAuth {
+  roleId:string
+  code:string
+}

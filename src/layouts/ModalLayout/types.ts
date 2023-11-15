@@ -3,4 +3,5 @@ export interface IModalProps {
   onClose: () => void;
   compulsoryClose?: boolean;
   fullOverlay?: boolean;
+  solidOverlay?:boolean
 }

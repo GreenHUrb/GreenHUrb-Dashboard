@@ -9,7 +9,6 @@ import { Services } from "@/services";
 
 export const useProductInfoApi = () => {
   const { initializeProducts, addProduct, updateProduct, deleteProduct } = useProductActions();
-  const { toggleAppLoader } = useAppActions();
 
   // GET CATEGORIES
   const getCategoriesRequest = useApi<IGetCategoriesApiResponse, null>(() => {

@@ -9,6 +9,7 @@
   &-fullOverlay {
     left: 0px;
   }
+
 }
 
 .modal .modal-background {
@@ -20,6 +21,10 @@
   bottom: 0;
   height: 100vh;
   width: 100vw;
+}
+
+.modal-solid-overlay {
+  background: white !important;
 }
 
 .modal .modal-card {

@@ -31,6 +31,10 @@ export const DashboardLayout = () => {
     handleSetCurrentPath();
   }, [location]);
 
+  useEffect(() => {
+    console.log(appLoading, "looading");
+  }, [appLoading]);
+
   if (appLoading) {
     return <PageLoader />;
   }

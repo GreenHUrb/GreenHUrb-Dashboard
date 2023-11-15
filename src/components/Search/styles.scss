@@ -1,15 +1,46 @@
+@import '../../styles/global.scss';
+
 .search_bar {
-    max-width: 400px;
-    margin-bottom: 2em;
-  
-    .custom-input__label {
-      font-weight: 500;
+  @include themify($themes) {
+    position: relative;
+    width: 100%;
+    border-radius: 10px;
+    transition: all 0.5s ease-in-out;
+    display: flex;
+    align-items: center;
+    gap: .5em;
+    background: #F9F9F9;
+    padding: .6rem 1rem;
+
+    @media screen and (min-width:768px) {
+      width: 400px;
     }
-  
-    .custom-input__container__input {
-      width: 90%;
-      border: 1px solid #e2e2e6;
-      border-radius: 4px;
+
+    &_clear_icon{
+      margin-left: 10px;
+      cursor: pointer;
+    }
+
+    input {
+      position: relative;
+      font-size: var(--normal-paragraph);
+      color: themed('text-color');
+      border: none;
+      outline: none;
+      transition: all 0.5s ease-in-out;
+      width: 0px;
+      background: transparent;
+      font-weight: var(--medium-font);
+      width: 100%;
+      padding: 0 15px;
+
+      &::placeholder {
+        font-weight: var(--medium-font);
+        color: rgb(#232D23, 60%);
+        line-height: 27.36px;
+        letter-spacing: .5px;
+
+      }
     }
   }
-  
+}

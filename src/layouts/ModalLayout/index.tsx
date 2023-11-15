@@ -3,12 +3,7 @@ import "./styles.scss";
 import { IModalProps } from "./types";
 
 export function PopModal(props: IModalProps) {
-  const {
-    children,
-    onClose,
-    compulsoryClose,
-    fullOverlay
-  } = props
+  const { children, onClose, compulsoryClose, fullOverlay, solidOverlay } = props;
   const [showModalCard, setShowModalCard] = useState(false);
 
   useEffect(() => {
@@ -18,9 +13,9 @@ export function PopModal(props: IModalProps) {
   }, []);
 
   return (
-    <div className={`modal ${fullOverlay ? 'modal-fullOverlay' : ''} pop-modal`}>
+    <div className={`modal ${fullOverlay ? "modal-fullOverlay" : ""} pop-modal `}>
       <div
-        className="modal-background"
+        className={`modal-background ${solidOverlay ? "modal-solid-overlay" : ""}`}
         onClick={() => {
           if (!compulsoryClose) {
             setShowModalCard(false);
@@ -30,10 +25,7 @@ export function PopModal(props: IModalProps) {
           }, 100);
         }}
       />
-      <div className={`modal-card ${showModalCard ? "show" : ""}`}>
-        {children}
-      </div>
+      <div className={`modal-card ${showModalCard ? "show" : ""}`}>{children}</div>
     </div>
   );
 }
-

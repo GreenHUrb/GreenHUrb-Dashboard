@@ -27,6 +27,8 @@
         color: #878787;
     }
 
+
+
 }
 
 .table_pagination {
@@ -36,7 +38,7 @@
 
 .product_options_container {
     background: #fcfcfc;
-    box-shadow: 16px 16px 40px rgba(0, 0, 0, 0.16);
+    // box-shadow: 16px 16px 40px rgba(0, 0, 0, 0.6);
     border-radius: 8px;
     width: 150px;
     font-size: 15px;
@@ -52,6 +54,7 @@
         padding-block: 0.8rem;
         cursor: pointer;
         transition: all 150ms ease-in-out;
+
 
 
         &:hover {
@@ -70,5 +73,13 @@
         }
 
 
+    }
+}
+
+.product_table_actions_container {
+    
+    .css-3bmhjh-MuiPaper-root-MuiPopover-paper {
+        box-shadow: none !important;
+        box-shadow:rgba(0, 0, 0, 0.15) 0px 5px 15px !important;
     }
 }

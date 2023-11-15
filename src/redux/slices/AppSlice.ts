@@ -12,9 +12,15 @@ export const AppSlice = createSlice({
     currentPage: "" as IPage,
     sidebarStatus: false,
     isMobile: false,
-    appLoading:false
+    appLoading: false
   },
   reducers: {
+    /**
+     *
+     * @param state
+     * @param action
+     * This toggles the theme of the application as a whole
+     */
     toggleTheme: (
       state,
       action: {
@@ -51,6 +57,12 @@ export const AppSlice = createSlice({
     ) => {
       state.isMobile = action.payload;
     },
+
+    /**
+     * 
+     * @param state 
+     * @param action 
+     */
     toggleAppLoader: (
       state,
       action: {
@@ -58,7 +70,7 @@ export const AppSlice = createSlice({
       }
     ) => {
       state.appLoading = action.payload;
-    },
+    }
   }
 });
 
