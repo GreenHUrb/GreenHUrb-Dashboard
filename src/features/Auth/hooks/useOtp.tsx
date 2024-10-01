@@ -1,10 +1,10 @@
 import { useLocation, useNavigate } from "react-router-dom";
 
-import { useEffect, useState } from "react";
 import { useApi } from "@/hooks";
-import { IEmailRequest, IUserRespone, IValidateVerifyAccountRequest, Services } from "@/services";
-import { AllRouteConstants } from "@/router";
 import { makeToast } from "@/libs";
+import { AllRouteConstants } from "@/router";
+import { AuthPlatform, IUserRespone, IVerifyAccountRequest, Services } from "@/services";
+import { useEffect, useState } from "react";
 
 interface IUserDetails {
   id: string;
@@ -12,34 +12,82 @@ interface IUserDetails {
   phoneNumber: string;
 }
 
-export const useOtp = () => {
+export const useOtp = (platform: "email" | "phone") => {
   const location = useLocation();
+
+  const userDetails: IUserDetails = location?.state?.userDetails;
+
   const navigate = useNavigate();
+
   const [otp, setOtp] = useState("");
+
   const [resendButtonDetails, setResendButtonDetails] = useState({
     seconds: 59,
     disabled: true
   });
-  const [otpSubmitted, setOtpSubmitted] = useState(false);
+
+  // API SERVICES
+  const sendOtpRequest = useApi<{ message: string }, AuthPlatform>((data: AuthPlatform) =>
+    Services.Auth.resendVerificationOtp(data)
+  );
+
+  const validateOtpRequest = useApi<IUserRespone, IVerifyAccountRequest>(
+    (data: IVerifyAccountRequest) => Services.Auth.verifyAccount(data)
+  );
+
+  const [showOtpSuccessModal, setShowOtpSuccessModal] = useState(false);
+
+  const handleCloseOtpSuccessModal = () => {
+    setShowOtpSuccessModal(false);
+
+    navigate(AllRouteConstants.auth.notUseLayout.tAndC, {
+      state: {
+        userDetails: null
+      },
+      replace: true
+    });
+  };
 
   const onChangeOtp = (value: string) => setOtp(value.trim());
 
-  const userDetails: IUserDetails = location?.state?.userDetails;
+  const handleSubmit: React.FormEventHandler<HTMLFormElement> = async e => {
+    e.preventDefault();
 
-  const handleChangeOtpSubmitted = () => {
-    setOtpSubmitted(false);
+    validateOtpRequest.reset();
+
+    try {
+      const payload: IVerifyAccountRequest = {
+        otp,
+        ...(platform === "email"
+          ? { platform: "email", emailAddress: userDetails.emailAddress }
+          : { platform: "phone", phoneNumber: userDetails.phoneNumber })
+      };
+
+      const valid = await validateOtpRequest.request(payload);
+
+      if (valid) {
+        makeToast({ message: "Account Verified Successfully", type: "success" });
+
+        setShowOtpSuccessModal(true);
+      }
+    } catch (error) {}
   };
 
+  // Resend OTP
   const handleResendOtp = async () => {
     if (resendButtonDetails.disabled) return;
 
-    const result = await sendOtpRequest.request({
-      emailAddress: userDetails.emailAddress
-    });
+    const payload: AuthPlatform = {
+      ...(platform === "email"
+        ? { platform: "email", emailAddress: userDetails.emailAddress }
+        : { platform: "phone", phoneNumber: userDetails.phoneNumber })
+    };
 
-    makeToast({ message: result?.message!, type: "success" });
+    const result = await sendOtpRequest.request(payload);
 
     if (result) {
+      makeToast({ message: "OTP Has been resent Successfully!", type: "success" });
+
       setResendButtonDetails({
         seconds: 59,
         disabled: true
@@ -47,6 +95,7 @@ export const useOtp = () => {
     }
   };
 
+  // Resend Counter Logic
   useEffect(() => {
     const { disabled, seconds } = resendButtonDetails;
 
@@ -74,49 +123,15 @@ export const useOtp = () => {
     }
   }, [resendButtonDetails.seconds]);
 
-  useEffect(() => {
-    !userDetails && navigate(AllRouteConstants.auth.login);
-  }, []);
-
-  const sendOtpRequest = useApi<{ message: string }, IEmailRequest>((data: IEmailRequest) =>
-    Services.Auth.verifyAccount(data)
-  );
-
-  const validateOtpRequest = useApi<IUserRespone, IValidateVerifyAccountRequest>(
-    (data: IValidateVerifyAccountRequest) => Services.Auth.validateVerifyAccount(data)
-  );
-
-  const handleSubmit: React.FormEventHandler<HTMLFormElement> = async e => {
-    e.preventDefault();
-
-    validateOtpRequest.reset();
-
-    try {
-      const valid = await validateOtpRequest.request({
-        otp,
-        emailAddress: userDetails.emailAddress
-      });
-
-      if (valid) {
-        makeToast({ message: valid?.message, type: "success" });
-      }
-
-      navigate(AllRouteConstants.auth.notUseLayout.tAndC, {
-        state: {
-          userDetails
-        },
-        replace: true
-      });
-    } catch (error) {}
-  };
-
   return {
     navigate,
     seconds: resendButtonDetails.seconds,
     disabled: resendButtonDetails.disabled,
     userDetails,
-    handleChangeOtpSubmitted,
-    otpSubmitted,
+    submitting: validateOtpRequest.loading,
+    resending: sendOtpRequest.loading,
+    handleCloseOtpSuccessModal,
+    showOtpSuccessModal,
     form: {
       otp,
       handleSubmit,

@@ -6,7 +6,7 @@ import { FaInfoCircle, FaExclamationCircle, FaTimesCircle } from "react-icons/fa
 interface IMakeToastOptions {
   message: string;
   type: "success" | "error" | "info" | "warning";
-  id: string;
+  id?: string;
 }
 
 interface ToastMessageProps extends IMakeToastOptions {

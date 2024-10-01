@@ -1,17 +1,17 @@
 /* eslint-disable no-param-reassign */
-import { IUser } from "@/interfaces/IUser";
+import { AuthUser, IUser } from "@/interfaces/IUser";
 import { createSlice } from "@reduxjs/toolkit";
 
 export const AuthSlice = createSlice({
   name: "Auth",
   initialState: {
-    data: null as IUser | null
+    data: null as AuthUser | null
   },
   reducers: {
     login: (
       state,
       action: {
-        payload: IUser;
+        payload: AuthUser;
       }
     ) => {
       const { payload } = action;

@@ -15,18 +15,16 @@ export const useApi = <T, K>(apiFunc: (arg: K) => Promise<AxiosResponse>) => {
       return result.data;
     } catch (err: any) {
       const error = err.response?.data;
-      console.log(err);
 
-      if (!error?.error) {
-        if (err.message) {
-          error.message = err?.message;
-        } else {
-          error.message = "Something Went Wrong!";
-        }
+      const errorMessage = () => {
+        if(error.message) return error.message
+
+        if (err?.message) return err.message
+
+        return "Something went wrong";
       }
 
-      error.message = error?.error;
-      makeToast({ message: error?.message || "", type: "error", id: "api-error" });
+      makeToast({ message: errorMessage(), type: "error", id: "api-error" });
 
       setError(error);
       return null;

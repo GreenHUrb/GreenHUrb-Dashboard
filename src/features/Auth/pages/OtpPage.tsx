@@ -1,23 +1,47 @@
-import { BiArrowBack } from "react-icons/bi";
 import AnimateHeight from "react-animate-height";
+import { BiArrowBack } from "react-icons/bi";
 
+import { AllRouteConstants } from "@/router";
 import { Button, OtpInput } from "@components";
-import "../styles/auth_otp_styles.scss";
-import { useOtp } from "../hooks";
+import { useEffect, useState } from "react";
 import { AuthModal } from "../components";
+import { useOtp } from "../hooks";
+import "../styles/auth_otp_styles.scss";
 
 export const OtpPage = () => {
-  const { navigate, seconds, form, disabled, userDetails, handleChangeOtpSubmitted, otpSubmitted } =
-    useOtp();
+  const [platform, setPlatform] = useState<"email" | "phone">("phone");
+
+  const {
+    navigate,
+    seconds,
+    userDetails,
+    form,
+    disabled,
+    handleCloseOtpSuccessModal,
+    showOtpSuccessModal,
+    submitting,
+    resending
+  } = useOtp(platform);
 
   const { handleSubmit, onChangeOtp, otp, handleResendOtp } = form;
 
+  useEffect(() => {
+    if (!userDetails) return navigate(AllRouteConstants.auth.login);
+
+    if (userDetails.emailAddress) return setPlatform("email");
+
+    if (userDetails.phoneNumber) return setPlatform("phone");
+
+    navigate(AllRouteConstants.auth.login);
+  }, [userDetails]);
+
   return (
     <div className="auth_otp">
-      {otpSubmitted && (
+      {showOtpSuccessModal && (
         <AuthModal
           header="Account Verification Successful!"
-          onClose={handleChangeOtpSubmitted}
+          onClose={handleCloseOtpSuccessModal}
+          buttonText="Continue"
           text={
             <p className="auth_modal_text">
               <span style={{ color: "#131418" }}>Congratulations! </span>Account verified
@@ -33,10 +57,19 @@ export const OtpPage = () => {
             <BiArrowBack />
           </button>
           <h1>OTP</h1>
-          <p>
-            A verification code was sent to your email {userDetails?.emailAddress} and your phone
-            number {userDetails?.phoneNumber}, Kindly input the code below
-          </p>
+          {platform === "email" && (
+            <p>
+              A verification code was sent to your email {userDetails?.emailAddress}, Kindly input
+              the code below
+            </p>
+          )}
+
+          {platform === "phone" && (
+            <p>
+              A verification code was sent to your phone number {userDetails?.phoneNumber}, Kindly
+              input the code below
+            </p>
+          )}
         </div>
 
         <form onSubmit={handleSubmit}>
@@ -56,17 +89,33 @@ export const OtpPage = () => {
               type="button"
               fullWidth
               onClick={handleResendOtp}
+              loading={resending}
             />
           </AnimateHeight>
 
-          <Button label="Verify" disable={otp.length !== 4} variant="contained" fullWidth />
+          <Button
+            label="Verify"
+            disable={otp.length !== 4}
+            variant="contained"
+            fullWidth
+            loading={submitting}
+          />
         </form>
 
         <div>
-          <p className="auth_otp_bottom_text">
-            I dont have access to the phone number, send code to my{" "}
-            <Button label="Email address" variant="text" />
-          </p>
+          {platform === "email" && userDetails.phoneNumber && (
+            <p className="auth_otp_bottom_text">
+              I dont have access to my Email Address, send code to my
+              <Button label="Phone Number" variant="text" onClick={() => setPlatform("phone")} />
+            </p>
+          )}
+
+          {platform === "phone" && userDetails.emailAddress && (
+            <p className="auth_otp_bottom_text">
+              I dont have access to my phone number, send code to my
+              <Button label="Email address" variant="text" onClick={() => setPlatform("email")} />
+            </p>
+          )}
         </div>
       </div>
     </div>

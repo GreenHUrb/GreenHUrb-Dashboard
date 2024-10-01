@@ -3,7 +3,7 @@ import queryString from "query-string";
 
 import { useForm, useApi, useAuthActions } from "@hooks";
 import { AllRouteConstants } from "@router";
-import { Services, IUserRespone, IGoogleAuth, IEmailRequest } from "@services";
+import { Services, IUserRespone, IEmailRequest } from "@services";
 import { config } from "@/config";
 import { useEffect, useState } from "react";
 import { makeToast } from "@/libs";
@@ -31,11 +31,13 @@ export const useGoogleLogin = () => {
   });
 
   // Create the Google login URL using the constructed parameters
-  const googleLoginUrl = `https://accounts.google.com/o/oauth2/v2/auth?${stringifiedParams}`;
+  // const googleLoginUrl = `https://accounts.google.com/o/oauth2/v2/auth?${stringifiedParams}`;
+  const googleLoginUrl = `http://localhost:8000/api/v1/auth/google`;
+
 
   // Create an API request hook for handling Google authentication
-  const googleAuthApiRequest = useApi<IUserRespone, IGoogleAuth>((data: IGoogleAuth) =>
-    Services.Auth.googleAuth(data)
+  const googleAuthApiRequest = useApi<IUserRespone, undefined>(() =>
+    Services.Auth.googleAuth()
   );
 
   // Create an API request hook for sending OTP requests
@@ -68,10 +70,7 @@ export const useGoogleLogin = () => {
   const handleSigninWithGoogle = async (code: string) => {
     setLoggingIn(true);
     // Make a request to authenticate with Google using the obtained code
-    const user = await googleAuthApiRequest.request({
-      code,
-      roleId: "6be3dfaf-256f-4a3e-885a-d956ba80fa8e"
-    });
+    const user = await googleAuthApiRequest.request();
 
     if (!user) {
       makeToast({

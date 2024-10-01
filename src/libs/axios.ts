@@ -1,15 +1,15 @@
-import axios from "axios";
+import { authSliceActions, store } from "@/redux";
 import { AllRouteConstants } from "../router/RouteConstants";
 import { Services } from "@services";
-import { authSliceActions, store } from "@/redux";
+import axios from "axios";
 
-export const baseURL = "http://localhost:8000";
+export const baseURL = "http://localhost:8000/api/v1";
 
 const logoutAction = authSliceActions.logout();
 
 export const axiosInstance = axios.create({
-  baseURL,
-  withCredentials: true,
+  baseURL
+  // withCredentials: true,
   // headers: {
   //   Accept: "application/json",
   //   "Content-Type": "application/json",
@@ -23,18 +23,27 @@ axiosInstance.interceptors.response.use(
     return response;
   },
   async error => {
+    const config = error.config;
+
+    // Skip the interceptor logic if `skipInterceptor` is set to true
+    if (config.skipInterceptor) {
+      return Promise.reject(error);
+    }
+
     if (error.response && error.response.status === 401 && retries <= 2) {
       try {
         retries += 1;
+
         await Services.Auth.refreshAccessToken();
+
         return axiosInstance.request(error.config);
       } catch (error) {
         window.history.pushState(null, "", AllRouteConstants.auth.login);
         window.location.replace(AllRouteConstants.auth.login);
         store.dispatch(logoutAction);
       }
-    } else {
-      return Promise.reject(error);
     }
+
+    return Promise.reject(error);
   }
 );

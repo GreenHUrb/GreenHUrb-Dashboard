@@ -4,12 +4,12 @@ import { useEffect } from "react";
 import { Outlet } from "react-router";
 import { useLocation } from "react-router-dom";
 
+import { PageLoader } from "@/components";
 import { RequireAuth } from "@HoC";
+import { useAppActions, useAppSelector, useScreenSize } from "@hooks";
 import { IPage } from "@redux";
 import Navbar from "./Navbar/Navbar";
 import Sidebar from "./Sidebar/Sidebar";
-import { useAppActions, useAppSelector, useScreenSize } from "@hooks";
-import { PageLoader } from "@/components";
 
 export const DashboardLayout = () => {
   const location = useLocation();
@@ -31,9 +31,6 @@ export const DashboardLayout = () => {
     handleSetCurrentPath();
   }, [location]);
 
-  useEffect(() => {
-    console.log(appLoading, "looading");
-  }, [appLoading]);
 
   if (appLoading) {
     return <PageLoader />;

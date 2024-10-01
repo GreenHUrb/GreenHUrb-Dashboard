@@ -4,7 +4,7 @@ import { ProductService } from "./Product.service";
 
 export * from "./interfaces";
 
-const baseURL = "http://localhost:8000";
+const baseURL = "http://localhost:8000/api/v1";
 
 export const Services = {
   Auth: new AuthService(baseURL),

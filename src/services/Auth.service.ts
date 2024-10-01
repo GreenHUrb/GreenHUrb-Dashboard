@@ -1,38 +1,40 @@
-import { baseURL, axiosInstance } from "@libs";
+import { axiosInstance } from "@libs";
 import {
+  AuthPlatform,
+  IEmailRequest,
   ILoginRequest,
   ISignupRequest,
-  IEmailRequest,
   IValidateForgotPasswordRequest,
-  IValidateVerifyAccountRequest,
-  IGoogleAuth
+  IVerifyAccountRequest
 } from "./interfaces/AuthServiceInterface";
 
 export class AuthService {
   private authUrl!: string;
 
   constructor(baseURL: string) {
-    this.authUrl = "http://localhost:8001";
+    this.authUrl = `${baseURL}/auth`;
   }
 
   public async login(data: ILoginRequest) {
-    return await axiosInstance.post(`${this.authUrl}/login`, data);
+    return await axiosInstance.post(`/auth/login`, data);
   }
 
   public async signup(data: ISignupRequest) {
-    return await axiosInstance.post(`${this.authUrl}/signup`, data);
+    return await axiosInstance.post(`/auth/register/farmer`, data);
   }
 
-  public async googleAuth(data: IGoogleAuth) {
-    return await axiosInstance.post(`${this.authUrl}/google-auth`, data);
+  public async googleAuth() {
+    return await axiosInstance.get(`${this.authUrl}/google-auth`);
   }
 
-  public async verifyAccount(data: IEmailRequest) {
-    return await axiosInstance.post(`${this.authUrl}/verify-account`, data);
+  public async resendVerificationOtp(data: AuthPlatform) {
+    return await axiosInstance.post(`/auth/verify-account/resend-otp`, data, {
+      skipInterceptor: true
+    });
   }
 
-  public async validateVerifyAccount(data: IValidateVerifyAccountRequest) {
-    return await axiosInstance.post(`${this.authUrl}/verify-account/validate`, data);
+  public async verifyAccount(data: IVerifyAccountRequest) {
+    return await axiosInstance.post(`/auth/verify-account`, data);
   }
 
   public async forgotPassword(data: IEmailRequest) {

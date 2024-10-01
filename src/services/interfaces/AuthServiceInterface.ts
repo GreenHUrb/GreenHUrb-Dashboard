@@ -1,5 +1,4 @@
-import { IUser } from "@/interfaces/IUser";
-import { BaseApiResponse } from "./common/BaseApiResponse";
+import { AuthUser } from "@/interfaces/IUser";
 
 /***********  SIGNUP  ***********/
 
@@ -13,7 +12,7 @@ export interface ISignupRequest {
 }
 
 export interface IUserRespone {
-  data: IUser;
+  data: AuthUser;
   message: string;
 }
 
@@ -26,21 +25,19 @@ export interface ILoginRequest {
 
 /***********  ACCOUNT VALIDATION  ***********/
 export interface IEmailRequest {
+  platform: "email" | "phone";
   emailAddress: string;
 }
 
-export interface IValidateVerifyAccountRequest {
-  emailAddress: string;
+export type AuthPlatform =
+  | { platform: "email"; emailAddress: string }
+  | { platform: "phone"; phoneNumber: string };
+
+export type IVerifyAccountRequest = AuthPlatform & {
   otp: string;
-}
+};
 
 export interface IValidateForgotPasswordRequest extends IEmailRequest {
   otp: number;
   password: string;
-}
-
-
-export interface IGoogleAuth {
-  roleId:string
-  code:string
 }
