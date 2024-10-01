@@ -1,10 +1,10 @@
 import { useNavigate } from "react-router-dom";
 
-import { useForm, useApi } from "@hooks";
-import { AllRouteConstants } from "@router";
-import { emailValidator, emptyValidator, nameValidator, passwordValidator } from "@validators";
-import { Services, IUserRespone, ISignupRequest, IEmailRequest } from "@services";
 import { makeToast } from "@/libs";
+import { useApi, useForm } from "@hooks";
+import { AllRouteConstants } from "@router";
+import { ISignupRequest, IUserRespone, Services } from "@services";
+import { emailValidator, emptyValidator, nameValidator, passwordValidator } from "@validators";
 
 export const useSignup = () => {
   const navigate = useNavigate();
@@ -30,18 +30,12 @@ export const useSignup = () => {
     Services.Auth.signup(data)
   );
 
-  const sendVerificationEmailRequest = useApi<IUserRespone, IEmailRequest>((data: IEmailRequest) =>
-    Services.Auth.verifyAccount(data)
-  );
-  
-
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = async e => {
     e.preventDefault();
 
     signupForm.resetFormErrors();
 
     signupApiRequest.reset();
-    sendVerificationEmailRequest.reset();
 
     const valid = signupForm.validate();
 
@@ -51,13 +45,8 @@ export const useSignup = () => {
 
         const user = await signupApiRequest.request(signupForm.form);
 
-
         if (user) {
-          makeToast({ message: user.message, type: "success",id:"user-created" });
-
-          await sendVerificationEmailRequest.request({
-            emailAddress: user.data.emailAddress
-          });
+          makeToast({ message: user.message, type: "success", id: "user-created" });
 
           navigate(AllRouteConstants.auth.notUseLayout.otp, {
             state: {

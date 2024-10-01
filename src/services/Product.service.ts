@@ -1,18 +1,12 @@
-import { baseURL, axiosInstance } from "@libs";
-import {
-  ILoginRequest,
-  ISignupRequest,
-  IEmailRequest,
-  IValidateForgotPasswordRequest,
-  IValidateVerifyAccountRequest
-} from "./interfaces/AuthServiceInterface";
+import { axiosInstance } from "@libs";
+import { ILoginRequest } from "./interfaces/AuthServiceInterface";
 
 export class ProductService {
   private productUrl!: string;
 
   constructor(baseURL: string) {
     // this.productUrl = `${baseURL}/product`;
-    this.productUrl = "http://localhost:8004"
+    this.productUrl = "http://localhost:8004";
   }
 
   public async getProductCategories() {
@@ -42,7 +36,7 @@ export class ProductService {
   }
 
   public async getFarmerProducts() {
-    return await axiosInstance.get(`${this.productUrl}/farmer`,);
+    return await axiosInstance.get(`${this.productUrl}/farmer`);
   }
 
   // Variant

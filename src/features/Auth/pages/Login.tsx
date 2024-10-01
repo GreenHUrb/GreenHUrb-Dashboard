@@ -9,15 +9,15 @@ import { useNavigate } from "react-router-dom";
 import { useGoogleLogin, useLogin, usePasswordType } from "../hooks";
 
 // import Icons
-import GoogleIcon from "@icons/google.svg";
-import visibleIcon from "@icons/visible.svg";
 import FacebookIcon from "@icons/facebook.svg";
+import GoogleIcon from "@icons/google.svg";
 import notvisibleIcon from "@icons/not-visible.svg";
+import visibleIcon from "@icons/visible.svg";
 
 // import custom Components
 import { ILoginRequest } from "@/services";
-import { AllRouteConstants } from "@router";
 import { Button, Checkbox, Input } from "@components";
+import { AllRouteConstants } from "@router";
 import { SocialMediaAuthButton } from "../components";
 
 // import Interfaces
@@ -27,7 +27,7 @@ export const Login = () => {
 
   const { handleSubmit, loginForm, loading } = useLogin();
 
-  const { googleLoginUrl, loggingIn } = useGoogleLogin();
+  const { googleLoginUrl } = useGoogleLogin();
 
   const { passwordType, togglePassword } = usePasswordType();
 
@@ -101,7 +101,7 @@ export const Login = () => {
         </div>
 
         <div className="auth-footer">
-          <SocialMediaAuthButton loading={loggingIn} link={googleLoginUrl} image={GoogleIcon} />
+          <SocialMediaAuthButton link={googleLoginUrl} image={GoogleIcon} />
           <SocialMediaAuthButton link={googleLoginUrl} image={FacebookIcon} />
         </div>
 

@@ -1,29 +1,28 @@
-import { usePopOver } from "../../../../hooks/usePopOver";
+import { Popover } from "@mui/material";
 import { SlOptionsVertical } from "react-icons/sl";
+import { TablePagination } from "../../../../components/TablePagination";
+import { usePopOver } from "../../../../hooks/usePopOver";
+import { usePagination } from "../../../../hooks/useTablePagination";
 import {
-  TableLayout,
-  TableHeadContainer,
   TableBodyContainer,
   TableBodyRow,
   TableBodyRowChild,
-  TableHead
+  TableHead,
+  TableHeadContainer,
+  TableLayout
 } from "../../../../layouts/TableLayout";
-import { Popover } from "@mui/material";
-import "./Tables.scss";
-import { useState } from "react";
-import { usePagination } from "../../../../hooks/useTablePagination";
-import { TablePagination } from "../../../../components/TablePagination";
 import { ITransaction } from "../../../Home/interfaces/ITransaction";
+import "./Tables.scss";
 
 interface ITransactionsTable {
   tableHead: string[];
   tableData: ITransaction[];
   pagination?: boolean;
   dataLimit?: number;
-  children: JSX.Element;
+  children?: JSX.Element;
 }
 const TransactionTable = (props: ITransactionsTable) => {
-  const { tableData, tableHead, pagination, dataLimit,children } = props;
+  const { tableData, tableHead, pagination, dataLimit, children } = props;
   const { anchorEl, handleClick, handleClose, id, open } = usePopOver();
 
   const { currentItems, currentPage, nextPage, prevPage, totalPages, goToPage, totalDataLength } =
