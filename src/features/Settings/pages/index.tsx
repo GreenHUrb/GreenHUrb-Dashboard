@@ -9,3 +9,4 @@ export { Subscription } from './SubscriptionPages/Subscription';
 export { SubscriptionPayment } from './SubscriptionPages/SubscriptionPayment';
 export { SubscribedPage } from './SubscriptionPages/SubscribedPage';
 export { DeletePage } from './DeletePage';
+export { PaymentSettings } from './PaymentSettings/PaymentSettings';

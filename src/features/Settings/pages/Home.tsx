@@ -17,7 +17,7 @@ const linkDetails = [
   {
     name: "Payment settings",
     description: "Manage notifications, receive updates including Sales informations,  ",
-    path: ""
+    path: AllRouteConstants.settings.paymentSettings,
   },
   {
     name: "Password settings",

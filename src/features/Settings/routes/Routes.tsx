@@ -2,7 +2,7 @@
 import { Route } from "react-router-dom";
 
 // Import Pages
-import { AccountSettings, Home, NotificationSettings, PasswordSettings, Faq, HelpCenter, Subscription, SubscriptionPayment, SubscribedPage, DeletePage} from "../pages";
+import { AccountSettings, Home, NotificationSettings, PasswordSettings, Faq, HelpCenter, Subscription, SubscriptionPayment, SubscribedPage, DeletePage, PaymentSettings} from "../pages";
 
 // Import Constants
 import { AllRouteConstants } from "../../../router/RouteConstants";
@@ -20,6 +20,7 @@ const SettingsRoutes = () => {
       <Route path={AllRouteConstants.settings.subscriptionPayment} element={<SubscriptionPayment />} />
       <Route path={AllRouteConstants.settings.subscribedPage} element={<SubscribedPage />} />
       <Route path={AllRouteConstants.settings.deleteSettings} element={<DeletePage />} />
+      <Route path={AllRouteConstants.settings.paymentSettings} element={<PaymentSettings />} />
     </>
   );
 };
